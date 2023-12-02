@@ -39,7 +39,6 @@ export default function Home() {
             width={450}
             className="select-none"
             priority
-            placeholder="blur"
           />
         </div>
         <ul className="mb-[40%] flex flex-col gap-2 whitespace-nowrap font-medium md:mb-0 hlg:!mb-[40%]">

@@ -7,7 +7,7 @@ import phoneImg from '/public/phone.png'
 
 export default function Home() {
   return (
-    <div className="hlg:gap-20 hlg:mt-20 mt-10 flex grow flex-col items-center justify-between gap-10">
+    <div className="mt-10 flex grow flex-col items-center justify-between gap-10 hlg:mt-20 hlg:gap-20">
       <div className="flex max-w-prose flex-col gap-2 text-center">
         <h2 className="text-4xl tracking-tight">
           <em>Next-Gen</em> Web3 Onboarding
@@ -22,7 +22,7 @@ export default function Home() {
           shimmerColor="hsl(var(--brand))"
           shimmerSize="0.1em"
         >
-          <span className="text-brand whitespace-pre-wrap text-center text-lg font-medium leading-none tracking-tight dark:from-white dark:to-slate-900/10">
+          <span className="whitespace-pre-wrap text-center text-lg font-medium leading-none tracking-tight text-brand dark:from-white dark:to-slate-900/10">
             Create your Unwallet
           </span>
         </ShimmerButton>
@@ -32,16 +32,17 @@ export default function Home() {
       </div>
 
       <div className="grid grid-cols-2 items-center justify-center">
-        <div className="hlg:!h-auto hlg:!overflow-auto -ml-12 h-[300px] overflow-hidden sm:h-[350px] md:h-[400px]">
+        <div className="-ml-12 h-[300px] overflow-hidden sm:h-[350px] md:h-[400px] hlg:!h-auto hlg:!overflow-auto">
           <Image
             src={phoneImg}
             alt="Unwallet App Screenshot"
             width={450}
             className="select-none"
             priority
+            placeholder="blur"
           />
         </div>
-        <ul className="hlg:!mb-[40%] mb-[40%] flex flex-col gap-2 whitespace-nowrap font-medium md:mb-0">
+        <ul className="mb-[40%] flex flex-col gap-2 whitespace-nowrap font-medium md:mb-0 hlg:!mb-[40%]">
           <li>⛓️&nbsp;&nbsp;Multichain domains</li>
           <li>🔑&nbsp;&nbsp;No seedphrases</li>
           <li>🧬&nbsp;&nbsp;Passkey signing</li>

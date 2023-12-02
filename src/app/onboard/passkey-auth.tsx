@@ -12,10 +12,10 @@ import {
   CardTitle,
 } from '@/components/ui/card'
 import { env } from '@/config/environment'
+import { getTurnkeyHttpClient } from '@/config/turnkey-client'
 import { chains } from '@/wagmi.config'
-import { TurnkeyClient, getWebAuthnAttestation } from '@turnkey/http'
+import { getWebAuthnAttestation } from '@turnkey/http'
 import { createAccount } from '@turnkey/viem'
-import { WebauthnStamper } from '@turnkey/webauthn-stamper'
 import axios from 'axios'
 import { createBundlerClient, getSenderAddress } from 'permissionless'
 import { toast } from 'sonner'
@@ -41,9 +41,6 @@ const base64UrlEncode = (challenge: ArrayBuffer): string => {
     .replace(/\//g, '_')
     .replace(/=/g, '')
 }
-
-const stamper = new WebauthnStamper({ rpId: 'localhost' })
-const passkeyHttpClient = new TurnkeyClient({ baseUrl: 'https://api.turnkey.com' }, stamper)
 
 export function PasskeyAuth() {
   const [passkeyAccount, setPasskeyAccount] = React.useState<LocalAccount>()
@@ -75,6 +72,7 @@ export function PasskeyAuth() {
     if (!parsedResponse.success) throw new Error('Invalid response internal API')
 
     // Create account
+    const passkeyHttpClient = getTurnkeyHttpClient(window.location.hostname)
     const localAccount = await createAccount({
       client: passkeyHttpClient,
       organizationId: parsedResponse.data.subOrgId,

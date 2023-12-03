@@ -10,3 +10,5 @@ public
 src/components/ui/*
 !src/components/ui/button.tsx
 !src/components/ui/input.tsx
+
+src/wagmi.generated.ts

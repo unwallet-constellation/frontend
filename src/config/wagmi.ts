@@ -1,27 +1,13 @@
-import { configureChains, createConfig } from 'wagmi'
-import {
-  arbitrumGoerli,
-  avalancheFuji,
-  baseGoerli,
-  gnosisChiado,
-  lineaTestnet,
-  optimismGoerli,
-  polygonMumbai,
-} from 'wagmi/chains'
+import { configureChains, createConfig, mainnet } from 'wagmi'
+import { avalancheFuji, polygonMumbai } from 'wagmi/chains'
 import { infuraProvider } from 'wagmi/providers/infura'
 import { publicProvider } from 'wagmi/providers/public'
 
+import { env } from './environment'
+
 export const { chains, publicClient, webSocketPublicClient } = configureChains(
-  [
-    avalancheFuji,
-    baseGoerli,
-    optimismGoerli,
-    polygonMumbai,
-    gnosisChiado,
-    lineaTestnet,
-    arbitrumGoerli,
-  ],
-  [infuraProvider({ apiKey: '81470a17e68f4e37b07f6a447145656c' }), publicProvider()],
+  [mainnet, avalancheFuji, polygonMumbai],
+  [infuraProvider({ apiKey: env.NEXT_PUBLIC_INFURA_API_KEY }), publicProvider()],
 )
 
 export const wagmiConfig = createConfig({

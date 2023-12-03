@@ -1,30 +1,30 @@
 'use client'
 
-import React from 'react'
+import { redirect, useSearchParams } from 'next/navigation'
+import { useState } from 'react'
 
 import { Button } from '@/components/ui/button'
 import { CardContent, CardFooter } from '@/components/ui/card'
 import { env } from '@/config/environment'
+import { siteMetdata } from '@/config/metadata'
 import { getTurnkeyHttpClient } from '@/config/turnkey-client'
 import { chains } from '@/config/wagmi'
 import { getWebAuthnAttestation } from '@turnkey/http'
 import { createAccount } from '@turnkey/viem'
 import axios from 'axios'
+import dayjs from 'dayjs'
 import { createBundlerClient, getSenderAddress } from 'permissionless'
 import { toast } from 'sonner'
 import { LocalAccount, concat, encodeFunctionData, http } from 'viem'
 import { usePublicClient } from 'wagmi'
 
 import { resSchema as turnkeyResponseSchema } from '../../../api/turnkey/create/types'
+import { OnboardingStepComponentProps } from '../types'
 
 const generateRandomBuffer = (): ArrayBuffer => {
   const arr = new Uint8Array(32)
   crypto.getRandomValues(arr)
   return arr.buffer
-}
-
-const humanReadableDateTime = (): string => {
-  return new Date().toLocaleString().replaceAll('/', '-').replaceAll(':', '.')
 }
 
 const base64UrlEncode = (challenge: ArrayBuffer): string => {
@@ -35,20 +35,24 @@ const base64UrlEncode = (challenge: ArrayBuffer): string => {
     .replace(/=/g, '')
 }
 
-export default function CreateWalletStep() {
-  const [passkeyAccount, setPasskeyAccount] = React.useState<LocalAccount>()
+export default function CreateWalletStep(_: OnboardingStepComponentProps) {
+  const searchParams = useSearchParams()
+  const domainName = searchParams?.get('domainName')
+  if (!domainName) redirect('/onboard/1')
+
+  const [passkeyAccount, setPasskeyAccount] = useState<LocalAccount>()
   const publicClient = usePublicClient()
 
   // TODO try/catch
   const createSubOrgAndPrivateKey = async () => {
     const challenge = generateRandomBuffer()
     const id = generateRandomBuffer()
-    const name = `Passkey Demo - ${humanReadableDateTime()}`
+    const name = `${siteMetdata.title} - ${dayjs().format('YYYY-MM-DD HH:mm')}`
     const attestation = await getWebAuthnAttestation({
       publicKey: {
         rp: {
-          id: 'localhost',
-          name: 'Passkey Demo',
+          id: window.location.hostname,
+          name: siteMetdata.title,
         },
         challenge,
         pubKeyCredParams: [{ type: 'public-key', alg: -7 }],
@@ -144,9 +148,7 @@ export default function CreateWalletStep() {
         <div className="font-mono text-sm">{passkeyAccount?.address || 'No Passkey Account'}</div>
       </CardContent>
       <CardFooter className="mt-auto flex-col items-stretch gap-2">
-        <Button onClick={createSubOrgAndPrivateKey} isLoading>
-          1. Create Key
-        </Button>
+        <Button onClick={createSubOrgAndPrivateKey}>1. Create Key</Button>
         <Button onClick={createSmartWallet} disabled={!passkeyAccount}>
           2. Create Smart Wallet
         </Button>

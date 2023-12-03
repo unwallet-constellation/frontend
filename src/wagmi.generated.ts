@@ -1,4 +1,226 @@
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// ENSRegistry
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+/**
+ * [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x00000000000C2E074eC69A0dFb2997BA6C7d2e1e)
+ */
+export const ensRegistryABI = [
+  {
+    payable: false,
+    stateMutability: 'nonpayable',
+    type: 'constructor',
+    inputs: [{ name: '_old', internalType: 'contract ENS', type: 'address' }],
+  },
+  {
+    type: 'event',
+    anonymous: false,
+    inputs: [
+      { name: 'owner', internalType: 'address', type: 'address', indexed: true },
+      { name: 'operator', internalType: 'address', type: 'address', indexed: true },
+      { name: 'approved', internalType: 'bool', type: 'bool', indexed: false },
+    ],
+    name: 'ApprovalForAll',
+  },
+  {
+    type: 'event',
+    anonymous: false,
+    inputs: [
+      { name: 'node', internalType: 'bytes32', type: 'bytes32', indexed: true },
+      { name: 'label', internalType: 'bytes32', type: 'bytes32', indexed: true },
+      { name: 'owner', internalType: 'address', type: 'address', indexed: false },
+    ],
+    name: 'NewOwner',
+  },
+  {
+    type: 'event',
+    anonymous: false,
+    inputs: [
+      { name: 'node', internalType: 'bytes32', type: 'bytes32', indexed: true },
+      { name: 'resolver', internalType: 'address', type: 'address', indexed: false },
+    ],
+    name: 'NewResolver',
+  },
+  {
+    type: 'event',
+    anonymous: false,
+    inputs: [
+      { name: 'node', internalType: 'bytes32', type: 'bytes32', indexed: true },
+      { name: 'ttl', internalType: 'uint64', type: 'uint64', indexed: false },
+    ],
+    name: 'NewTTL',
+  },
+  {
+    type: 'event',
+    anonymous: false,
+    inputs: [
+      { name: 'node', internalType: 'bytes32', type: 'bytes32', indexed: true },
+      { name: 'owner', internalType: 'address', type: 'address', indexed: false },
+    ],
+    name: 'Transfer',
+  },
+  {
+    constant: true,
+    payable: false,
+    stateMutability: 'view',
+    type: 'function',
+    inputs: [
+      { name: 'owner', internalType: 'address', type: 'address' },
+      { name: 'operator', internalType: 'address', type: 'address' },
+    ],
+    name: 'isApprovedForAll',
+    outputs: [{ name: '', internalType: 'bool', type: 'bool' }],
+  },
+  {
+    constant: true,
+    payable: false,
+    stateMutability: 'view',
+    type: 'function',
+    inputs: [],
+    name: 'old',
+    outputs: [{ name: '', internalType: 'contract ENS', type: 'address' }],
+  },
+  {
+    constant: true,
+    payable: false,
+    stateMutability: 'view',
+    type: 'function',
+    inputs: [{ name: 'node', internalType: 'bytes32', type: 'bytes32' }],
+    name: 'owner',
+    outputs: [{ name: '', internalType: 'address', type: 'address' }],
+  },
+  {
+    constant: true,
+    payable: false,
+    stateMutability: 'view',
+    type: 'function',
+    inputs: [{ name: 'node', internalType: 'bytes32', type: 'bytes32' }],
+    name: 'recordExists',
+    outputs: [{ name: '', internalType: 'bool', type: 'bool' }],
+  },
+  {
+    constant: true,
+    payable: false,
+    stateMutability: 'view',
+    type: 'function',
+    inputs: [{ name: 'node', internalType: 'bytes32', type: 'bytes32' }],
+    name: 'resolver',
+    outputs: [{ name: '', internalType: 'address', type: 'address' }],
+  },
+  {
+    constant: false,
+    payable: false,
+    stateMutability: 'nonpayable',
+    type: 'function',
+    inputs: [
+      { name: 'operator', internalType: 'address', type: 'address' },
+      { name: 'approved', internalType: 'bool', type: 'bool' },
+    ],
+    name: 'setApprovalForAll',
+    outputs: [],
+  },
+  {
+    constant: false,
+    payable: false,
+    stateMutability: 'nonpayable',
+    type: 'function',
+    inputs: [
+      { name: 'node', internalType: 'bytes32', type: 'bytes32' },
+      { name: 'owner', internalType: 'address', type: 'address' },
+    ],
+    name: 'setOwner',
+    outputs: [],
+  },
+  {
+    constant: false,
+    payable: false,
+    stateMutability: 'nonpayable',
+    type: 'function',
+    inputs: [
+      { name: 'node', internalType: 'bytes32', type: 'bytes32' },
+      { name: 'owner', internalType: 'address', type: 'address' },
+      { name: 'resolver', internalType: 'address', type: 'address' },
+      { name: 'ttl', internalType: 'uint64', type: 'uint64' },
+    ],
+    name: 'setRecord',
+    outputs: [],
+  },
+  {
+    constant: false,
+    payable: false,
+    stateMutability: 'nonpayable',
+    type: 'function',
+    inputs: [
+      { name: 'node', internalType: 'bytes32', type: 'bytes32' },
+      { name: 'resolver', internalType: 'address', type: 'address' },
+    ],
+    name: 'setResolver',
+    outputs: [],
+  },
+  {
+    constant: false,
+    payable: false,
+    stateMutability: 'nonpayable',
+    type: 'function',
+    inputs: [
+      { name: 'node', internalType: 'bytes32', type: 'bytes32' },
+      { name: 'label', internalType: 'bytes32', type: 'bytes32' },
+      { name: 'owner', internalType: 'address', type: 'address' },
+    ],
+    name: 'setSubnodeOwner',
+    outputs: [{ name: '', internalType: 'bytes32', type: 'bytes32' }],
+  },
+  {
+    constant: false,
+    payable: false,
+    stateMutability: 'nonpayable',
+    type: 'function',
+    inputs: [
+      { name: 'node', internalType: 'bytes32', type: 'bytes32' },
+      { name: 'label', internalType: 'bytes32', type: 'bytes32' },
+      { name: 'owner', internalType: 'address', type: 'address' },
+      { name: 'resolver', internalType: 'address', type: 'address' },
+      { name: 'ttl', internalType: 'uint64', type: 'uint64' },
+    ],
+    name: 'setSubnodeRecord',
+    outputs: [],
+  },
+  {
+    constant: false,
+    payable: false,
+    stateMutability: 'nonpayable',
+    type: 'function',
+    inputs: [
+      { name: 'node', internalType: 'bytes32', type: 'bytes32' },
+      { name: 'ttl', internalType: 'uint64', type: 'uint64' },
+    ],
+    name: 'setTTL',
+    outputs: [],
+  },
+  {
+    constant: true,
+    payable: false,
+    stateMutability: 'view',
+    type: 'function',
+    inputs: [{ name: 'node', internalType: 'bytes32', type: 'bytes32' }],
+    name: 'ttl',
+    outputs: [{ name: '', internalType: 'uint64', type: 'uint64' }],
+  },
+] as const
+
+/**
+ * [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x00000000000C2E074eC69A0dFb2997BA6C7d2e1e)
+ */
+export const ensRegistryAddress = {
+  1: '0x00000000000C2E074eC69A0dFb2997BA6C7d2e1e',
+} as const
+
+/**
+ * [__View Contract on Ethereum Etherscan__](https://etherscan.io/address/0x00000000000C2E074eC69A0dFb2997BA6C7d2e1e)
+ */
+export const ensRegistryConfig = { address: ensRegistryAddress, abi: ensRegistryABI } as const
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // FIFSRegistrar
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 

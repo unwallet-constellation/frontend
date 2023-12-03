@@ -116,6 +116,9 @@ dependencies:
   geist:
     specifier: ^1.2.0
     version: 1.2.0(next@14.0.3)
+  jotai:
+    specifier: ^2.6.0
+    version: 2.6.0(@types/react@18.2.40)(react@18.2.0)
   lodash.isequal:
     specifier: ^4.5.0
     version: 4.5.0
@@ -163,6 +166,12 @@ dependencies:
     version: 3.22.4
 
 devDependencies:
+  '@swc-jotai/debug-label':
+    specifier: ^0.1.0
+    version: 0.1.0
+  '@swc-jotai/react-refresh':
+    specifier: ^0.1.0
+    version: 0.1.0
   '@trivago/prettier-plugin-sort-imports':
     specifier: ^4.3.0
     version: 4.3.0(prettier@3.1.0)
@@ -2611,6 +2620,14 @@ packages:
       '@stablelib/keyagreement': 1.0.1
       '@stablelib/random': 1.0.2
       '@stablelib/wipe': 1.0.1
+
+  /@swc-jotai/debug-label@0.1.0:
+    resolution: {integrity: sha512-Fe0ag02uBaVBIS/ySKkLSyiMhTUKyw3F0pTAcH+Yc29wZgIt//yFuPv1+p0QrlV6n411BJ0sxq2ei89tvwpFXQ==}
+    dev: true
+
+  /@swc-jotai/react-refresh@0.1.0:
+    resolution: {integrity: sha512-CWV4W06GdfQo3cW3CoUM2fp7avH4Z/suR7SvECNJnQbr6Sa9U3p7o10nXjNv2zT6z09bbNUPM55HBw5Nwd24Iw==}
+    dev: true
 
   /@swc/helpers@0.5.2:
     resolution: {integrity: sha512-E4KcWTpoLHqwPHLxidpOqQbcrZVgi0rsmmZXUle1jXmJfuIf/UWpczUJ7MZZ5tlxytgJXyp0w4PGkkeLiuIdZw==}
@@ -5663,6 +5680,22 @@ packages:
   /jiti@1.21.0:
     resolution: {integrity: sha512-gFqAIbuKyyso/3G2qhiO2OM6shY6EPP/R0+mkDbyspxKazh8BXDC5FiFsUjlczgdNz/vfra0da2y+aHrusLG/Q==}
     hasBin: true
+
+  /jotai@2.6.0(@types/react@18.2.40)(react@18.2.0):
+    resolution: {integrity: sha512-Vt6hsc04Km4j03l+Ax+Sc+FVft5cRJhqgxt6GTz6GM2eM3DyX3CdBdzcG0z2FrlZToL1/0OAkqDghIyARWnSuQ==}
+    engines: {node: '>=12.20.0'}
+    peerDependencies:
+      '@types/react': '>=17.0.0'
+      react: '>=17.0.0'
+    peerDependenciesMeta:
+      '@types/react':
+        optional: true
+      react:
+        optional: true
+    dependencies:
+      '@types/react': 18.2.40
+      react: 18.2.0
+    dev: false
 
   /js-tokens@4.0.0:
     resolution: {integrity: sha512-RdJUflcE3cUzKiMqQgsCu06FPu9UdIJO0beYbPhHN4k6apgJtifcoCtT9bcxOpYBtpD2kCM6Sbzg4CausW/PKQ==}

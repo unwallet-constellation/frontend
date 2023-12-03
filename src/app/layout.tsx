@@ -8,6 +8,7 @@ import { siteMetdata } from '@/config/metadata'
 import { cn } from '@/utils/cn'
 import { GeistMono } from 'geist/font/mono'
 import { GeistSans } from 'geist/font/sans'
+import { Provider as JotaiProvider } from 'jotai'
 import logoIconSvg from 'public/logo-icon.svg'
 import { Toaster } from 'sonner'
 
@@ -36,7 +37,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           </Link>
 
           {/* Client Providers & Content */}
-          <Providers>{children}</Providers>
+          <JotaiProvider>
+            <Providers>{children}</Providers>
+          </JotaiProvider>
         </main>
 
         {/* Background Pattern */}

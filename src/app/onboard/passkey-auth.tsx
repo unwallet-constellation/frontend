@@ -3,14 +3,7 @@
 import React from 'react'
 
 import { Button } from '@/components/ui/button'
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from '@/components/ui/card'
+import { CardContent, CardFooter } from '@/components/ui/card'
 import { env } from '@/config/environment'
 import { getTurnkeyHttpClient } from '@/config/turnkey-client'
 import { chains } from '@/wagmi.config'
@@ -22,7 +15,7 @@ import { toast } from 'sonner'
 import { LocalAccount, concat, encodeFunctionData, http } from 'viem'
 import { usePublicClient } from 'wagmi'
 
-import { resSchema as turnkeyResponseSchema } from '../api/turnkey/create/types'
+import { resSchema as turnkeyResponseSchema } from '../../../api/turnkey/create/types'
 
 const generateRandomBuffer = (): ArrayBuffer => {
   const arr = new Uint8Array(32)
@@ -42,7 +35,7 @@ const base64UrlEncode = (challenge: ArrayBuffer): string => {
     .replace(/=/g, '')
 }
 
-export function PasskeyAuth() {
+export default function CreateWalletStep() {
   const [passkeyAccount, setPasskeyAccount] = React.useState<LocalAccount>()
   const publicClient = usePublicClient()
 
@@ -73,6 +66,7 @@ export function PasskeyAuth() {
 
     // Create account
     const passkeyHttpClient = getTurnkeyHttpClient(window.location.hostname)
+
     const localAccount = await createAccount({
       client: passkeyHttpClient,
       organizationId: parsedResponse.data.subOrgId,
@@ -145,20 +139,18 @@ export function PasskeyAuth() {
   }
 
   return (
-    <Card className="max-w-[25rem] overflow-hidden">
-      <CardHeader>
-        <CardTitle>Create Wallet</CardTitle>
-        <CardDescription>Passkey Authentication & ERC-4337 Wallet Initialization.</CardDescription>
-      </CardHeader>
+    <>
       <CardContent>
         <div className="font-mono text-sm">{passkeyAccount?.address || 'No Passkey Account'}</div>
       </CardContent>
-      <CardFooter className="flex flex-wrap gap-2">
-        <Button onClick={createSubOrgAndPrivateKey}>1. Create Key</Button>
+      <CardFooter className="mt-auto flex-col items-stretch gap-2">
+        <Button onClick={createSubOrgAndPrivateKey} isLoading>
+          1. Create Key
+        </Button>
         <Button onClick={createSmartWallet} disabled={!passkeyAccount}>
           2. Create Smart Wallet
         </Button>
       </CardFooter>
-    </Card>
+    </>
   )
 }

@@ -4,6 +4,7 @@
 
 @layer base {
   :root {
+    /* shadcn/ui Colors & Variables */
     --background: 0 0% 100%;
     --foreground: 222.2 84% 4.9%;
 
@@ -32,11 +33,11 @@
     --input: 214.3 31.8% 91.4%;
     --ring: 222.2 84% 4.9%;
 
-    /* --brand: 87deg 70% 60%; */
-    --brand: 120deg 70% 70%;
-    --brand-foreground: 0 0% 0%;
-
     --radius: 0.75rem;
+
+    /* Brand Color */
+    --brand: 120deg 80% 70%;
+    --brand-foreground: 0 0% 0%;
   }
 
   .dark {

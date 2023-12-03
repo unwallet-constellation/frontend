@@ -1,4 +1,5 @@
 import type { Config } from 'tailwindcss'
+import colors from 'tailwindcss/colors'
 import defaultTheme from 'tailwindcss/defaultTheme'
 
 const config: Config = {
@@ -22,6 +23,7 @@ const config: Config = {
         hxl: { raw: '(min-height: 1200px)' },
       },
       colors: {
+        gray: colors.zinc,
         border: 'hsl(var(--border) / <alpha-value>)',
         input: 'hsl(var(--input) / <alpha-value>)',
         ring: 'hsl(var(--ring) / <alpha-value>)',
@@ -68,8 +70,8 @@ const config: Config = {
       animation: {
         'accordion-down': 'accordion-down 0.2s ease-out',
         'accordion-up': 'accordion-up 0.2s ease-out',
-        spin: 'spin calc(var(--speed) * 2) infinite linear',
-        slide: 'slide var(--speed) ease-in-out infinite alternate',
+        'magicui-spin': 'magicui-spin calc(var(--magicui-speed) * 2) infinite linear',
+        'magicui-slide': 'magicui-slide var(--magicui-speed) ease-in-out infinite alternate',
       },
       keyframes: {
         'accordion-down': {
@@ -80,7 +82,7 @@ const config: Config = {
           from: { height: 'var(--radix-accordion-content-height)' },
           to: { height: '0' },
         },
-        spin: {
+        'magicui-spin': {
           '0%': {
             transform: 'translateZ(0) rotate(0)',
           },
@@ -94,7 +96,7 @@ const config: Config = {
             transform: 'translateZ(0) rotate(360deg)',
           },
         },
-        slide: {
+        'magicui-slide': {
           to: {
             transform: 'translate(calc(100cqw - 100%), 0)',
           },

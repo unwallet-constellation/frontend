@@ -5,7 +5,7 @@ import ShimmerButton from '@/components/magicui/shimmer-button'
 
 import phoneImg from '/public/phone.png'
 
-export default function Home() {
+export default function HomePage() {
   return (
     <div className="mt-10 flex grow flex-col items-center justify-between gap-10 hlg:mt-20 hlg:gap-20">
       <div className="flex max-w-prose flex-col gap-2 text-center">
@@ -23,7 +23,7 @@ export default function Home() {
           shimmerSize="0.1em"
         >
           <span className="whitespace-pre-wrap text-center text-lg font-medium leading-none tracking-tight text-brand dark:from-white dark:to-slate-900/10">
-            Create your Unwallet
+            Get Unwalleted
           </span>
         </ShimmerButton>
         <Link href="/onboard" className="text-xs text-foreground/60 hover:text-foreground">

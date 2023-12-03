@@ -3,6 +3,8 @@ import Image from 'next/image'
 import Link from 'next/link'
 
 import DotPattern from '@/components/magicui/dot-pattern'
+import { env } from '@/config/environment'
+import { siteMetdata } from '@/config/metadata'
 import { cn } from '@/utils/cn'
 import { GeistMono } from 'geist/font/mono'
 import { GeistSans } from 'geist/font/sans'
@@ -13,8 +15,13 @@ import './globals.css'
 import { Providers } from './providers'
 
 export const metadata: Metadata = {
-  title: 'Unwallet',
-  description: 'Next-Gen Web3 Onboarding',
+  title: siteMetdata.title,
+  description: siteMetdata.description,
+  metadataBase: new URL(env.NEXT_PUBLIC_URL),
+  robots: {
+    follow: env.NEXT_PUBLIC_PRODUCTION_MODE,
+    index: env.NEXT_PUBLIC_PRODUCTION_MODE,
+  },
 }
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
@@ -23,8 +30,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body>
         <main className="container flex grow flex-col items-center pt-14">
           {/* Logo & Name */}
-          <Link href="/" className="mb-14 flex select-none items-center gap-2">
-            <Image src={logoIconSvg} alt="Unwallet Logo" height={35} width={35} priority />
+          <Link href="/" className="mb-14 flex select-none items-center gap-2 outline-none">
+            <Image src={logoIconSvg} alt="Unwallet Logo" height={35} priority />
             <h1 className="text-4xl font-bold leading-none tracking-tighter">Unwallet</h1>
           </Link>
 

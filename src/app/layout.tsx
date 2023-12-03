@@ -50,7 +50,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         />
 
         {/* Toast Config */}
-        <Toaster toastOptions={{ classNames: { title: 'text-base' } }} />
+        <Toaster />
       </body>
     </html>
   )

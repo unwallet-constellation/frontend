@@ -5,10 +5,10 @@ import { getAndValidateRequestData } from '@/utils/get-and-validate-request-data
 import { ApiKeyStamper } from '@turnkey/api-key-stamper'
 import { TurnkeyClient, createActivityPoller } from '@turnkey/http'
 
-import { reqSchema, resSchema } from './types'
+import { turnkeyCreateRequestSchema, turnkeyCreateResponseSchema } from './types'
 
 export async function POST(req: Request) {
-  const { data, error } = await getAndValidateRequestData(req, reqSchema)
+  const { data, error } = await getAndValidateRequestData(req, turnkeyCreateRequestSchema)
   if (error) return NextResponse.json({}, { status: 400 })
 
   try {
@@ -59,7 +59,7 @@ export async function POST(req: Request) {
     })
 
     // Parse result
-    const parseResult = resSchema.safeParse({
+    const parseResult = turnkeyCreateResponseSchema.safeParse({
       subOrgId: completedActivity.result.createSubOrganizationResultV4?.subOrganizationId,
       walletId: completedActivity.result.createSubOrganizationResultV4?.wallet?.walletId,
       walletAddress: completedActivity.result.createSubOrganizationResultV4?.wallet?.addresses?.[0],

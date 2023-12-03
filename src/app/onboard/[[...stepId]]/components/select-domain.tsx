@@ -15,8 +15,10 @@ import {
   FormLabel,
   FormMessage,
 } from '@/components/ui/form'
+import { domainTld } from '@/config/domain-tld'
 import { ensRegistryABI, ensRegistryAddress } from '@/wagmi.generated'
 import { zodResolver } from '@hookform/resolvers/zod'
+import { Sparkles } from 'lucide-react'
 import { useForm } from 'react-hook-form'
 import { namehash } from 'viem'
 import { mainnet } from 'viem/chains'
@@ -75,7 +77,7 @@ export default function PickDomainStep() {
   return (
     <>
       <Form {...form}>
-        <form onSubmit={form.handleSubmit(onSubmit)} className="flex grow flex-col gap-y-6">
+        <form onSubmit={form.handleSubmit(onSubmit)} className="flex grow flex-col">
           <CardContent>
             <FormField
               control={form.control}
@@ -85,8 +87,8 @@ export default function PickDomainStep() {
                   <FormLabel>Name</FormLabel>
                   <FormControl>
                     <DomainNameInput
-                      placeholder="shadcn"
-                      suffix=".unwallet"
+                      placeholder="vitalik"
+                      suffix={`.${domainTld}`}
                       state={domainNameState}
                       {...field}
                     />
@@ -113,8 +115,14 @@ export default function PickDomainStep() {
           </CardContent>
 
           <CardFooter className="mt-auto flex-col items-stretch gap-2">
-            <Button type="submit" size="lg" disabled={domainNameState !== 'valid'}>
-              Register Domain
+            <Button
+              type="submit"
+              size="lg"
+              disabled={domainNameState !== 'valid'}
+              className="group"
+            >
+              <Sparkles size={16} className="mr-2 group-enabled:text-brand" />
+              Select Domain
             </Button>
           </CardFooter>
         </form>

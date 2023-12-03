@@ -23,7 +23,6 @@ const config: Config = {
         hxl: { raw: '(min-height: 1200px)' },
       },
       colors: {
-        gray: colors.zinc,
         border: 'hsl(var(--border) / <alpha-value>)',
         input: 'hsl(var(--input) / <alpha-value>)',
         ring: 'hsl(var(--ring) / <alpha-value>)',
@@ -57,15 +56,22 @@ const config: Config = {
           DEFAULT: 'hsl(var(--card) / <alpha-value>)',
           foreground: 'hsl(var(--card-foreground) / <alpha-value>)',
         },
+        gray: colors.zinc,
         brand: {
           DEFAULT: 'hsl(var(--brand) / <alpha-value>)',
           foreground: 'hsl(var(--brand-foreground) / <alpha-value>)',
         },
+        warning: colors.orange[400],
+        success: colors.green[400],
+        error: colors.red[400],
+        info: colors.blue[400],
       },
       borderRadius: {
         lg: 'var(--radius)',
         md: 'calc(var(--radius) - 2px)',
+        DEFAULT: 'calc(var(--radius) - 2px)',
         sm: 'calc(var(--radius) - 4px)',
+        xs: 'calc(var(--radius) - 6px)',
       },
       animation: {
         'accordion-down': 'accordion-down 0.2s ease-out',

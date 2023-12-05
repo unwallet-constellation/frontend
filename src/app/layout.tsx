@@ -9,11 +9,11 @@ import { cn } from '@/utils/cn'
 import { GeistMono } from 'geist/font/mono'
 import { GeistSans } from 'geist/font/sans'
 import { Provider as JotaiProvider } from 'jotai'
-import logoIconSvg from 'public/logo-icon.svg'
 import { Toaster } from 'sonner'
 
 import './globals.css'
 import { Providers } from './providers'
+import logoIconSvg from '/public/logo-icon.svg'
 
 export const metadata: Metadata = {
   title: siteMetdata.title,

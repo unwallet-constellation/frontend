@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import React, { AnchorHTMLAttributes, ButtonHTMLAttributes, CSSProperties } from 'react'
 
-import { cn } from '@/lib/utils'
+import { cn } from '@/utils/cn'
 
 type ButtonOrAnchorProps = Partial<AnchorHTMLAttributes<HTMLAnchorElement>> &
   Partial<ButtonHTMLAttributes<HTMLButtonElement>>
@@ -60,9 +60,9 @@ const ShimmerButton = React.forwardRef<HTMLButtonElement | HTMLAnchorElement, Sh
           )}
         >
           {/* spark */}
-          <div className="animate-magicui-slide absolute inset-0 h-[100cqh] [aspect-ratio:1] [border-radius:0] [mask:none]">
+          <div className="absolute inset-0 h-[100cqh] animate-magicui-slide [aspect-ratio:1] [border-radius:0] [mask:none]">
             {/* spark before */}
-            <div className="animate-magicui-spin absolute inset-[-100%] w-auto rotate-0 [background:conic-gradient(from_calc(270deg-(var(--magicui-spread)*0.5)),transparent_0,var(--magicui-shimmer-color)_var(--magicui-spread),transparent_var(--magicui-spread))] [translate:0_0]" />
+            <div className="absolute inset-[-100%] w-auto rotate-0 animate-magicui-spin [background:conic-gradient(from_calc(270deg-(var(--magicui-spread)*0.5)),transparent_0,var(--magicui-shimmer-color)_var(--magicui-spread),transparent_var(--magicui-spread))] [translate:0_0]" />
           </div>
         </div>
         {children}

@@ -17,7 +17,7 @@ export default function HomePage() {
 
       <div className="flex flex-col items-center justify-center gap-3 text-center">
         <ShimmerButton
-          href="/onboard"
+          href="/setup"
           className="shadow-2xl"
           shimmerColor="hsl(var(--brand))"
           shimmerSize="0.1em"
@@ -26,7 +26,7 @@ export default function HomePage() {
             Get Unwalleted
           </span>
         </ShimmerButton>
-        <Link href="/onboard" className="text-xs text-foreground/60 hover:text-foreground">
+        <Link href="/setup" className="text-xs text-foreground/60 hover:text-foreground">
           Use an existing one →
         </Link>
       </div>

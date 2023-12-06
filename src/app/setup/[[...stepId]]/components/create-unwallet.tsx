@@ -33,7 +33,7 @@ export default function CreateUnwalletStep(_: OnboardingStepComponentProps) {
   const router = useRouter()
   const searchParams = useSearchParams()
   const domainName = searchParams?.get('domainName')
-  if (!domainName) redirect('/onboard/1')
+  if (!domainName) redirect('/setup/1')
   const domain = `${domainName}.${domainTld}`
 
   const hubChain = avalancheFuji

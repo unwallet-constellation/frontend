@@ -76,7 +76,7 @@ export default function PickDomainStep() {
   async function onSubmit({ name }: FormSchema) {
     const searchParams = new URLSearchParams({ domainName: name })
     setPasskeyAccount(null)
-    router.push(`/onboard/2?${searchParams}`)
+    router.push(`/setup/2?${searchParams}`)
   }
 
   return (

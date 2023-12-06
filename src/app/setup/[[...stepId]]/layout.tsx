@@ -19,7 +19,7 @@ export default function OnboardingLayout({
   children: ReactNode
   params: { stepId: string[] }
 }) {
-  if (!stepId?.length) return redirect('/onboard/1')
+  if (!stepId?.length) return redirect('/setup/1')
   const step: OnboardingStep | undefined = onboardingSteps.find((s) => isEqual(stepId, [s.id]))
   if (!step) return notFound()
 

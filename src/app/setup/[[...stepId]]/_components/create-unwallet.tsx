@@ -25,9 +25,9 @@ import { Hex, LocalAccount, encodeFunctionData, labelhash } from 'viem'
 import { avalancheFuji, optimismGoerli } from 'viem/chains'
 import { usePublicClient } from 'wagmi'
 
+import createPasskeyAccount from '../_utils/create-passkey-account'
 import { passkeyAccountAtom, smartWalletAddressesAtom, smartWalletDomainNameAtom } from '../atoms'
 import { OnboardingStepComponentProps } from '../types'
-import createPasskeyAccount from '../utils/create-passkey-account'
 
 export default function CreateUnwalletStep(_: OnboardingStepComponentProps) {
   const router = useRouter()

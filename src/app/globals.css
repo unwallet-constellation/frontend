@@ -73,13 +73,10 @@
 
 @layer base {
   * {
-    @apply border-border;
+    @apply box-border border-border;
   }
   html {
     @apply scroll-smooth antialiased;
-  }
-  body {
-    @apply bg-[#f4f5f5] font-sans text-foreground;
-    @apply flex min-h-screen flex-col;
+    @apply font-sans text-foreground;
   }
 }

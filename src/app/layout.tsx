@@ -1,6 +1,4 @@
 import type { Metadata } from 'next'
-import Image from 'next/image'
-import Link from 'next/link'
 
 import DotPattern from '@/components/magicui/dot-pattern'
 import { env } from '@/config/environment'
@@ -11,9 +9,9 @@ import { GeistSans } from 'geist/font/sans'
 import { Provider as JotaiProvider } from 'jotai'
 import { Toaster } from 'sonner'
 
+import HomeLogo from './_components/home-logo'
 import './globals.css'
 import { Providers } from './providers'
-import logoIconSvg from '/public/logo-icon.svg'
 
 export const metadata: Metadata = {
   title: siteMetdata.title,
@@ -28,25 +26,18 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" className={cn(GeistSans.variable, GeistMono.variable)}>
-      <body>
-        <main className="container flex grow flex-col items-center pt-14">
-          {/* Logo & Name */}
-          <Link href="/" className="mb-14 flex select-none items-center gap-2 outline-none">
-            <Image src={logoIconSvg} alt="Unwallet Logo" height={35} priority />
-            <h1 className="text-4xl font-bold leading-none tracking-tighter">Unwallet</h1>
-          </Link>
+      <body className="flex min-h-screen flex-col items-center justify-center bg-[#f4f5f5] pt-10">
+        {/* Logo & Name */}
+        <HomeLogo />
 
-          {/* Client Providers & Content */}
-          <JotaiProvider>
-            <Providers>{children}</Providers>
-          </JotaiProvider>
-        </main>
+        {/* Client Providers & Content */}
+        <JotaiProvider>
+          <Providers>{children}</Providers>
+        </JotaiProvider>
 
         {/* Background Pattern */}
         <DotPattern
-          className={cn(
-            '-z-10 fill-muted-foreground/50 [mask-image:radial-gradient(circle_at_top_center,white,transparent_75%)]',
-          )}
+          className={cn('[mask-image:radial-gradient(circle_at_top_center,white,transparent_75%)]')}
         />
 
         {/* Toast Config */}

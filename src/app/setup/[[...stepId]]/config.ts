@@ -1,5 +1,5 @@
-import CreateUnwalletStep from './components/create-unwallet'
-import PickDomainStep from './components/select-domain'
+import CreateUnwalletStep from './_components/create-unwallet'
+import PickDomainStep from './_components/select-domain'
 import { OnboardingStep } from './types'
 
 export const onboardingSteps: OnboardingStep[] = [

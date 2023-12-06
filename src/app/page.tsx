@@ -7,31 +7,33 @@ import phoneImg from '/public/phone.png'
 
 export default function HomePage() {
   return (
-    <div className="mt-10 flex grow flex-col items-center justify-between gap-10 hlg:mt-20 hlg:gap-20">
-      <div className="flex max-w-prose flex-col gap-2 text-center">
-        <h2 className="text-4xl tracking-tight">
-          <em>Next-Gen</em> Web3 Onboarding
-        </h2>
-        <p>Seedless smart wallets meet multichain domains.</p>
+    <main className="mt-10 flex grow flex-col items-center justify-center px-2">
+      <div className="flex grow flex-col items-center justify-center gap-10">
+        <div className="flex max-w-prose flex-col gap-2 text-center">
+          <h2 className="text-4xl tracking-tight">
+            <em>Next-Gen</em> Onboarding
+          </h2>
+          <p className="tracking-tight">Seedless smart wallets meet multichain domains.</p>
+        </div>
+
+        <div className="flex flex-col items-center justify-center gap-3 text-center">
+          <ShimmerButton
+            href="/setup"
+            className="shadow-2xl"
+            shimmerColor="hsl(var(--brand))"
+            shimmerSize="0.1em"
+          >
+            <span className="whitespace-pre-wrap text-center !text-lg font-medium leading-none tracking-tight text-brand dark:from-white dark:to-slate-900/10">
+              Get Unwalleted
+            </span>
+          </ShimmerButton>
+          <Link href="/setup" className="text-xs text-foreground/60 hover:text-foreground">
+            Use an existing one →
+          </Link>
+        </div>
       </div>
 
-      <div className="flex flex-col items-center justify-center gap-3 text-center">
-        <ShimmerButton
-          href="/setup"
-          className="shadow-2xl"
-          shimmerColor="hsl(var(--brand))"
-          shimmerSize="0.1em"
-        >
-          <span className="whitespace-pre-wrap text-center text-lg font-medium leading-none tracking-tight text-brand dark:from-white dark:to-slate-900/10">
-            Get Unwalleted
-          </span>
-        </ShimmerButton>
-        <Link href="/setup" className="text-xs text-foreground/60 hover:text-foreground">
-          Use an existing one →
-        </Link>
-      </div>
-
-      <div className="grid grid-cols-2 items-center justify-center">
+      <div className="mt-10 grid grid-cols-2 items-center justify-center">
         <div className="-ml-12 h-[300px] overflow-hidden sm:h-[350px] md:h-[400px] hlg:!h-auto hlg:!overflow-auto">
           <Image
             src={phoneImg}
@@ -48,6 +50,6 @@ export default function HomePage() {
           <li>👛&nbsp;&nbsp;Fee- and gas-less</li>
         </ul>
       </div>
-    </div>
+    </main>
   )
 }

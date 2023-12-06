@@ -18,7 +18,7 @@ const DomainNameInput = React.forwardRef<HTMLInputElement, DomainNameInputProps>
     return (
       <div className={cn(inputWrapperVariants({ className }))}>
         <input
-          className="h-full grow border-none bg-transparent px-3 py-2 font-mono outline-none"
+          className="h-full w-0 flex-1 border-none bg-transparent px-3 py-2 font-mono outline-none"
           type={type}
           ref={ref}
           spellCheck="false"
@@ -34,7 +34,9 @@ const DomainNameInput = React.forwardRef<HTMLInputElement, DomainNameInputProps>
 
         {/* Suffix */}
         {!!suffix && (
-          <div className="whitespace-nowrap border-l px-3 py-2 font-mono text-sm">{suffix}</div>
+          <div className="shrink-0 whitespace-nowrap border-l px-3 py-2 font-mono text-sm">
+            {suffix}
+          </div>
         )}
       </div>
     )

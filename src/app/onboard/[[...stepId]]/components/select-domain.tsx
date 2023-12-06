@@ -16,12 +16,12 @@ import {
   FormMessage,
 } from '@/components/ui/form'
 import { domainTld } from '@/config/domain-tld'
-import { ensRegistryABI, ensRegistryAddress } from '@/wagmi.generated'
+import { ensRegistryCcipABI, ensRegistryCcipAddress } from '@/wagmi.generated'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { Sparkles } from 'lucide-react'
 import { useForm } from 'react-hook-form'
 import { namehash } from 'viem'
-import { mainnet } from 'viem/chains'
+import { avalancheFuji } from 'viem/chains'
 import { useContractRead } from 'wagmi'
 import * as z from 'zod'
 
@@ -44,15 +44,14 @@ export default function PickDomainStep() {
   })
   const domainName = form.watch('name')
 
-  // TODO
   // Fetch domain name availability from PublicResolver
   const contractRead = useContractRead({
-    chainId: mainnet.id,
-    address: ensRegistryAddress[1],
-    abi: ensRegistryABI,
+    chainId: avalancheFuji.id,
+    address: ensRegistryCcipAddress[avalancheFuji.id],
+    abi: ensRegistryCcipABI,
     enabled: !!domainName && !form.formState.errors.name,
     functionName: 'recordExists',
-    args: [namehash(`${domainName}.eth`)],
+    args: [namehash(`${domainName}.unwallet`)],
   })
 
   const domainNameState: DomainNameInputProps['state'] = useMemo(() => {

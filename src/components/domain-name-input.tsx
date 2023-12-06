@@ -29,7 +29,7 @@ const DomainNameInput = React.forwardRef<HTMLInputElement, DomainNameInputProps>
 
         {/* States */}
         {state === 'loading' && <Loader className="animate-spin text-muted-foreground" size={16} />}
-        {state === 'valid' && <CheckCircle2 className="text-muted-foreground" size={16} />}
+        {state === 'valid' && <CheckCircle2 className="text-foreground" size={16} />}
         {state === 'invalid' && <AlertCircle className="text-orange-500" size={16} />}
 
         {/* Suffix */}

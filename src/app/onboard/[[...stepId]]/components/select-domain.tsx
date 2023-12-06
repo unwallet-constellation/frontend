@@ -18,12 +18,15 @@ import {
 import { domainTld } from '@/config/domain-tld'
 import { ensRegistryCcipABI, ensRegistryCcipAddress } from '@/wagmi.generated'
 import { zodResolver } from '@hookform/resolvers/zod'
+import { useAtom } from 'jotai'
 import { Sparkles } from 'lucide-react'
 import { useForm } from 'react-hook-form'
 import { namehash } from 'viem'
 import { avalancheFuji } from 'viem/chains'
 import { useContractRead } from 'wagmi'
 import * as z from 'zod'
+
+import { passkeyAccountAtom } from '../atoms'
 
 const formSchema = z.object({
   name: z.string().min(3, {
@@ -34,6 +37,7 @@ type FormSchema = z.infer<typeof formSchema>
 
 export default function PickDomainStep() {
   const router = useRouter()
+  const [, setPasskeyAccount] = useAtom(passkeyAccountAtom)
 
   const form = useForm<FormSchema>({
     resolver: zodResolver(formSchema),
@@ -50,8 +54,9 @@ export default function PickDomainStep() {
     address: ensRegistryCcipAddress[avalancheFuji.id],
     abi: ensRegistryCcipABI,
     enabled: !!domainName && !form.formState.errors.name,
+    watch: true,
     functionName: 'recordExists',
-    args: [namehash(`${domainName}.unwallet`)],
+    args: [namehash(`${domainName}.${domainTld}`)],
   })
 
   const domainNameState: DomainNameInputProps['state'] = useMemo(() => {
@@ -70,6 +75,7 @@ export default function PickDomainStep() {
 
   async function onSubmit({ name }: FormSchema) {
     const searchParams = new URLSearchParams({ domainName: name })
+    setPasskeyAccount(null)
     router.push(`/onboard/2?${searchParams}`)
   }
 

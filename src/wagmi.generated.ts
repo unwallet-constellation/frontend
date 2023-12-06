@@ -3,7 +3,7 @@
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 /**
- * [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x8bb2985caaEf7a336086eeFe3FbD699dfF81d18A)
+ * [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x9356415294517E52cc72c1C6447A80D6d441F958)
  */
 export const ensRegistryCcipABI = [
   {
@@ -232,14 +232,14 @@ export const ensRegistryCcipABI = [
 ] as const
 
 /**
- * [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x8bb2985caaEf7a336086eeFe3FbD699dfF81d18A)
+ * [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x9356415294517E52cc72c1C6447A80D6d441F958)
  */
 export const ensRegistryCcipAddress = {
-  43113: '0x8bb2985caaEf7a336086eeFe3FbD699dfF81d18A',
+  43113: '0x9356415294517E52cc72c1C6447A80D6d441F958',
 } as const
 
 /**
- * [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x8bb2985caaEf7a336086eeFe3FbD699dfF81d18A)
+ * [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x9356415294517E52cc72c1C6447A80D6d441F958)
  */
 export const ensRegistryCcipConfig = {
   address: ensRegistryCcipAddress,
@@ -251,7 +251,7 @@ export const ensRegistryCcipConfig = {
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 /**
- * [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x7133Db45b6806f8a40075EbF4F87678dcC4Ce22d)
+ * [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0xaF8d25851d511C50109A1d12fB8279d470540d90)
  */
 export const fifsRegistrarCcipABI = [
   {
@@ -333,14 +333,14 @@ export const fifsRegistrarCcipABI = [
 ] as const
 
 /**
- * [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x7133Db45b6806f8a40075EbF4F87678dcC4Ce22d)
+ * [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0xaF8d25851d511C50109A1d12fB8279d470540d90)
  */
 export const fifsRegistrarCcipAddress = {
-  43113: '0x7133Db45b6806f8a40075EbF4F87678dcC4Ce22d',
+  43113: '0xaF8d25851d511C50109A1d12fB8279d470540d90',
 } as const
 
 /**
- * [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x7133Db45b6806f8a40075EbF4F87678dcC4Ce22d)
+ * [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0xaF8d25851d511C50109A1d12fB8279d470540d90)
  */
 export const fifsRegistrarCcipConfig = {
   address: fifsRegistrarCcipAddress,
@@ -352,7 +352,7 @@ export const fifsRegistrarCcipConfig = {
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 /**
- * [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0xbeD73164a7dA3b2E58d0A38a485984E648Ae2da9)
+ * [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x4882e217b7609D43b3b5F47adAD715a11212B81A)
  */
 export const publicResolverCcipABI = [
   {
@@ -643,14 +643,14 @@ export const publicResolverCcipABI = [
 ] as const
 
 /**
- * [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0xbeD73164a7dA3b2E58d0A38a485984E648Ae2da9)
+ * [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x4882e217b7609D43b3b5F47adAD715a11212B81A)
  */
 export const publicResolverCcipAddress = {
-  43113: '0xbeD73164a7dA3b2E58d0A38a485984E648Ae2da9',
+  43113: '0x4882e217b7609D43b3b5F47adAD715a11212B81A',
 } as const
 
 /**
- * [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0xbeD73164a7dA3b2E58d0A38a485984E648Ae2da9)
+ * [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x4882e217b7609D43b3b5F47adAD715a11212B81A)
  */
 export const publicResolverCcipConfig = {
   address: publicResolverCcipAddress,
@@ -662,7 +662,7 @@ export const publicResolverCcipConfig = {
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 /**
- * [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x3D937DaB0bEC0e68c9E8064394423B57a1f5F047)
+ * [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x497188dC028a1622117Ba536C15B920791045fBf)
  */
 export const reverseRegistrarCcipABI = [
   {
@@ -891,14 +891,14 @@ export const reverseRegistrarCcipABI = [
 ] as const
 
 /**
- * [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x3D937DaB0bEC0e68c9E8064394423B57a1f5F047)
+ * [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x497188dC028a1622117Ba536C15B920791045fBf)
  */
 export const reverseRegistrarCcipAddress = {
-  43113: '0x3D937DaB0bEC0e68c9E8064394423B57a1f5F047',
+  43113: '0x497188dC028a1622117Ba536C15B920791045fBf',
 } as const
 
 /**
- * [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x3D937DaB0bEC0e68c9E8064394423B57a1f5F047)
+ * [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x497188dC028a1622117Ba536C15B920791045fBf)
  */
 export const reverseRegistrarCcipConfig = {
   address: reverseRegistrarCcipAddress,
@@ -906,12 +906,311 @@ export const reverseRegistrarCcipConfig = {
 } as const
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// SimpleAccount
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+/**
+ * [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x8ABB13360b87Be5EEb1B98647A016adD927a136c)
+ */
+export const simpleAccountABI = [
+  {
+    stateMutability: 'nonpayable',
+    type: 'constructor',
+    inputs: [{ name: 'anEntryPoint', internalType: 'contract IEntryPoint', type: 'address' }],
+  },
+  {
+    type: 'event',
+    anonymous: false,
+    inputs: [
+      { name: 'previousAdmin', internalType: 'address', type: 'address', indexed: false },
+      { name: 'newAdmin', internalType: 'address', type: 'address', indexed: false },
+    ],
+    name: 'AdminChanged',
+  },
+  {
+    type: 'event',
+    anonymous: false,
+    inputs: [{ name: 'beacon', internalType: 'address', type: 'address', indexed: true }],
+    name: 'BeaconUpgraded',
+  },
+  {
+    type: 'event',
+    anonymous: false,
+    inputs: [{ name: 'version', internalType: 'uint8', type: 'uint8', indexed: false }],
+    name: 'Initialized',
+  },
+  {
+    type: 'event',
+    anonymous: false,
+    inputs: [
+      { name: 'entryPoint', internalType: 'contract IEntryPoint', type: 'address', indexed: true },
+      { name: 'owner', internalType: 'address', type: 'address', indexed: true },
+    ],
+    name: 'SimpleAccountInitialized',
+  },
+  {
+    type: 'event',
+    anonymous: false,
+    inputs: [{ name: 'implementation', internalType: 'address', type: 'address', indexed: true }],
+    name: 'Upgraded',
+  },
+  { stateMutability: 'payable', type: 'function', inputs: [], name: 'addDeposit', outputs: [] },
+  {
+    stateMutability: 'view',
+    type: 'function',
+    inputs: [],
+    name: 'entryPoint',
+    outputs: [{ name: '', internalType: 'contract IEntryPoint', type: 'address' }],
+  },
+  {
+    stateMutability: 'nonpayable',
+    type: 'function',
+    inputs: [
+      { name: 'dest', internalType: 'address', type: 'address' },
+      { name: 'value', internalType: 'uint256', type: 'uint256' },
+      { name: 'func', internalType: 'bytes', type: 'bytes' },
+    ],
+    name: 'execute',
+    outputs: [],
+  },
+  {
+    stateMutability: 'nonpayable',
+    type: 'function',
+    inputs: [
+      { name: 'dest', internalType: 'address[]', type: 'address[]' },
+      { name: 'func', internalType: 'bytes[]', type: 'bytes[]' },
+    ],
+    name: 'executeBatch',
+    outputs: [],
+  },
+  {
+    stateMutability: 'view',
+    type: 'function',
+    inputs: [],
+    name: 'getDeposit',
+    outputs: [{ name: '', internalType: 'uint256', type: 'uint256' }],
+  },
+  {
+    stateMutability: 'view',
+    type: 'function',
+    inputs: [],
+    name: 'getNonce',
+    outputs: [{ name: '', internalType: 'uint256', type: 'uint256' }],
+  },
+  {
+    stateMutability: 'nonpayable',
+    type: 'function',
+    inputs: [{ name: 'anOwner', internalType: 'address', type: 'address' }],
+    name: 'initialize',
+    outputs: [],
+  },
+  {
+    stateMutability: 'pure',
+    type: 'function',
+    inputs: [
+      { name: '', internalType: 'address', type: 'address' },
+      { name: '', internalType: 'address', type: 'address' },
+      { name: '', internalType: 'uint256[]', type: 'uint256[]' },
+      { name: '', internalType: 'uint256[]', type: 'uint256[]' },
+      { name: '', internalType: 'bytes', type: 'bytes' },
+    ],
+    name: 'onERC1155BatchReceived',
+    outputs: [{ name: '', internalType: 'bytes4', type: 'bytes4' }],
+  },
+  {
+    stateMutability: 'pure',
+    type: 'function',
+    inputs: [
+      { name: '', internalType: 'address', type: 'address' },
+      { name: '', internalType: 'address', type: 'address' },
+      { name: '', internalType: 'uint256', type: 'uint256' },
+      { name: '', internalType: 'uint256', type: 'uint256' },
+      { name: '', internalType: 'bytes', type: 'bytes' },
+    ],
+    name: 'onERC1155Received',
+    outputs: [{ name: '', internalType: 'bytes4', type: 'bytes4' }],
+  },
+  {
+    stateMutability: 'pure',
+    type: 'function',
+    inputs: [
+      { name: '', internalType: 'address', type: 'address' },
+      { name: '', internalType: 'address', type: 'address' },
+      { name: '', internalType: 'uint256', type: 'uint256' },
+      { name: '', internalType: 'bytes', type: 'bytes' },
+    ],
+    name: 'onERC721Received',
+    outputs: [{ name: '', internalType: 'bytes4', type: 'bytes4' }],
+  },
+  {
+    stateMutability: 'view',
+    type: 'function',
+    inputs: [],
+    name: 'owner',
+    outputs: [{ name: '', internalType: 'address', type: 'address' }],
+  },
+  {
+    stateMutability: 'view',
+    type: 'function',
+    inputs: [],
+    name: 'proxiableUUID',
+    outputs: [{ name: '', internalType: 'bytes32', type: 'bytes32' }],
+  },
+  {
+    stateMutability: 'view',
+    type: 'function',
+    inputs: [{ name: 'interfaceId', internalType: 'bytes4', type: 'bytes4' }],
+    name: 'supportsInterface',
+    outputs: [{ name: '', internalType: 'bool', type: 'bool' }],
+  },
+  {
+    stateMutability: 'pure',
+    type: 'function',
+    inputs: [
+      { name: '', internalType: 'address', type: 'address' },
+      { name: '', internalType: 'address', type: 'address' },
+      { name: '', internalType: 'address', type: 'address' },
+      { name: '', internalType: 'uint256', type: 'uint256' },
+      { name: '', internalType: 'bytes', type: 'bytes' },
+      { name: '', internalType: 'bytes', type: 'bytes' },
+    ],
+    name: 'tokensReceived',
+    outputs: [],
+  },
+  {
+    stateMutability: 'nonpayable',
+    type: 'function',
+    inputs: [{ name: 'newImplementation', internalType: 'address', type: 'address' }],
+    name: 'upgradeTo',
+    outputs: [],
+  },
+  {
+    stateMutability: 'payable',
+    type: 'function',
+    inputs: [
+      { name: 'newImplementation', internalType: 'address', type: 'address' },
+      { name: 'data', internalType: 'bytes', type: 'bytes' },
+    ],
+    name: 'upgradeToAndCall',
+    outputs: [],
+  },
+  {
+    stateMutability: 'nonpayable',
+    type: 'function',
+    inputs: [
+      {
+        name: 'userOp',
+        internalType: 'struct UserOperation',
+        type: 'tuple',
+        components: [
+          { name: 'sender', internalType: 'address', type: 'address' },
+          { name: 'nonce', internalType: 'uint256', type: 'uint256' },
+          { name: 'initCode', internalType: 'bytes', type: 'bytes' },
+          { name: 'callData', internalType: 'bytes', type: 'bytes' },
+          { name: 'callGasLimit', internalType: 'uint256', type: 'uint256' },
+          { name: 'verificationGasLimit', internalType: 'uint256', type: 'uint256' },
+          { name: 'preVerificationGas', internalType: 'uint256', type: 'uint256' },
+          { name: 'maxFeePerGas', internalType: 'uint256', type: 'uint256' },
+          { name: 'maxPriorityFeePerGas', internalType: 'uint256', type: 'uint256' },
+          { name: 'paymasterAndData', internalType: 'bytes', type: 'bytes' },
+          { name: 'signature', internalType: 'bytes', type: 'bytes' },
+        ],
+      },
+      { name: 'userOpHash', internalType: 'bytes32', type: 'bytes32' },
+      { name: 'missingAccountFunds', internalType: 'uint256', type: 'uint256' },
+    ],
+    name: 'validateUserOp',
+    outputs: [{ name: 'validationData', internalType: 'uint256', type: 'uint256' }],
+  },
+  {
+    stateMutability: 'nonpayable',
+    type: 'function',
+    inputs: [
+      { name: 'withdrawAddress', internalType: 'address payable', type: 'address' },
+      { name: 'amount', internalType: 'uint256', type: 'uint256' },
+    ],
+    name: 'withdrawDepositTo',
+    outputs: [],
+  },
+  { stateMutability: 'payable', type: 'receive' },
+] as const
+
+/**
+ * [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x8ABB13360b87Be5EEb1B98647A016adD927a136c)
+ */
+export const simpleAccountAddress = {
+  11155111: '0x8ABB13360b87Be5EEb1B98647A016adD927a136c',
+} as const
+
+/**
+ * [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x8ABB13360b87Be5EEb1B98647A016adD927a136c)
+ */
+export const simpleAccountConfig = { address: simpleAccountAddress, abi: simpleAccountABI } as const
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// SimpleAccountFactory
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+/**
+ * [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x9406Cc6185a346906296840746125a0E44976454)
+ */
+export const simpleAccountFactoryABI = [
+  {
+    stateMutability: 'nonpayable',
+    type: 'constructor',
+    inputs: [{ name: '_entryPoint', internalType: 'contract IEntryPoint', type: 'address' }],
+  },
+  {
+    stateMutability: 'view',
+    type: 'function',
+    inputs: [],
+    name: 'accountImplementation',
+    outputs: [{ name: '', internalType: 'contract SimpleAccount', type: 'address' }],
+  },
+  {
+    stateMutability: 'nonpayable',
+    type: 'function',
+    inputs: [
+      { name: 'owner', internalType: 'address', type: 'address' },
+      { name: 'salt', internalType: 'uint256', type: 'uint256' },
+    ],
+    name: 'createAccount',
+    outputs: [{ name: 'ret', internalType: 'contract SimpleAccount', type: 'address' }],
+  },
+  {
+    stateMutability: 'view',
+    type: 'function',
+    inputs: [
+      { name: 'owner', internalType: 'address', type: 'address' },
+      { name: 'salt', internalType: 'uint256', type: 'uint256' },
+    ],
+    name: 'getAddress',
+    outputs: [{ name: '', internalType: 'address', type: 'address' }],
+  },
+] as const
+
+/**
+ * [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x9406Cc6185a346906296840746125a0E44976454)
+ */
+export const simpleAccountFactoryAddress = {
+  11155111: '0x9406Cc6185a346906296840746125a0E44976454',
+} as const
+
+/**
+ * [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x9406Cc6185a346906296840746125a0E44976454)
+ */
+export const simpleAccountFactoryConfig = {
+  address: simpleAccountFactoryAddress,
+  abi: simpleAccountFactoryABI,
+} as const
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // xcENSRegistry
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 /**
- * - [__View Contract on Optimism Goerli Etherscan__](https://goerli-optimism.etherscan.io/address/0x65057a6821CC4B4bF848e40789629ebF8879bbce)
- * - [__View Contract on Polygon Mumbai Polygon Scan__](https://mumbai.polygonscan.com/address/0x4E1AFDd1A705aE0598d75abFc37Fa948d9CFcBc5)
+ * - [__View Contract on Optimism Goerli Etherscan__](https://goerli-optimism.etherscan.io/address/0xFd3db71f5f67334c208448Fb690D10dDB5F84Ddd)
+ * - [__View Contract on Polygon Mumbai Polygon Scan__](https://mumbai.polygonscan.com/address/0xaf029Af571136800afC6fbc0fC0bEa08f9763e8e)
  */
 export const xcEnsRegistryABI = [
   {
@@ -1139,17 +1438,17 @@ export const xcEnsRegistryABI = [
 ] as const
 
 /**
- * - [__View Contract on Optimism Goerli Etherscan__](https://goerli-optimism.etherscan.io/address/0x65057a6821CC4B4bF848e40789629ebF8879bbce)
- * - [__View Contract on Polygon Mumbai Polygon Scan__](https://mumbai.polygonscan.com/address/0x4E1AFDd1A705aE0598d75abFc37Fa948d9CFcBc5)
+ * - [__View Contract on Optimism Goerli Etherscan__](https://goerli-optimism.etherscan.io/address/0xFd3db71f5f67334c208448Fb690D10dDB5F84Ddd)
+ * - [__View Contract on Polygon Mumbai Polygon Scan__](https://mumbai.polygonscan.com/address/0xaf029Af571136800afC6fbc0fC0bEa08f9763e8e)
  */
 export const xcEnsRegistryAddress = {
-  420: '0x65057a6821CC4B4bF848e40789629ebF8879bbce',
-  80001: '0x4E1AFDd1A705aE0598d75abFc37Fa948d9CFcBc5',
+  420: '0xFd3db71f5f67334c208448Fb690D10dDB5F84Ddd',
+  80001: '0xaf029Af571136800afC6fbc0fC0bEa08f9763e8e',
 } as const
 
 /**
- * - [__View Contract on Optimism Goerli Etherscan__](https://goerli-optimism.etherscan.io/address/0x65057a6821CC4B4bF848e40789629ebF8879bbce)
- * - [__View Contract on Polygon Mumbai Polygon Scan__](https://mumbai.polygonscan.com/address/0x4E1AFDd1A705aE0598d75abFc37Fa948d9CFcBc5)
+ * - [__View Contract on Optimism Goerli Etherscan__](https://goerli-optimism.etherscan.io/address/0xFd3db71f5f67334c208448Fb690D10dDB5F84Ddd)
+ * - [__View Contract on Polygon Mumbai Polygon Scan__](https://mumbai.polygonscan.com/address/0xaf029Af571136800afC6fbc0fC0bEa08f9763e8e)
  */
 export const xcEnsRegistryConfig = { address: xcEnsRegistryAddress, abi: xcEnsRegistryABI } as const
 
@@ -1158,8 +1457,8 @@ export const xcEnsRegistryConfig = { address: xcEnsRegistryAddress, abi: xcEnsRe
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 /**
- * - [__View Contract on Optimism Goerli Etherscan__](https://goerli-optimism.etherscan.io/address/0x261c205DD3E6039919b99FF1CD7CC30956Da41f9)
- * - [__View Contract on Polygon Mumbai Polygon Scan__](https://mumbai.polygonscan.com/address/0x76Da719F8CBDe8c87A3BEF2b42C5936d91b9bDfa)
+ * - [__View Contract on Optimism Goerli Etherscan__](https://goerli-optimism.etherscan.io/address/0x1AfdfDE694c33d7CFF8806879116905a128a80DD)
+ * - [__View Contract on Polygon Mumbai Polygon Scan__](https://mumbai.polygonscan.com/address/0x31C57B41f42D343713A47aAa7164E58eb9B6F8C9)
  */
 export const xcFifsRegistrarABI = [
   {
@@ -1236,17 +1535,17 @@ export const xcFifsRegistrarABI = [
 ] as const
 
 /**
- * - [__View Contract on Optimism Goerli Etherscan__](https://goerli-optimism.etherscan.io/address/0x261c205DD3E6039919b99FF1CD7CC30956Da41f9)
- * - [__View Contract on Polygon Mumbai Polygon Scan__](https://mumbai.polygonscan.com/address/0x76Da719F8CBDe8c87A3BEF2b42C5936d91b9bDfa)
+ * - [__View Contract on Optimism Goerli Etherscan__](https://goerli-optimism.etherscan.io/address/0x1AfdfDE694c33d7CFF8806879116905a128a80DD)
+ * - [__View Contract on Polygon Mumbai Polygon Scan__](https://mumbai.polygonscan.com/address/0x31C57B41f42D343713A47aAa7164E58eb9B6F8C9)
  */
 export const xcFifsRegistrarAddress = {
-  420: '0x261c205DD3E6039919b99FF1CD7CC30956Da41f9',
-  80001: '0x76Da719F8CBDe8c87A3BEF2b42C5936d91b9bDfa',
+  420: '0x1AfdfDE694c33d7CFF8806879116905a128a80DD',
+  80001: '0x31C57B41f42D343713A47aAa7164E58eb9B6F8C9',
 } as const
 
 /**
- * - [__View Contract on Optimism Goerli Etherscan__](https://goerli-optimism.etherscan.io/address/0x261c205DD3E6039919b99FF1CD7CC30956Da41f9)
- * - [__View Contract on Polygon Mumbai Polygon Scan__](https://mumbai.polygonscan.com/address/0x76Da719F8CBDe8c87A3BEF2b42C5936d91b9bDfa)
+ * - [__View Contract on Optimism Goerli Etherscan__](https://goerli-optimism.etherscan.io/address/0x1AfdfDE694c33d7CFF8806879116905a128a80DD)
+ * - [__View Contract on Polygon Mumbai Polygon Scan__](https://mumbai.polygonscan.com/address/0x31C57B41f42D343713A47aAa7164E58eb9B6F8C9)
  */
 export const xcFifsRegistrarConfig = {
   address: xcFifsRegistrarAddress,
@@ -1258,8 +1557,8 @@ export const xcFifsRegistrarConfig = {
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 /**
- * - [__View Contract on Optimism Goerli Etherscan__](https://goerli-optimism.etherscan.io/address/0xc07Ac5CD919D84be107790A99C104D46dD43193D)
- * - [__View Contract on Polygon Mumbai Polygon Scan__](https://mumbai.polygonscan.com/address/0x64409B2A63125BA894f8bb14cadc4cABAbB8c118)
+ * - [__View Contract on Optimism Goerli Etherscan__](https://goerli-optimism.etherscan.io/address/0xE3233929a0613FD998877978b8A0e0DbbD97C014)
+ * - [__View Contract on Polygon Mumbai Polygon Scan__](https://mumbai.polygonscan.com/address/0xFFd70bc3899DE376cE483CDd28Fa782f639c1b38)
  */
 export const xcPublicResolverABI = [
   {
@@ -1397,17 +1696,17 @@ export const xcPublicResolverABI = [
 ] as const
 
 /**
- * - [__View Contract on Optimism Goerli Etherscan__](https://goerli-optimism.etherscan.io/address/0xc07Ac5CD919D84be107790A99C104D46dD43193D)
- * - [__View Contract on Polygon Mumbai Polygon Scan__](https://mumbai.polygonscan.com/address/0x64409B2A63125BA894f8bb14cadc4cABAbB8c118)
+ * - [__View Contract on Optimism Goerli Etherscan__](https://goerli-optimism.etherscan.io/address/0xE3233929a0613FD998877978b8A0e0DbbD97C014)
+ * - [__View Contract on Polygon Mumbai Polygon Scan__](https://mumbai.polygonscan.com/address/0xFFd70bc3899DE376cE483CDd28Fa782f639c1b38)
  */
 export const xcPublicResolverAddress = {
-  420: '0xc07Ac5CD919D84be107790A99C104D46dD43193D',
-  80001: '0x64409B2A63125BA894f8bb14cadc4cABAbB8c118',
+  420: '0xE3233929a0613FD998877978b8A0e0DbbD97C014',
+  80001: '0xFFd70bc3899DE376cE483CDd28Fa782f639c1b38',
 } as const
 
 /**
- * - [__View Contract on Optimism Goerli Etherscan__](https://goerli-optimism.etherscan.io/address/0xc07Ac5CD919D84be107790A99C104D46dD43193D)
- * - [__View Contract on Polygon Mumbai Polygon Scan__](https://mumbai.polygonscan.com/address/0x64409B2A63125BA894f8bb14cadc4cABAbB8c118)
+ * - [__View Contract on Optimism Goerli Etherscan__](https://goerli-optimism.etherscan.io/address/0xE3233929a0613FD998877978b8A0e0DbbD97C014)
+ * - [__View Contract on Polygon Mumbai Polygon Scan__](https://mumbai.polygonscan.com/address/0xFFd70bc3899DE376cE483CDd28Fa782f639c1b38)
  */
 export const xcPublicResolverConfig = {
   address: xcPublicResolverAddress,
@@ -1419,8 +1718,8 @@ export const xcPublicResolverConfig = {
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 /**
- * - [__View Contract on Optimism Goerli Etherscan__](https://goerli-optimism.etherscan.io/address/0x7a36B02ec9Ba1A5399b9e35921D463eE15c67BC8)
- * - [__View Contract on Polygon Mumbai Polygon Scan__](https://mumbai.polygonscan.com/address/0xB8c9599B68D5B2115d3096Aeb04Bc63882D4Bf9A)
+ * - [__View Contract on Optimism Goerli Etherscan__](https://goerli-optimism.etherscan.io/address/0xEc89e1e25F2dBdbF4793c32584571aEeD2491753)
+ * - [__View Contract on Polygon Mumbai Polygon Scan__](https://mumbai.polygonscan.com/address/0x42BEf2E3e9F0D1e2B578D5c427E08C13C3b4181e)
  */
 export const xcReverseRegistrarABI = [
   {
@@ -1548,17 +1847,17 @@ export const xcReverseRegistrarABI = [
 ] as const
 
 /**
- * - [__View Contract on Optimism Goerli Etherscan__](https://goerli-optimism.etherscan.io/address/0x7a36B02ec9Ba1A5399b9e35921D463eE15c67BC8)
- * - [__View Contract on Polygon Mumbai Polygon Scan__](https://mumbai.polygonscan.com/address/0xB8c9599B68D5B2115d3096Aeb04Bc63882D4Bf9A)
+ * - [__View Contract on Optimism Goerli Etherscan__](https://goerli-optimism.etherscan.io/address/0xEc89e1e25F2dBdbF4793c32584571aEeD2491753)
+ * - [__View Contract on Polygon Mumbai Polygon Scan__](https://mumbai.polygonscan.com/address/0x42BEf2E3e9F0D1e2B578D5c427E08C13C3b4181e)
  */
 export const xcReverseRegistrarAddress = {
-  420: '0x7a36B02ec9Ba1A5399b9e35921D463eE15c67BC8',
-  80001: '0xB8c9599B68D5B2115d3096Aeb04Bc63882D4Bf9A',
+  420: '0xEc89e1e25F2dBdbF4793c32584571aEeD2491753',
+  80001: '0x42BEf2E3e9F0D1e2B578D5c427E08C13C3b4181e',
 } as const
 
 /**
- * - [__View Contract on Optimism Goerli Etherscan__](https://goerli-optimism.etherscan.io/address/0x7a36B02ec9Ba1A5399b9e35921D463eE15c67BC8)
- * - [__View Contract on Polygon Mumbai Polygon Scan__](https://mumbai.polygonscan.com/address/0xB8c9599B68D5B2115d3096Aeb04Bc63882D4Bf9A)
+ * - [__View Contract on Optimism Goerli Etherscan__](https://goerli-optimism.etherscan.io/address/0xEc89e1e25F2dBdbF4793c32584571aEeD2491753)
+ * - [__View Contract on Polygon Mumbai Polygon Scan__](https://mumbai.polygonscan.com/address/0x42BEf2E3e9F0D1e2B578D5c427E08C13C3b4181e)
  */
 export const xcReverseRegistrarConfig = {
   address: xcReverseRegistrarAddress,

@@ -1,5 +1,6 @@
 import { defineConfig, loadEnv } from '@wagmi/cli'
-import { foundry } from '@wagmi/cli/plugins'
+import { etherscan, foundry } from '@wagmi/cli/plugins'
+import { sepolia } from 'wagmi'
 
 export default defineConfig(() => {
   const env = loadEnv({ envDir: process.cwd() })
@@ -10,38 +11,6 @@ export default defineConfig(() => {
     plugins: [
       foundry({
         project: '../cross-chain-ens',
-        deployments: {
-          // Hub Deployment
-          ENSRegistryCCIP: {
-            43113: '0x8bb2985caaEf7a336086eeFe3FbD699dfF81d18A',
-          },
-          FIFSRegistrarCCIP: {
-            43113: '0x7133Db45b6806f8a40075EbF4F87678dcC4Ce22d',
-          },
-          PublicResolverCCIP: {
-            43113: '0xbeD73164a7dA3b2E58d0A38a485984E648Ae2da9',
-          },
-          ReverseRegistrarCCIP: {
-            43113: '0x3D937DaB0bEC0e68c9E8064394423B57a1f5F047',
-          },
-          // Spoke Deployment(s)
-          xcENSRegistry: {
-            80001: '0x4E1AFDd1A705aE0598d75abFc37Fa948d9CFcBc5',
-            420: '0x65057a6821CC4B4bF848e40789629ebF8879bbce',
-          },
-          xcReverseRegistrar: {
-            80001: '0xB8c9599B68D5B2115d3096Aeb04Bc63882D4Bf9A',
-            420: '0x7a36B02ec9Ba1A5399b9e35921D463eE15c67BC8',
-          },
-          xcFIFSRegistrar: {
-            80001: '0x76Da719F8CBDe8c87A3BEF2b42C5936d91b9bDfa',
-            420: '0x261c205DD3E6039919b99FF1CD7CC30956Da41f9',
-          },
-          xcPublicResolver: {
-            420: '0xc07Ac5CD919D84be107790A99C104D46dD43193D',
-            80001: '0x64409B2A63125BA894f8bb14cadc4cABAbB8c118',
-          },
-        },
         include: [
           // Hub Contracts
           'ENSRegistryCCIP.sol/*.json',
@@ -54,17 +23,55 @@ export default defineConfig(() => {
           'xcFIFSRegistrar.sol/*.json',
           'xcPublicResolver.sol/*.json',
         ],
+        deployments: {
+          ENSRegistryCCIP: {
+            43113: '0x9356415294517E52cc72c1C6447A80D6d441F958',
+          },
+          FIFSRegistrarCCIP: {
+            43113: '0xaF8d25851d511C50109A1d12fB8279d470540d90',
+          },
+          PublicResolverCCIP: {
+            43113: '0x4882e217b7609D43b3b5F47adAD715a11212B81A',
+          },
+          ReverseRegistrarCCIP: {
+            43113: '0x497188dC028a1622117Ba536C15B920791045fBf',
+          },
+          xcENSRegistry: {
+            80001: '0xaf029Af571136800afC6fbc0fC0bEa08f9763e8e',
+            420: '0xFd3db71f5f67334c208448Fb690D10dDB5F84Ddd',
+          },
+          xcReverseRegistrar: {
+            80001: '0x42BEf2E3e9F0D1e2B578D5c427E08C13C3b4181e',
+            420: '0xEc89e1e25F2dBdbF4793c32584571aEeD2491753',
+          },
+          xcFIFSRegistrar: {
+            80001: '0x31C57B41f42D343713A47aAa7164E58eb9B6F8C9',
+            420: '0x1AfdfDE694c33d7CFF8806879116905a128a80DD',
+          },
+          xcPublicResolver: {
+            420: '0xE3233929a0613FD998877978b8A0e0DbbD97C014',
+            80001: '0xFFd70bc3899DE376cE483CDd28Fa782f639c1b38',
+          },
+        },
       }),
-      // etherscan({
-      //   apiKey: env.ETHERSCAN_API_KEY,
-      //   chainId: 1,
-      //   contracts: [
-      //     {
-      //       name: 'ENSRegistry',
-      //       address: '0x00000000000C2E074eC69A0dFb2997BA6C7d2e1e',
-      //     },
-      //   ],
-      // }),
+      etherscan({
+        apiKey: env.ETHERSCAN_API_KEY,
+        chainId: sepolia.id,
+        contracts: [
+          {
+            name: 'SimpleAccountFactory',
+            address: '0x9406Cc6185a346906296840746125a0E44976454',
+          },
+          {
+            name: 'SimpleAccount',
+            address: '0x8ABB13360b87Be5EEb1B98647A016adD927a136c',
+          },
+          // {
+          //   name: 'EntryPoint',
+          //   address: '0x5FF137D4b0FDCD49DcA30c7CF57E578a026d2789',
+          // },
+        ],
+      }),
     ],
   }
 })

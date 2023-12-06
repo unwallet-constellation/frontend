@@ -1,6 +1,6 @@
 import { Chain } from 'viem'
 
-export default function getPimlicoNetworkId(chain: Chain) {
+export const getPimlicoNetworkId = (chain: Chain) => {
   const network = {
     '43113': 'avalanche-fuji',
     '80001': 'mumbai',

@@ -50,7 +50,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         />
 
         {/* Toast Config */}
-        <Toaster />
+        <Toaster
+          expand
+          richColors
+          toastOptions={{ duration: 6000, classNames: { toast: '!text-sm' } }}
+        />
       </body>
     </html>
   )

@@ -1,5 +1,5 @@
 import CreateUnwalletStep from './_components/create-unwallet'
-import PickDomainStep from './_components/select-domain'
+import SelectDomainStep from './_components/select-domain'
 import { OnboardingStep } from './types'
 
 export const onboardingSteps: OnboardingStep[] = [
@@ -8,7 +8,7 @@ export const onboardingSteps: OnboardingStep[] = [
     title: 'Select Domain',
     shortTitle: 'Select Domain',
     description: 'Find your favorite multichain domain name.',
-    component: PickDomainStep,
+    component: SelectDomainStep,
   },
   {
     id: '2',

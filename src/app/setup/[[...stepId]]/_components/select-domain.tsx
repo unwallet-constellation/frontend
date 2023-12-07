@@ -27,6 +27,7 @@ import { useContractRead } from 'wagmi'
 import * as z from 'zod'
 
 import { passkeyAccountAtom } from '../atoms'
+import { OnboardingStepComponentProps } from '../types'
 
 const formSchema = z.object({
   name: z.string().min(3, {
@@ -35,7 +36,7 @@ const formSchema = z.object({
 })
 type FormSchema = z.infer<typeof formSchema>
 
-export default function PickDomainStep() {
+export default function SelectDomainStep(_: OnboardingStepComponentProps) {
   const router = useRouter()
   const [, setPasskeyAccount] = useAtom(passkeyAccountAtom)
 

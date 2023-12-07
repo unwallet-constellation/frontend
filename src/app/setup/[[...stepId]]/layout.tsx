@@ -27,7 +27,7 @@ export default function OnboardingLayout({
   return (
     <>
       <main className="my-10 flex max-w-full grow flex-col items-center justify-center overflow-hidden px-2 lg:my-20">
-        <Card className="flex min-h-[30rem] w-[30rem] max-w-full flex-col overflow-hidden">
+        <Card className="flex min-h-[30rem] w-[30rem] max-w-full grow flex-col overflow-hidden md:grow-0">
           <div className="flex items-center justify-center gap-4 border-b p-4 text-center">
             {onboardingSteps.map((s) => (
               <div

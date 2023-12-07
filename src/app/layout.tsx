@@ -10,8 +10,8 @@ import { Provider as JotaiProvider } from 'jotai'
 import { Toaster } from 'sonner'
 
 import HomeLogo from './_components/home-logo'
+import { ClientProviders } from './client-providers'
 import './globals.css'
-import { Providers } from './providers'
 
 export const metadata: Metadata = {
   title: siteMetdata.title,
@@ -32,7 +32,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 
         {/* Client Providers & Content */}
         <JotaiProvider>
-          <Providers>{children}</Providers>
+          <ClientProviders>{children}</ClientProviders>
         </JotaiProvider>
 
         {/* Background Pattern */}

@@ -1,16 +1,17 @@
 import { notFound, redirect } from 'next/navigation'
 import { ReactNode } from 'react'
 
-import HomeFooter from '@/app/_components/home-footer'
-import { Card, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
-import { cn } from '@/utils/cn'
 import isEqual from 'lodash.isequal'
 
-import { onboardingSteps } from './config'
+import HomeFooter from '@/app/_components/home-footer'
+import { Card, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
+
+import { OnboardingLayoutTopbarNav } from './_components/topbar-nav'
+import { ONBOARDING_STEPS } from './config'
 import { OnboardingStep } from './types'
 
 export async function generateStaticParams() {
-  return onboardingSteps.map((step) => ({ stepId: [step.id] }))
+  return ONBOARDING_STEPS.map((step) => ({ stepId: [step.id] }))
 }
 
 export default function OnboardingLayout({
@@ -21,26 +22,14 @@ export default function OnboardingLayout({
   params: { stepId: string[] }
 }) {
   if (!stepId?.length) return redirect('/setup/1')
-  const step: OnboardingStep | undefined = onboardingSteps.find((s) => isEqual(stepId, [s.id]))
+  const step: OnboardingStep | undefined = ONBOARDING_STEPS.find((s) => isEqual(stepId, [s.id]))
   if (!step) return notFound()
 
   return (
     <>
-      <main className="my-10 flex max-w-full grow flex-col items-center justify-center overflow-hidden px-2 lg:my-20">
-        <Card className="flex min-h-[30rem] w-[30rem] max-w-full grow flex-col overflow-hidden md:grow-0">
-          <div className="flex items-center justify-center gap-4 border-b p-4 text-center">
-            {onboardingSteps.map((s) => (
-              <div
-                key={`step-nav-${s.id}`}
-                className={cn(
-                  'text-sm font-medium',
-                  s.id === step.id ? 'text-foreground' : 'text-foreground/40',
-                )}
-              >
-                {s.id}. {s.shortTitle}
-              </div>
-            ))}
-          </div>
+      <main className="my-10 flex max-w-full grow flex-col items-center justify-center overflow-hidden lg:my-20">
+        <Card className="flex min-h-[30rem] w-[29rem] max-w-full grow flex-col overflow-hidden md:grow-0">
+          <OnboardingLayoutTopbarNav {...step} />
 
           <CardHeader>
             <CardTitle>{step.title}</CardTitle>

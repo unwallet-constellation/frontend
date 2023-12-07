@@ -60,11 +60,13 @@ const config: Config = {
         info: colors.blue[400],
       },
       borderRadius: {
-        lg: 'var(--radius)',
-        md: 'calc(var(--radius) - 2px)',
-        DEFAULT: 'calc(var(--radius) - 2px)',
+        xs: 'calc(var(--radius) - 8px)',
         sm: 'calc(var(--radius) - 4px)',
-        xs: 'calc(var(--radius) - 6px)',
+        DEFAULT: 'calc(var(--radius))',
+        md: 'calc(var(--radius))',
+        lg: 'calc(var(--radius) + 4px)',
+        xl: 'calc(var(--radius) + 8px)',
+        '2xl': 'calc(var(--radius) + 12px)',
       },
       animation: {
         'accordion-down': 'accordion-down 0.2s ease-out',

@@ -1,9 +1,9 @@
 import { Metadata } from 'next'
 
-import { siteMetdata } from '@/config/metadata'
+import { SITE_METADATA } from '@/config/metadata'
 
 export const metadata: Metadata = {
-  title: `Page not found | ${siteMetdata.title}`,
+  title: `Page not found | ${SITE_METADATA.title}`,
   robots: {
     follow: false,
     index: false,

@@ -3,7 +3,7 @@
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 /**
- * [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x9356415294517E52cc72c1C6447A80D6d441F958)
+ * [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x122e08b42A4302B5665B56b89Ee34D6F2Ca5321e)
  */
 export const ensRegistryCcipABI = [
   {
@@ -232,14 +232,14 @@ export const ensRegistryCcipABI = [
 ] as const
 
 /**
- * [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x9356415294517E52cc72c1C6447A80D6d441F958)
+ * [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x122e08b42A4302B5665B56b89Ee34D6F2Ca5321e)
  */
 export const ensRegistryCcipAddress = {
-  43113: '0x9356415294517E52cc72c1C6447A80D6d441F958',
+  43113: '0x122e08b42A4302B5665B56b89Ee34D6F2Ca5321e',
 } as const
 
 /**
- * [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x9356415294517E52cc72c1C6447A80D6d441F958)
+ * [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x122e08b42A4302B5665B56b89Ee34D6F2Ca5321e)
  */
 export const ensRegistryCcipConfig = {
   address: ensRegistryCcipAddress,
@@ -251,7 +251,7 @@ export const ensRegistryCcipConfig = {
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 /**
- * [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0xaF8d25851d511C50109A1d12fB8279d470540d90)
+ * [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x49A76Fc34f68e7EA6AdC6689CB1088dF4bbD484D)
  */
 export const fifsRegistrarCcipABI = [
   {
@@ -333,14 +333,14 @@ export const fifsRegistrarCcipABI = [
 ] as const
 
 /**
- * [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0xaF8d25851d511C50109A1d12fB8279d470540d90)
+ * [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x49A76Fc34f68e7EA6AdC6689CB1088dF4bbD484D)
  */
 export const fifsRegistrarCcipAddress = {
-  43113: '0xaF8d25851d511C50109A1d12fB8279d470540d90',
+  43113: '0x49A76Fc34f68e7EA6AdC6689CB1088dF4bbD484D',
 } as const
 
 /**
- * [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0xaF8d25851d511C50109A1d12fB8279d470540d90)
+ * [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x49A76Fc34f68e7EA6AdC6689CB1088dF4bbD484D)
  */
 export const fifsRegistrarCcipConfig = {
   address: fifsRegistrarCcipAddress,
@@ -352,7 +352,7 @@ export const fifsRegistrarCcipConfig = {
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 /**
- * [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x4882e217b7609D43b3b5F47adAD715a11212B81A)
+ * [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x7270EAEf588D9ba07738730560C0D5F3805d8443)
  */
 export const publicResolverCcipABI = [
   {
@@ -643,14 +643,14 @@ export const publicResolverCcipABI = [
 ] as const
 
 /**
- * [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x4882e217b7609D43b3b5F47adAD715a11212B81A)
+ * [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x7270EAEf588D9ba07738730560C0D5F3805d8443)
  */
 export const publicResolverCcipAddress = {
-  43113: '0x4882e217b7609D43b3b5F47adAD715a11212B81A',
+  43113: '0x7270EAEf588D9ba07738730560C0D5F3805d8443',
 } as const
 
 /**
- * [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x4882e217b7609D43b3b5F47adAD715a11212B81A)
+ * [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x7270EAEf588D9ba07738730560C0D5F3805d8443)
  */
 export const publicResolverCcipConfig = {
   address: publicResolverCcipAddress,
@@ -662,7 +662,7 @@ export const publicResolverCcipConfig = {
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 /**
- * [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x497188dC028a1622117Ba536C15B920791045fBf)
+ * [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0xeC3916F2dF9Dd9C7b6902181B3cE839A4902bbe2)
  */
 export const reverseRegistrarCcipABI = [
   {
@@ -891,14 +891,14 @@ export const reverseRegistrarCcipABI = [
 ] as const
 
 /**
- * [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x497188dC028a1622117Ba536C15B920791045fBf)
+ * [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0xeC3916F2dF9Dd9C7b6902181B3cE839A4902bbe2)
  */
 export const reverseRegistrarCcipAddress = {
-  43113: '0x497188dC028a1622117Ba536C15B920791045fBf',
+  43113: '0xeC3916F2dF9Dd9C7b6902181B3cE839A4902bbe2',
 } as const
 
 /**
- * [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0x497188dC028a1622117Ba536C15B920791045fBf)
+ * [__View Contract on Avalanche Fuji Snow Trace__](https://testnet.snowtrace.io/address/0xeC3916F2dF9Dd9C7b6902181B3cE839A4902bbe2)
  */
 export const reverseRegistrarCcipConfig = {
   address: reverseRegistrarCcipAddress,
@@ -1209,8 +1209,9 @@ export const simpleAccountFactoryConfig = {
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 /**
- * - [__View Contract on Optimism Goerli Etherscan__](https://goerli-optimism.etherscan.io/address/0xFd3db71f5f67334c208448Fb690D10dDB5F84Ddd)
- * - [__View Contract on Polygon Mumbai Polygon Scan__](https://mumbai.polygonscan.com/address/0xaf029Af571136800afC6fbc0fC0bEa08f9763e8e)
+ * - [__View Contract on Optimism Goerli Etherscan__](https://goerli-optimism.etherscan.io/address/0x763DD80818778a44cB33EA256cc06D0b1ABe0532)
+ * - [__View Contract on Polygon Mumbai Polygon Scan__](https://mumbai.polygonscan.com/address/0xb352fDe2339b6ec999601EDaBcdCD54dD8BBC13c)
+ * - [__View Contract on Base Goerli Basescan__](https://goerli.basescan.org/address/0x4777D7187FCe971c4dd246e980c18838000a5862)
  */
 export const xcEnsRegistryABI = [
   {
@@ -1438,17 +1439,20 @@ export const xcEnsRegistryABI = [
 ] as const
 
 /**
- * - [__View Contract on Optimism Goerli Etherscan__](https://goerli-optimism.etherscan.io/address/0xFd3db71f5f67334c208448Fb690D10dDB5F84Ddd)
- * - [__View Contract on Polygon Mumbai Polygon Scan__](https://mumbai.polygonscan.com/address/0xaf029Af571136800afC6fbc0fC0bEa08f9763e8e)
+ * - [__View Contract on Optimism Goerli Etherscan__](https://goerli-optimism.etherscan.io/address/0x763DD80818778a44cB33EA256cc06D0b1ABe0532)
+ * - [__View Contract on Polygon Mumbai Polygon Scan__](https://mumbai.polygonscan.com/address/0xb352fDe2339b6ec999601EDaBcdCD54dD8BBC13c)
+ * - [__View Contract on Base Goerli Basescan__](https://goerli.basescan.org/address/0x4777D7187FCe971c4dd246e980c18838000a5862)
  */
 export const xcEnsRegistryAddress = {
-  420: '0xFd3db71f5f67334c208448Fb690D10dDB5F84Ddd',
-  80001: '0xaf029Af571136800afC6fbc0fC0bEa08f9763e8e',
+  420: '0x763DD80818778a44cB33EA256cc06D0b1ABe0532',
+  80001: '0xb352fDe2339b6ec999601EDaBcdCD54dD8BBC13c',
+  84531: '0x4777D7187FCe971c4dd246e980c18838000a5862',
 } as const
 
 /**
- * - [__View Contract on Optimism Goerli Etherscan__](https://goerli-optimism.etherscan.io/address/0xFd3db71f5f67334c208448Fb690D10dDB5F84Ddd)
- * - [__View Contract on Polygon Mumbai Polygon Scan__](https://mumbai.polygonscan.com/address/0xaf029Af571136800afC6fbc0fC0bEa08f9763e8e)
+ * - [__View Contract on Optimism Goerli Etherscan__](https://goerli-optimism.etherscan.io/address/0x763DD80818778a44cB33EA256cc06D0b1ABe0532)
+ * - [__View Contract on Polygon Mumbai Polygon Scan__](https://mumbai.polygonscan.com/address/0xb352fDe2339b6ec999601EDaBcdCD54dD8BBC13c)
+ * - [__View Contract on Base Goerli Basescan__](https://goerli.basescan.org/address/0x4777D7187FCe971c4dd246e980c18838000a5862)
  */
 export const xcEnsRegistryConfig = { address: xcEnsRegistryAddress, abi: xcEnsRegistryABI } as const
 
@@ -1457,8 +1461,9 @@ export const xcEnsRegistryConfig = { address: xcEnsRegistryAddress, abi: xcEnsRe
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 /**
- * - [__View Contract on Optimism Goerli Etherscan__](https://goerli-optimism.etherscan.io/address/0x1AfdfDE694c33d7CFF8806879116905a128a80DD)
- * - [__View Contract on Polygon Mumbai Polygon Scan__](https://mumbai.polygonscan.com/address/0x31C57B41f42D343713A47aAa7164E58eb9B6F8C9)
+ * - [__View Contract on Optimism Goerli Etherscan__](https://goerli-optimism.etherscan.io/address/0x3E00CEd29Cb6e7Eb675d955c7072Df9702E09391)
+ * - [__View Contract on Polygon Mumbai Polygon Scan__](https://mumbai.polygonscan.com/address/0x9b7fcAb5479C437a2fCC02AFEe1213bf81182cD1)
+ * - [__View Contract on Base Goerli Basescan__](https://goerli.basescan.org/address/0x67e7a169B0888BFCCaD9025065e049C6d6108509)
  */
 export const xcFifsRegistrarABI = [
   {
@@ -1535,17 +1540,20 @@ export const xcFifsRegistrarABI = [
 ] as const
 
 /**
- * - [__View Contract on Optimism Goerli Etherscan__](https://goerli-optimism.etherscan.io/address/0x1AfdfDE694c33d7CFF8806879116905a128a80DD)
- * - [__View Contract on Polygon Mumbai Polygon Scan__](https://mumbai.polygonscan.com/address/0x31C57B41f42D343713A47aAa7164E58eb9B6F8C9)
+ * - [__View Contract on Optimism Goerli Etherscan__](https://goerli-optimism.etherscan.io/address/0x3E00CEd29Cb6e7Eb675d955c7072Df9702E09391)
+ * - [__View Contract on Polygon Mumbai Polygon Scan__](https://mumbai.polygonscan.com/address/0x9b7fcAb5479C437a2fCC02AFEe1213bf81182cD1)
+ * - [__View Contract on Base Goerli Basescan__](https://goerli.basescan.org/address/0x67e7a169B0888BFCCaD9025065e049C6d6108509)
  */
 export const xcFifsRegistrarAddress = {
-  420: '0x1AfdfDE694c33d7CFF8806879116905a128a80DD',
-  80001: '0x31C57B41f42D343713A47aAa7164E58eb9B6F8C9',
+  420: '0x3E00CEd29Cb6e7Eb675d955c7072Df9702E09391',
+  80001: '0x9b7fcAb5479C437a2fCC02AFEe1213bf81182cD1',
+  84531: '0x67e7a169B0888BFCCaD9025065e049C6d6108509',
 } as const
 
 /**
- * - [__View Contract on Optimism Goerli Etherscan__](https://goerli-optimism.etherscan.io/address/0x1AfdfDE694c33d7CFF8806879116905a128a80DD)
- * - [__View Contract on Polygon Mumbai Polygon Scan__](https://mumbai.polygonscan.com/address/0x31C57B41f42D343713A47aAa7164E58eb9B6F8C9)
+ * - [__View Contract on Optimism Goerli Etherscan__](https://goerli-optimism.etherscan.io/address/0x3E00CEd29Cb6e7Eb675d955c7072Df9702E09391)
+ * - [__View Contract on Polygon Mumbai Polygon Scan__](https://mumbai.polygonscan.com/address/0x9b7fcAb5479C437a2fCC02AFEe1213bf81182cD1)
+ * - [__View Contract on Base Goerli Basescan__](https://goerli.basescan.org/address/0x67e7a169B0888BFCCaD9025065e049C6d6108509)
  */
 export const xcFifsRegistrarConfig = {
   address: xcFifsRegistrarAddress,
@@ -1557,8 +1565,9 @@ export const xcFifsRegistrarConfig = {
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 /**
- * - [__View Contract on Optimism Goerli Etherscan__](https://goerli-optimism.etherscan.io/address/0xE3233929a0613FD998877978b8A0e0DbbD97C014)
- * - [__View Contract on Polygon Mumbai Polygon Scan__](https://mumbai.polygonscan.com/address/0xFFd70bc3899DE376cE483CDd28Fa782f639c1b38)
+ * - [__View Contract on Optimism Goerli Etherscan__](https://goerli-optimism.etherscan.io/address/0xAcee74eC2FBB2C01Ee8226a2b1C297E6f66d091d)
+ * - [__View Contract on Polygon Mumbai Polygon Scan__](https://mumbai.polygonscan.com/address/0x9558D6b01333e207209fD8cbDBb704eD067e3355)
+ * - [__View Contract on Base Goerli Basescan__](https://goerli.basescan.org/address/0x7186eC2858072330C288702F9ebbE0C9f6871B82)
  */
 export const xcPublicResolverABI = [
   {
@@ -1696,17 +1705,20 @@ export const xcPublicResolverABI = [
 ] as const
 
 /**
- * - [__View Contract on Optimism Goerli Etherscan__](https://goerli-optimism.etherscan.io/address/0xE3233929a0613FD998877978b8A0e0DbbD97C014)
- * - [__View Contract on Polygon Mumbai Polygon Scan__](https://mumbai.polygonscan.com/address/0xFFd70bc3899DE376cE483CDd28Fa782f639c1b38)
+ * - [__View Contract on Optimism Goerli Etherscan__](https://goerli-optimism.etherscan.io/address/0xAcee74eC2FBB2C01Ee8226a2b1C297E6f66d091d)
+ * - [__View Contract on Polygon Mumbai Polygon Scan__](https://mumbai.polygonscan.com/address/0x9558D6b01333e207209fD8cbDBb704eD067e3355)
+ * - [__View Contract on Base Goerli Basescan__](https://goerli.basescan.org/address/0x7186eC2858072330C288702F9ebbE0C9f6871B82)
  */
 export const xcPublicResolverAddress = {
-  420: '0xE3233929a0613FD998877978b8A0e0DbbD97C014',
-  80001: '0xFFd70bc3899DE376cE483CDd28Fa782f639c1b38',
+  420: '0xAcee74eC2FBB2C01Ee8226a2b1C297E6f66d091d',
+  80001: '0x9558D6b01333e207209fD8cbDBb704eD067e3355',
+  84531: '0x7186eC2858072330C288702F9ebbE0C9f6871B82',
 } as const
 
 /**
- * - [__View Contract on Optimism Goerli Etherscan__](https://goerli-optimism.etherscan.io/address/0xE3233929a0613FD998877978b8A0e0DbbD97C014)
- * - [__View Contract on Polygon Mumbai Polygon Scan__](https://mumbai.polygonscan.com/address/0xFFd70bc3899DE376cE483CDd28Fa782f639c1b38)
+ * - [__View Contract on Optimism Goerli Etherscan__](https://goerli-optimism.etherscan.io/address/0xAcee74eC2FBB2C01Ee8226a2b1C297E6f66d091d)
+ * - [__View Contract on Polygon Mumbai Polygon Scan__](https://mumbai.polygonscan.com/address/0x9558D6b01333e207209fD8cbDBb704eD067e3355)
+ * - [__View Contract on Base Goerli Basescan__](https://goerli.basescan.org/address/0x7186eC2858072330C288702F9ebbE0C9f6871B82)
  */
 export const xcPublicResolverConfig = {
   address: xcPublicResolverAddress,
@@ -1718,8 +1730,9 @@ export const xcPublicResolverConfig = {
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 /**
- * - [__View Contract on Optimism Goerli Etherscan__](https://goerli-optimism.etherscan.io/address/0xEc89e1e25F2dBdbF4793c32584571aEeD2491753)
- * - [__View Contract on Polygon Mumbai Polygon Scan__](https://mumbai.polygonscan.com/address/0x42BEf2E3e9F0D1e2B578D5c427E08C13C3b4181e)
+ * - [__View Contract on Optimism Goerli Etherscan__](https://goerli-optimism.etherscan.io/address/0x06B6eA7A2ed9177e0AF3b18011984Fc90173B8eB)
+ * - [__View Contract on Polygon Mumbai Polygon Scan__](https://mumbai.polygonscan.com/address/0xdBc45077c55b224AaB1a7364EE54ce66e9E287c4)
+ * - [__View Contract on Base Goerli Basescan__](https://goerli.basescan.org/address/0xFd6dA42841Abd5b1755ea42808D615163CE4F465)
  */
 export const xcReverseRegistrarABI = [
   {
@@ -1847,17 +1860,20 @@ export const xcReverseRegistrarABI = [
 ] as const
 
 /**
- * - [__View Contract on Optimism Goerli Etherscan__](https://goerli-optimism.etherscan.io/address/0xEc89e1e25F2dBdbF4793c32584571aEeD2491753)
- * - [__View Contract on Polygon Mumbai Polygon Scan__](https://mumbai.polygonscan.com/address/0x42BEf2E3e9F0D1e2B578D5c427E08C13C3b4181e)
+ * - [__View Contract on Optimism Goerli Etherscan__](https://goerli-optimism.etherscan.io/address/0x06B6eA7A2ed9177e0AF3b18011984Fc90173B8eB)
+ * - [__View Contract on Polygon Mumbai Polygon Scan__](https://mumbai.polygonscan.com/address/0xdBc45077c55b224AaB1a7364EE54ce66e9E287c4)
+ * - [__View Contract on Base Goerli Basescan__](https://goerli.basescan.org/address/0xFd6dA42841Abd5b1755ea42808D615163CE4F465)
  */
 export const xcReverseRegistrarAddress = {
-  420: '0xEc89e1e25F2dBdbF4793c32584571aEeD2491753',
-  80001: '0x42BEf2E3e9F0D1e2B578D5c427E08C13C3b4181e',
+  420: '0x06B6eA7A2ed9177e0AF3b18011984Fc90173B8eB',
+  80001: '0xdBc45077c55b224AaB1a7364EE54ce66e9E287c4',
+  84531: '0xFd6dA42841Abd5b1755ea42808D615163CE4F465',
 } as const
 
 /**
- * - [__View Contract on Optimism Goerli Etherscan__](https://goerli-optimism.etherscan.io/address/0xEc89e1e25F2dBdbF4793c32584571aEeD2491753)
- * - [__View Contract on Polygon Mumbai Polygon Scan__](https://mumbai.polygonscan.com/address/0x42BEf2E3e9F0D1e2B578D5c427E08C13C3b4181e)
+ * - [__View Contract on Optimism Goerli Etherscan__](https://goerli-optimism.etherscan.io/address/0x06B6eA7A2ed9177e0AF3b18011984Fc90173B8eB)
+ * - [__View Contract on Polygon Mumbai Polygon Scan__](https://mumbai.polygonscan.com/address/0xdBc45077c55b224AaB1a7364EE54ce66e9E287c4)
+ * - [__View Contract on Base Goerli Basescan__](https://goerli.basescan.org/address/0xFd6dA42841Abd5b1755ea42808D615163CE4F465)
  */
 export const xcReverseRegistrarConfig = {
   address: xcReverseRegistrarAddress,

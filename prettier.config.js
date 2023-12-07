@@ -9,7 +9,7 @@ module.exports = {
   importOrder: [
     '^((react|next)/(.*)$)|^((react|next)$)',
     '<THIRD_PARTY_MODULES>',
-    '^@(config|types|styles|lib|utils|hooks|shared|components|app|pages|features)/(.*)$',
+    '^@/(config|types|styles|lib|utils|hooks|shared|components|app|pages|features)/(.*)$',
     '^[./]',
   ],
   importOrderSeparation: true,

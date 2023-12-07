@@ -1,8 +1,9 @@
 import { HTMLAttributes } from 'react'
 
-import { cn } from '@/utils/cn'
 import { cva } from 'class-variance-authority'
 import { AlertCircleIcon, CheckCircle2, CircleDot, Loader } from 'lucide-react'
+
+import { cn } from '@/utils/cn'
 
 const stepVariants = cva(
   'flex items-center justify-between gap-2 rounded-xs border bg-white px-3 py-3 text-sm font-medium transition-all [&_>_svg]:shrink-0',
@@ -34,7 +35,7 @@ export default function StepIndicatorList({
   ...rest
 }: StepIndicatorListProps) {
   const icons = {
-    current: <CircleDot size={16} className="animate-pulse text-muted-foreground/50" />,
+    current: <CircleDot size={16} className="animate-pulse text-muted-foreground" />,
     pending: null,
     loading: <Loader size={16} className="animate-spin text-muted-foreground/50 ease-in-out" />,
     completed: <CheckCircle2 size={16} className="text-success" />,

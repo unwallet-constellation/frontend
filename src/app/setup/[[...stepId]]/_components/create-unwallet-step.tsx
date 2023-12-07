@@ -3,6 +3,16 @@
 import { redirect, useRouter, useSearchParams } from 'next/navigation'
 import { useRef, useState } from 'react'
 
+import { fifsRegistrarCcipABI, fifsRegistrarCcipAddress, simpleAccountABI } from '@/wagmi.generated'
+import { useAtom } from 'jotai'
+import { Lock } from 'lucide-react'
+import { BundlerClient, UserOperation, getSenderAddress } from 'permissionless'
+import { PimlicoPaymasterClient } from 'permissionless/clients/pimlico'
+import { toast } from 'sonner'
+import { Hex, LocalAccount, encodeFunctionData, labelhash } from 'viem'
+import { avalancheFuji, baseGoerli, optimismGoerli, polygonMumbai } from 'viem/chains'
+import { usePublicClient } from 'wagmi'
+
 import StepIndicatorList from '@/components/step-indicator-list'
 import { Button } from '@/components/ui/button'
 import { CardContent, CardFooter } from '@/components/ui/card'
@@ -15,18 +25,13 @@ import {
   getPimlicoPaymasterClient,
 } from '@/utils/pimlico'
 import { signUserOperationWithPasskey } from '@/utils/pimlico/sign-user-operation-with-passkey'
-import { fifsRegistrarCcipABI, fifsRegistrarCcipAddress, simpleAccountABI } from '@/wagmi.generated'
-import { useAtom } from 'jotai'
-import { Lock } from 'lucide-react'
-import { BundlerClient, UserOperation, getSenderAddress } from 'permissionless'
-import { PimlicoPaymasterClient } from 'permissionless/clients/pimlico'
-import { toast } from 'sonner'
-import { Hex, LocalAccount, encodeFunctionData, labelhash } from 'viem'
-import { avalancheFuji, optimismGoerli } from 'viem/chains'
-import { usePublicClient } from 'wagmi'
 
+import {
+  passkeyAccountAtom,
+  smartWalletAddressesAtom,
+  smartWalletDomainNameAtom,
+} from '../../../atoms'
 import createPasskeyAccount from '../_utils/create-passkey-account'
-import { passkeyAccountAtom, smartWalletAddressesAtom, smartWalletDomainNameAtom } from '../atoms'
 import { OnboardingStepComponentProps } from '../types'
 
 export default function CreateUnwalletStep(_: OnboardingStepComponentProps) {
@@ -70,7 +75,7 @@ export default function CreateUnwalletStep(_: OnboardingStepComponentProps) {
   }
 
   const determineCounterfactualAddresses = async (passkeyAccount: LocalAccount) => {
-    const chains = [avalancheFuji, optimismGoerli]
+    const chains = [avalancheFuji, polygonMumbai, optimismGoerli, baseGoerli]
     const initCode = generateInitCode(factoryAddress, passkeyAccount.address)
     for (const chain of chains) {
       const bundlerClient = await getPimlicoBundlerClient(chain)
@@ -169,7 +174,7 @@ export default function CreateUnwalletStep(_: OnboardingStepComponentProps) {
       // Redirect to dashboard on success
       setSmartWalletDomainName(domainName)
       toast.success(`Registered '${domain}'`)
-      router.push(`/`) // TODO
+      router.push(`/dashboard`)
     } catch (error) {
       console.error(error)
       toast.error('Failed to create wallet')

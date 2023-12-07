@@ -7,13 +7,15 @@ import phoneImg from '/public/phone.png'
 
 export default function HomePage() {
   return (
-    <main className="mt-10 flex grow flex-col items-center justify-center px-2">
+    <main className="mt-10 flex grow flex-col items-center justify-center">
       <div className="flex grow flex-col items-center justify-center gap-10">
         <div className="flex max-w-prose flex-col gap-2 text-center">
-          <h2 className="text-4xl tracking-tight">
+          <h2 className="text-4xl font-medium tracking-tight">
             <em>Next-Gen</em> Onboarding
           </h2>
-          <p className="tracking-tight">Seedless smart wallets meet multichain domains.</p>
+          <p className="text-lg tracking-tight text-muted-foreground">
+            Seedless smart wallets meet multichain domains
+          </p>
         </div>
 
         <div className="flex flex-col items-center justify-center gap-3 text-center">
@@ -27,8 +29,12 @@ export default function HomePage() {
               Get Unwalleted
             </span>
           </ShimmerButton>
-          <Link href="/setup" className="text-xs text-foreground/60 hover:text-foreground">
-            Use an existing one →
+          {/* TODO */}
+          <Link
+            href="/dashboard"
+            className="text-sm font-medium text-muted-foreground hover:text-foreground"
+          >
+            Use an existing Unwallet →
           </Link>
         </div>
       </div>
@@ -43,9 +49,10 @@ export default function HomePage() {
             priority
           />
         </div>
-        <ul className="mb-[40%] flex flex-col gap-2 whitespace-nowrap font-medium md:mb-0 hlg:!mb-[40%]">
+        <ul className="mb-[20%] flex flex-col gap-2 whitespace-nowrap font-medium  hlg:!mb-[50%]">
           <li>⛓️&nbsp;&nbsp;Multichain domains</li>
           <li>🔑&nbsp;&nbsp;No seedphrases</li>
+          <li>📬&nbsp;&nbsp;No wallet address</li>
           <li>🧬&nbsp;&nbsp;Passkey signing</li>
           <li>👛&nbsp;&nbsp;Fee- and gas-less</li>
         </ul>

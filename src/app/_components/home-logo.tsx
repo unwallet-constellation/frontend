@@ -11,7 +11,7 @@ export default function HomeLogo({ className }: HtmlHTMLAttributes<HTMLDivElemen
     <nav className={cn('flex justify-center', className)}>
       <Link href="/" className="flex select-none items-center gap-2 outline-none">
         <Image src={logoIconSvg} alt="Unwallet Logo" height={35} priority />
-        <h1 className="text-4xl font-bold leading-none tracking-tighter">Unwallet</h1>
+        <h1 className="text-4xl font-bold leading-none tracking-tighter text-gray-900">Unwallet</h1>
       </Link>
     </nav>
   )

@@ -1,6 +1,7 @@
-import { env } from '@/config/environment'
 import { createPimlicoBundlerClient } from 'permissionless/clients/pimlico'
 import { Chain, http } from 'viem'
+
+import { env } from '@/config/environment'
 
 import { getPimlicoNetworkId } from './get-network-id'
 

@@ -1,6 +1,7 @@
-import { env } from '@/config/environment'
 import { pimlicoPaymasterActions } from 'permissionless/actions/pimlico'
 import { Chain, createClient, http } from 'viem'
+
+import { env } from '@/config/environment'
 
 import { getPimlicoNetworkId } from './get-network-id'
 

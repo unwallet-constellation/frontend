@@ -3,6 +3,16 @@
 import { useRouter } from 'next/navigation'
 import { useMemo } from 'react'
 
+import { ensRegistryCcipABI, ensRegistryCcipAddress } from '@/wagmi.generated'
+import { zodResolver } from '@hookform/resolvers/zod'
+import { useAtom } from 'jotai'
+import { Sparkles } from 'lucide-react'
+import { useForm } from 'react-hook-form'
+import { namehash } from 'viem'
+import { avalancheFuji } from 'viem/chains'
+import { useContractRead } from 'wagmi'
+import * as z from 'zod'
+
 import { DomainNameInput, DomainNameInputProps } from '@/components/domain-name-input'
 import { Button } from '@/components/ui/button'
 import { CardContent, CardFooter } from '@/components/ui/card'
@@ -16,17 +26,8 @@ import {
   FormMessage,
 } from '@/components/ui/form'
 import { domainTld } from '@/config/domain-tld'
-import { ensRegistryCcipABI, ensRegistryCcipAddress } from '@/wagmi.generated'
-import { zodResolver } from '@hookform/resolvers/zod'
-import { useAtom } from 'jotai'
-import { Sparkles } from 'lucide-react'
-import { useForm } from 'react-hook-form'
-import { namehash } from 'viem'
-import { avalancheFuji } from 'viem/chains'
-import { useContractRead } from 'wagmi'
-import * as z from 'zod'
 
-import { passkeyAccountAtom } from '../atoms'
+import { passkeyAccountAtom } from '../../../atoms'
 import { OnboardingStepComponentProps } from '../types'
 
 const formSchema = z.object({

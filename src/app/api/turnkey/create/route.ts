@@ -1,9 +1,10 @@
 import { NextResponse } from 'next/server'
 
-import { env } from '@/config/environment'
-import { getAndValidateRequestData } from '@/utils/get-and-validate-request-data'
 import { ApiKeyStamper } from '@turnkey/api-key-stamper'
 import { TurnkeyClient, createActivityPoller } from '@turnkey/http'
+
+import { env } from '@/config/environment'
+import { getAndValidateRequestData } from '@/utils/get-and-validate-request-data'
 
 import { turnkeyCreateRequestSchema, turnkeyCreateResponseSchema } from './types'
 

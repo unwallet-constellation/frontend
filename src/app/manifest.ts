@@ -1,12 +1,12 @@
 import { MetadataRoute } from 'next'
 
-import { siteMetdata } from '@/config/metadata'
+import { SITE_METADATA } from '@/config/metadata'
 
 export default function manifest(): MetadataRoute.Manifest {
   return {
-    name: `${siteMetdata.title} | ${siteMetdata.shortDescription}`,
-    short_name: siteMetdata.title,
-    description: siteMetdata.description,
+    name: `${SITE_METADATA.title} | ${SITE_METADATA.shortDescription}`,
+    short_name: SITE_METADATA.title,
+    description: SITE_METADATA.description,
     start_url: '/',
     display: 'standalone',
     background_color: '#fff',

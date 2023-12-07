@@ -8,6 +8,7 @@ export const env = createEnv({
    * Serverside environment variables
    */
   server: {
+    TURNKEY_ORGANIZATION_ID: z.string().min(1),
     TURNKEY_API_PUBLIC_KEY: z.string().min(1),
     TURNKEY_API_PRIVATE_KEY: z.string().min(1),
   },
@@ -21,8 +22,6 @@ export const env = createEnv({
     NEXT_PUBLIC_DEVELOPMENT_MODE: z.preprocess((v) => v === 'true' || v === '1', z.boolean()),
     NEXT_PUBLIC_PREVIEW_MODE: z.preprocess((v) => v === 'true' || v === '1', z.boolean()),
     NEXT_PUBLIC_PRODUCTION_MODE: z.preprocess((v) => v === 'true' || v === '1', z.boolean()),
-
-    NEXT_PUBLIC_TURNKEY_ORGANIZATION_ID: z.string().min(1),
 
     NEXT_PUBLIC_PIMLICO_API_KEY: z.string().min(1),
 
@@ -40,7 +39,7 @@ export const env = createEnv({
     NEXT_PUBLIC_PREVIEW_MODE: process.env.NEXT_PUBLIC_PREVIEW_MODE,
     NEXT_PUBLIC_PRODUCTION_MODE: process.env.NEXT_PUBLIC_PRODUCTION_MODE,
 
-    NEXT_PUBLIC_TURNKEY_ORGANIZATION_ID: process.env.NEXT_PUBLIC_TURNKEY_ORGANIZATION_ID,
+    TURNKEY_ORGANIZATION_ID: process.env.TURNKEY_ORGANIZATION_ID,
     TURNKEY_API_PUBLIC_KEY: process.env.TURNKEY_API_PUBLIC_KEY,
     TURNKEY_API_PRIVATE_KEY: process.env.TURNKEY_API_PRIVATE_KEY,
 

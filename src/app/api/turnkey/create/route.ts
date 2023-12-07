@@ -28,7 +28,7 @@ export async function POST(req: Request) {
     const completedActivity = await activityPoller({
       type: 'ACTIVITY_TYPE_CREATE_SUB_ORGANIZATION_V4',
       timestampMs: String(Date.now()),
-      organizationId: env.NEXT_PUBLIC_TURNKEY_ORGANIZATION_ID,
+      organizationId: env.TURNKEY_ORGANIZATION_ID,
       parameters: {
         subOrganizationName: data.subOrgName,
         rootQuorumThreshold: 1,
@@ -46,7 +46,7 @@ export async function POST(req: Request) {
           },
         ],
         wallet: {
-          walletName: `Default Wallet`,
+          walletName: `Unwallet Signer`,
           accounts: [
             {
               curve: 'CURVE_SECP256K1',

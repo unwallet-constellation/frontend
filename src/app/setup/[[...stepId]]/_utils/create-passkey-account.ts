@@ -1,11 +1,15 @@
 import { getWebAuthnAttestation } from '@turnkey/http'
-import { createAccount } from '@turnkey/viem'
 import axios from 'axios'
-import dayjs from 'dayjs'
+import { isHex } from 'viem'
 
-import { turnkeyCreateResponseSchema } from '@/app/api/turnkey/create/types'
+import getAccountFromAuthContext from '@/app/_utils/get-account-from-auth-context'
+import {
+  TurnkeyCreateRequestSchema,
+  TurnkeyCreateResponseSchema,
+  turnkeyCreateResponseSchema,
+} from '@/app/api/turnkey/create/types'
+import { TurnkeyAuthContext } from '@/app/atoms'
 import { SITE_METADATA } from '@/config/metadata'
-import { getTurnkeyHttpClient } from '@/config/turnkey-client'
 
 const generateRandomBuffer = (): ArrayBuffer => {
   const arr = new Uint8Array(32)
@@ -21,10 +25,9 @@ const base64UrlEncode = (challenge: ArrayBuffer): string => {
     .replace(/=/g, '')
 }
 
-export default async function createPasskeyAccount(_name?: string) {
+export default async function createPasskeyAccount(domain: string) {
   const challenge = generateRandomBuffer()
   const id = generateRandomBuffer()
-  const name = _name || `${SITE_METADATA.title} - ${dayjs().format('DD.MM.YYYY')}`
   const attestation = await getWebAuthnAttestation({
     publicKey: {
       rp: {
@@ -33,25 +36,24 @@ export default async function createPasskeyAccount(_name?: string) {
       },
       challenge,
       pubKeyCredParams: [{ type: 'public-key', alg: -7 }],
-      user: { id, name, displayName: name },
+      user: { id, name: domain, displayName: domain },
     },
   })
 
-  const response = await axios.post('/api/turnkey/create', {
-    subOrgName: name,
+  const response = await axios.post<TurnkeyCreateResponseSchema>('/api/turnkey/create', {
+    subOrgName: domain,
     attestation,
     challenge: base64UrlEncode(challenge),
-  })
+  } satisfies TurnkeyCreateRequestSchema)
   const parsedResponse = turnkeyCreateResponseSchema.safeParse(response?.data)
   if (!parsedResponse.success) throw new Error('Invalid response from server')
+  if (!isHex(parsedResponse.data.walletAddress)) throw new Error('Invalid wallet address')
 
-  const passkeyHttpClient = getTurnkeyHttpClient(window.location.hostname)
+  const authContext: TurnkeyAuthContext = {
+    organizationId: parsedResponse.data.organizationId,
+    walletAddress: parsedResponse.data.walletAddress,
+  }
+  const account = await getAccountFromAuthContext(authContext)
 
-  const account = await createAccount({
-    client: passkeyHttpClient,
-    organizationId: parsedResponse.data.subOrgId,
-    signWith: parsedResponse.data.walletAddress,
-  })
-
-  return account
+  return { account, authContext }
 }

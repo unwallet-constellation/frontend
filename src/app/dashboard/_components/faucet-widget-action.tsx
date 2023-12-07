@@ -17,7 +17,7 @@ export const FaucetWidgetAction = () => {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button variant="brand">
+        <Button variant="brand" className="ring-offset-gray-900">
           <ArrowDownToDot size={16} className="mr-2" />
           Faucet
         </Button>

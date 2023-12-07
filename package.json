@@ -68,7 +68,7 @@
     "jotai": "^2.6.0",
     "lodash.isequal": "^4.5.0",
     "lucide-react": "^0.294.0",
-    "next": "^14.0.3",
+    "next": "14.0.3",
     "permissionless": "^0.0.13",
     "react": "^18",
     "react-day-picker": "^8.9.1",
@@ -79,7 +79,7 @@
     "tailwind-merge": "^2.1.0",
     "tailwindcss-animate": "^1.0.7",
     "viem": "^1.19.11",
-    "wagmi": "^1.4.8",
+    "wagmi": "^1.4.10",
     "zod": "^3.22.4"
   },
   "devDependencies": {
@@ -96,7 +96,7 @@
     "@wagmi/cli": "^1.5.2",
     "autoprefixer": "^10",
     "eslint": "^8.54.0",
-    "eslint-config-next": "^14.0.3",
+    "eslint-config-next": "^14.0.4",
     "eslint-config-prettier": "^9.0.0",
     "eslint-plugin-check-file": "^2.6.2",
     "lint-staged": "^15.2.0",

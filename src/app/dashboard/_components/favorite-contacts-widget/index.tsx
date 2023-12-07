@@ -34,14 +34,14 @@ const FavoriteContact: FC<Contact> = ({ domainName, domainTld, avatarUrl, websit
     <Link
       href={websiteUrl}
       target="_blank"
-      className="group flex w-[105px] shrink-0 flex-col items-center gap-4"
+      className="group flex w-[105px] shrink-0 flex-col items-center gap-4 outline-none"
       title={domain}
     >
       <Avatar className="h-[4.5rem] w-[4.5rem] select-none rounded-xl transition-all group-hover:scale-105">
         <AvatarImage src={avatarUrl} alt={domain} />
         <AvatarFallback className="font-mono text-xl">{initials}</AvatarFallback>
       </Avatar>
-      <div className="max-w-full truncate font-mono text-xs font-semibold leading-none tracking-tight text-muted-foreground/75 transition-colors group-hover:text-foreground">
+      <div className="max-w-full truncate font-mono text-xs font-semibold leading-none tracking-tight text-muted-foreground/75 transition-colors group-focus-within:text-foreground group-focus-within:underline group-hover:text-foreground">
         <span className="text-foreground">{domainName}</span>
         <span>.{domainTld}</span>
       </div>

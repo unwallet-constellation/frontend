@@ -27,7 +27,7 @@ export default function OnboardingLayout({
 
   return (
     <>
-      <main className="my-10 flex max-w-full grow flex-col items-center justify-center overflow-hidden lg:my-20">
+      <main className="my-10 flex max-w-full grow flex-col items-center justify-center overflow-hidden">
         <Card className="flex min-h-[30rem] w-[29rem] max-w-full grow flex-col overflow-hidden md:grow-0">
           <OnboardingLayoutTopbarNav {...step} />
 

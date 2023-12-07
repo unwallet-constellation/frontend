@@ -28,13 +28,13 @@ export async function POST(req: Request) {
     const completedActivity = await activityPoller({
       type: 'ACTIVITY_TYPE_CREATE_SUB_ORGANIZATION_V4',
       timestampMs: String(Date.now()),
-      organizationId: env.TURNKEY_ORGANIZATION_ID,
+      organizationId: env.NEXT_PUBLIC_TURNKEY_ORGANIZATION_ID,
       parameters: {
         subOrganizationName: data.subOrgName,
         rootQuorumThreshold: 1,
         rootUsers: [
           {
-            userName: 'New User',
+            userName: data.subOrgName,
             apiKeys: [],
             authenticators: [
               {
@@ -61,8 +61,7 @@ export async function POST(req: Request) {
 
     // Parse result
     const parseResult = turnkeyCreateResponseSchema.safeParse({
-      subOrgId: completedActivity.result.createSubOrganizationResultV4?.subOrganizationId,
-      walletId: completedActivity.result.createSubOrganizationResultV4?.wallet?.walletId,
+      organizationId: completedActivity.result.createSubOrganizationResultV4?.subOrganizationId,
       walletAddress: completedActivity.result.createSubOrganizationResultV4?.wallet?.addresses?.[0],
     })
     if (!parseResult.success) throw new Error(parseResult.error.message)

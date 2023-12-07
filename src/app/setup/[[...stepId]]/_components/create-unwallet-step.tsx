@@ -20,6 +20,7 @@ import { Hex, LocalAccount, encodeFunctionData, labelhash, namehash } from 'viem
 import { avalancheFuji, baseGoerli, optimismGoerli, polygonMumbai } from 'viem/chains'
 import { usePublicClient } from 'wagmi'
 
+import { domainContextAtom, turnkeyAuthContextAtom } from '@/app/atoms'
 import StepIndicatorList from '@/components/step-indicator-list'
 import { Button } from '@/components/ui/button'
 import { CardContent, CardFooter } from '@/components/ui/card'
@@ -33,11 +34,6 @@ import {
 } from '@/utils/pimlico'
 import { signUserOperationWithPasskey } from '@/utils/pimlico/sign-user-operation-with-passkey'
 
-import {
-  passkeyAccountAtom,
-  smartWalletAddressesAtom,
-  smartWalletDomainNameAtom,
-} from '../../../atoms'
 import createPasskeyAccount from '../_utils/create-passkey-account'
 import { OnboardingStepComponentProps } from '../types'
 
@@ -51,31 +47,35 @@ export default function CreateUnwalletStep(_: OnboardingStepComponentProps) {
   const hubChain = avalancheFuji
   const publicClient = usePublicClient()
 
+  const [isLoading, setIsLoading] = useState(false)
+  const [counterfactualAddresses, setCounterfactualAddresses] = useState<Record<string, Hex>>({})
+  const [hasDeterminedAddresses, setHasDeterminedAddresses] = useState(false)
+  const [authContext, setAuthContext] = useAtom(turnkeyAuthContextAtom)
+  const [passkeyAccount, setPasskeyAccount] = useState<LocalAccount>()
+  const [domainContext, setDomainContext] = useAtom(domainContextAtom)
+
   const initCodeRef = useRef<Hex>()
   const hubBundlerClientRef = useRef<BundlerClient>()
   const hubPaymasterClientRef = useRef<PimlicoPaymasterClient>()
   const hubEntryPointRef = useRef<Hex>()
   const hubSenderRef = useRef<Hex>()
 
-  const [isLoading, setIsLoading] = useState(false)
-  const [passkeyAccount, setPasskeyAccount] = useAtom(passkeyAccountAtom)
-  const [smartWalletAddresses, setSmartWalletAddresses] = useAtom(smartWalletAddressesAtom)
-  const [hasDeterminedAddresses, setHasDeterminedAddresses] = useState(false)
-  const [smartWalletDomainName, setSmartWalletDomainName] = useAtom(smartWalletDomainNameAtom)
-
   const handleCreatePasskeyAccount = async () => {
     setIsLoading(true)
     try {
-      const account = await createPasskeyAccount(domain)
+      const { account, authContext } = await createPasskeyAccount(domain)
       setPasskeyAccount(account)
+      setAuthContext(authContext)
       toast.success('Created local passkey account')
+
       await determineCounterfactualAddresses(account)
-      toast.success('Configured multichain smart wallets')
       setHasDeterminedAddresses(true)
+      toast.success('Configured multichain smart wallets')
     } catch (error) {
       console.error(error)
       toast.error('Failed to create Passkey account')
-      setPasskeyAccount(null)
+      setPasskeyAccount(undefined)
+      setAuthContext(null)
       setHasDeterminedAddresses(false)
     }
     setIsLoading(false)
@@ -95,7 +95,7 @@ export default function CreateUnwalletStep(_: OnboardingStepComponentProps) {
       // Calculate counterfactual address
       const sender = await getSenderAddress(publicClient, { initCode, entryPoint })
       console.log(`Counterfactual address on '${chain.name}' (${chain.id}): ${sender}`)
-      setSmartWalletAddresses({ ...smartWalletAddresses, [chain.id]: sender })
+      setCounterfactualAddresses((prev) => ({ ...prev, [chain.id]: sender }))
 
       // Store state for performance reasons
       if (chain.id === hubChain.id) {
@@ -121,14 +121,16 @@ export default function CreateUnwalletStep(_: OnboardingStepComponentProps) {
     setIsLoading(true)
 
     try {
-      // Register domain calldata
+      // Build callData for domain registration & set-addresses
       const callData = encodeFunctionData({
         abi: simpleAccountABI,
         functionName: 'executeBatch',
         args: [
           [
             fifsRegistrarCcipAddress[hubChain.id],
-            ...Object.keys(smartWalletAddresses).map((_) => publicResolverCcipAddress[hubChain.id]),
+            ...Object.keys(counterfactualAddresses).map(
+              (_) => publicResolverCcipAddress[hubChain.id],
+            ),
           ],
           [
             encodeFunctionData({
@@ -136,7 +138,7 @@ export default function CreateUnwalletStep(_: OnboardingStepComponentProps) {
               functionName: 'register',
               args: [labelhash(domainName), hubSenderRef.current],
             }),
-            ...Object.entries(smartWalletAddresses).map(([chainId, address]) =>
+            ...Object.entries(counterfactualAddresses).map(([chainId, address]) =>
               encodeFunctionData({
                 abi: publicResolverCcipABI,
                 functionName: 'setAddr',
@@ -193,9 +195,9 @@ export default function CreateUnwalletStep(_: OnboardingStepComponentProps) {
       const txHash = receipt.receipt.transactionHash
       console.log(`Transaction hash: ${txHash}`)
 
-      // Redirect to dashboard on success
-      setSmartWalletDomainName(domainName)
-      toast.success(`Registered '${domain}'`)
+      // Set domain context & edirect to dashboard on success
+      setDomainContext({ domain, domainName, domainTld })
+      toast.success(`Successfully registered domain, redirecting…`)
       router.push(`/dashboard`)
     } catch (error) {
       console.error(error)
@@ -225,13 +227,14 @@ export default function CreateUnwalletStep(_: OnboardingStepComponentProps) {
             },
             {
               title: 'Register Multichain Domain',
-              state: smartWalletDomainName
-                ? 'completed'
-                : hasDeterminedAddresses
-                  ? isLoading
-                    ? 'loading'
-                    : 'current'
-                  : 'pending',
+              state:
+                domainContext?.domain === domain
+                  ? 'completed'
+                  : hasDeterminedAddresses
+                    ? isLoading
+                      ? 'loading'
+                      : 'current'
+                    : 'pending',
             },
           ]}
         />

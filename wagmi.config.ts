@@ -70,10 +70,10 @@ export default defineConfig(() => {
             name: 'SimpleAccount',
             address: '0x8ABB13360b87Be5EEb1B98647A016adD927a136c',
           },
-          // {
-          //   name: 'EntryPoint',
-          //   address: '0x5FF137D4b0FDCD49DcA30c7CF57E578a026d2789',
-          // },
+          {
+            name: 'EntryPoint',
+            address: '0x5FF137D4b0FDCD49DcA30c7CF57E578a026d2789',
+          },
         ],
       }),
     ],

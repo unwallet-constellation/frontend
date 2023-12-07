@@ -1,8 +1,8 @@
 import Image from 'next/image'
-import Link from 'next/link'
 
 import ShimmerButton from '@/components/magicui/shimmer-button'
 
+import { SigninButton } from './_components/signin-button'
 import phoneImg from '/public/phone.png'
 
 export default function HomePage() {
@@ -19,6 +19,7 @@ export default function HomePage() {
         </div>
 
         <div className="flex flex-col items-center justify-center gap-3 text-center">
+          {/* Start Setup */}
           <ShimmerButton
             href="/setup"
             className="shadow-2xl"
@@ -29,13 +30,9 @@ export default function HomePage() {
               Get Unwalleted
             </span>
           </ShimmerButton>
-          {/* TODO */}
-          <Link
-            href="/dashboard"
-            className="text-sm font-medium text-muted-foreground hover:text-foreground"
-          >
-            Use an existing Unwallet →
-          </Link>
+
+          {/* Sign-in */}
+          <SigninButton className="text-sm font-medium text-muted-foreground hover:text-foreground" />
         </div>
       </div>
 

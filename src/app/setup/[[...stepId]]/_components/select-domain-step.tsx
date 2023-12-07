@@ -5,7 +5,6 @@ import { useMemo } from 'react'
 
 import { ensRegistryCcipABI, ensRegistryCcipAddress } from '@/wagmi.generated'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { useAtom } from 'jotai'
 import { Sparkles } from 'lucide-react'
 import { useForm } from 'react-hook-form'
 import { namehash } from 'viem'
@@ -27,7 +26,6 @@ import {
 } from '@/components/ui/form'
 import { domainTld } from '@/config/domain-tld'
 
-import { passkeyAccountAtom } from '../../../atoms'
 import { OnboardingStepComponentProps } from '../types'
 
 const formSchema = z.object({
@@ -39,7 +37,6 @@ type FormSchema = z.infer<typeof formSchema>
 
 export default function SelectDomainStep(_: OnboardingStepComponentProps) {
   const router = useRouter()
-  const [, setPasskeyAccount] = useAtom(passkeyAccountAtom)
 
   const form = useForm<FormSchema>({
     resolver: zodResolver(formSchema),
@@ -77,7 +74,6 @@ export default function SelectDomainStep(_: OnboardingStepComponentProps) {
 
   async function onSubmit({ name }: FormSchema) {
     const searchParams = new URLSearchParams({ domainName: name })
-    setPasskeyAccount(null)
     router.push(`/setup/2?${searchParams}`)
   }
 

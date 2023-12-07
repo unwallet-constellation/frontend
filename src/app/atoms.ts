@@ -1,11 +1,18 @@
-import { atom } from 'jotai'
-import { Hex, LocalAccount, zeroAddress } from 'viem'
-import { avalancheFuji } from 'viem/chains'
+import { atomWithStorage } from 'jotai/utils'
+import { Hex } from 'viem'
 
-// export const passkeyAccountAtom = atomWithStorage<LocalAccount | null>('PASSKEY_ACCOUNT', null)
-export const passkeyAccountAtom = atom<LocalAccount | null>(null)
+export type TurnkeyAuthContext = {
+  organizationId: string
+  walletAddress: Hex
+}
+export const turnkeyAuthContextAtom = atomWithStorage<TurnkeyAuthContext | null>(
+  'AUTH_CONTEXT',
+  null,
+)
 
-export const smartWalletAddressesAtom = atom<Record<number, Hex>>({
-  [avalancheFuji.id]: zeroAddress,
-}) // TODO
-export const smartWalletDomainNameAtom = atom<string | null>('dennis') // TODO
+export type DomainContext = {
+  domain: string
+  domainName: string
+  domainTld: string
+}
+export const domainContextAtom = atomWithStorage<DomainContext | null>('DOMAIN_CONTEXT', null)

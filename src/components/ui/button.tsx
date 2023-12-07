@@ -30,7 +30,7 @@ const buttonVariants = cva(
         icon: 'h-10 w-10',
       },
       isLoading: {
-        true: 'pointer-events-none opacity-0',
+        true: 'pointer-events-none [&>div:first-of-type]:opacity-0',
       },
     },
     defaultVariants: {

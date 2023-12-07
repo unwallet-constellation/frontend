@@ -3,13 +3,20 @@
 import { redirect, useRouter, useSearchParams } from 'next/navigation'
 import { useRef, useState } from 'react'
 
-import { fifsRegistrarCcipABI, fifsRegistrarCcipAddress, simpleAccountABI } from '@/wagmi.generated'
+import {
+  fifsRegistrarCcipABI,
+  fifsRegistrarCcipAddress,
+  publicResolverCcipABI,
+  publicResolverCcipAddress,
+  simpleAccountABI,
+} from '@/wagmi.generated'
+import { convertEVMChainIdToCoinType } from '@ensdomains/address-encoder'
 import { useAtom } from 'jotai'
 import { Lock } from 'lucide-react'
 import { BundlerClient, UserOperation, getSenderAddress } from 'permissionless'
 import { PimlicoPaymasterClient } from 'permissionless/clients/pimlico'
 import { toast } from 'sonner'
-import { Hex, LocalAccount, encodeFunctionData, labelhash } from 'viem'
+import { Hex, LocalAccount, encodeFunctionData, labelhash, namehash } from 'viem'
 import { avalancheFuji, baseGoerli, optimismGoerli, polygonMumbai } from 'viem/chains'
 import { usePublicClient } from 'wagmi'
 
@@ -61,9 +68,9 @@ export default function CreateUnwalletStep(_: OnboardingStepComponentProps) {
     try {
       const account = await createPasskeyAccount(domain)
       setPasskeyAccount(account)
-      toast.success('Created Passkey Account')
+      toast.success('Created local passkey account')
       await determineCounterfactualAddresses(account)
-      toast.success('Configured Smart Wallet')
+      toast.success('Configured multichain smart wallets')
       setHasDeterminedAddresses(true)
     } catch (error) {
       console.error(error)
@@ -117,18 +124,33 @@ export default function CreateUnwalletStep(_: OnboardingStepComponentProps) {
       // Register domain calldata
       const callData = encodeFunctionData({
         abi: simpleAccountABI,
-        functionName: 'execute',
+        functionName: 'executeBatch',
         args: [
-          fifsRegistrarCcipAddress[hubChain.id],
-          0n,
-          encodeFunctionData({
-            abi: fifsRegistrarCcipABI,
-            functionName: 'register',
-            args: [labelhash(domainName), hubSenderRef.current],
-          }),
+          [
+            fifsRegistrarCcipAddress[hubChain.id],
+            ...Object.keys(smartWalletAddresses).map((_) => publicResolverCcipAddress[hubChain.id]),
+          ],
+          [
+            encodeFunctionData({
+              abi: fifsRegistrarCcipABI,
+              functionName: 'register',
+              args: [labelhash(domainName), hubSenderRef.current],
+            }),
+            ...Object.entries(smartWalletAddresses).map(([chainId, address]) =>
+              encodeFunctionData({
+                abi: publicResolverCcipABI,
+                functionName: 'setAddr',
+                args: [
+                  namehash(domain),
+                  BigInt(convertEVMChainIdToCoinType(parseInt(chainId))),
+                  address,
+                ],
+              }),
+            ),
+          ],
         ],
       })
-      console.log('Generated domain registration callData:', callData)
+      console.log('Generated domain registration & set-address batch callData:', callData)
 
       // Build useroperation
       let userOperation = (await buildUserOperation({

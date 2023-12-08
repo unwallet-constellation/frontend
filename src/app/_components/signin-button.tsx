@@ -4,7 +4,7 @@ import { useRouter } from 'next/navigation'
 import { FC, HTMLAttributes, useState } from 'react'
 
 import axios from 'axios'
-import { useSetAtom } from 'jotai'
+import { useAtom } from 'jotai'
 import { Loader } from 'lucide-react'
 import { toast } from 'sonner'
 import { isHex } from 'viem'
@@ -25,8 +25,9 @@ export const SigninButton: FC<SigninButtonProps> = ({ className, ...rest }) => {
   const router = useRouter()
   const [isLoading, setIsLoading] = useState(false)
   const [isSigning, setIsSigning] = useState(false)
-  const setAuthContext = useSetAtom(turnkeyAuthContextAtom)
-  const setDomainContext = useSetAtom(domainContextAtom)
+  const [authContext, setAuthContext] = useAtom(turnkeyAuthContextAtom)
+  const [domainContext, setDomainContext] = useAtom(domainContextAtom)
+  const isSignedIn = !!authContext && !!domainContext
 
   const handleSignin = async () => {
     setIsLoading(true)
@@ -80,6 +81,8 @@ export const SigninButton: FC<SigninButtonProps> = ({ className, ...rest }) => {
       >
         {isLoading ? (
           <Loader size={18} className="my-px animate-spin ease-in-out" />
+        ) : isSignedIn ? (
+          'Use another Unwallet →'
         ) : (
           'Use an existing Unwallet →'
         )}

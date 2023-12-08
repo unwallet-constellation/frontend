@@ -2,6 +2,7 @@ import Image from 'next/image'
 
 import ShimmerButton from '@/components/magicui/shimmer-button'
 
+import { DashboardButton } from './_components/dashboard-button'
 import LatestDomainsMarquee from './_components/latest-domains-marquee'
 import { SigninButton } from './_components/signin-button'
 import phoneImg from '/public/phone.png'
@@ -20,18 +21,23 @@ export default function HomePage() {
             </p>
           </div>
 
-          <div className="flex flex-col items-center justify-center gap-3 text-center">
-            {/* Start Setup */}
-            <ShimmerButton
-              href="/setup"
-              className="shadow-2xl"
-              shimmerColor="hsl(var(--brand))"
-              shimmerSize="0.1em"
-            >
-              <span className="whitespace-pre-wrap text-center !text-lg font-medium leading-none tracking-tight text-brand dark:from-white dark:to-slate-900/10">
-                Get Unwalleted
-              </span>
-            </ShimmerButton>
+          <div className="flex flex-col items-center justify-center gap-4 text-center">
+            <div className="flex justify-center gap-3">
+              {/* Start Setup */}
+              <ShimmerButton
+                href="/setup"
+                className="h-14 shadow-2xl"
+                shimmerColor="hsl(var(--brand))"
+                shimmerSize="0.1em"
+              >
+                <span className="whitespace-pre-wrap px-1 text-center text-base font-medium leading-none tracking-tight text-brand dark:from-white dark:to-slate-900/10">
+                  Get Unwalleted
+                </span>
+              </ShimmerButton>
+
+              {/* Dashboar Button */}
+              <DashboardButton />
+            </div>
 
             {/* Sign-in */}
             <SigninButton className="text-sm font-medium text-muted-foreground hover:text-foreground" />

@@ -12,6 +12,7 @@ import ChainIcon from '@/components/chain-icon'
 import { Button } from '@/components/ui/button'
 import { HoverCard, HoverCardContent, HoverCardTrigger } from '@/components/ui/hover-card'
 import { Separator } from '@/components/ui/separator'
+import { useChainlinkPriceFeeds } from '@/hooks/use-chainlink-price-feeds'
 import { copyToClipboard } from '@/utils/copy-to-clipboard'
 
 interface ChainDetailsHoverCardProps {
@@ -40,8 +41,13 @@ export const ChainDetailsHoverCard: FC<ChainDetailsHoverCardProps> = (props) => 
             <Separator className="-mx-2 w-auto" />
             <DomainChainFetchedBalance {...props} />
           </div>
-          <div className="text-center text-xs text-muted-foreground">
-            Resolved smart wallet on chain {props.chain.id} via ENSIP-11 ⚡
+          <div className="flex flex-col gap-1">
+            <div className="text-center text-xs text-muted-foreground">
+              Resolved smart wallet address via ENSIP-11 ⚡
+            </div>
+            <div className="text-center text-xs text-muted-foreground">
+              Converted to USD using Chainlink Data Feeds 🤖
+            </div>
           </div>
         </div>
       </HoverCardContent>
@@ -50,6 +56,7 @@ export const ChainDetailsHoverCard: FC<ChainDetailsHoverCardProps> = (props) => 
 }
 
 const DomainChainResolvedAddress: FC<ChainDetailsHoverCardProps> = ({ chain, domainContext }) => {
+  // Resolve address via ENSIP-11
   const { domain } = domainContext
   const contractRead = useContractRead({
     chainId: avalancheFuji.id,
@@ -79,6 +86,7 @@ const DomainChainResolvedAddress: FC<ChainDetailsHoverCardProps> = ({ chain, dom
 }
 
 const DomainChainFetchedBalance: FC<ChainDetailsHoverCardProps> = ({ chain, domainContext }) => {
+  // 1. Resolve address via ENSIP-11
   const { domain } = domainContext
   const contractRead = useContractRead({
     chainId: avalancheFuji.id,
@@ -87,12 +95,15 @@ const DomainChainFetchedBalance: FC<ChainDetailsHoverCardProps> = ({ chain, doma
     functionName: 'addr',
     args: [namehash(domain), BigInt(convertEVMChainIdToCoinType(chain.id))],
   })
+  // 2. Fetch native balance
   const balanceRead = useBalance({
     address: contractRead.data,
     enabled: !!contractRead.data,
     chainId: chain.id,
     watch: true,
   })
+  // 3. Fetch Chainlink price feeds & convert
+  const balancesWithPrices = useChainlinkPriceFeeds(balanceRead.data ? [balanceRead.data] : [])
 
   return (
     <div className="flex flex-col gap-1.5">
@@ -104,6 +115,12 @@ const DomainChainFetchedBalance: FC<ChainDetailsHoverCardProps> = ({ chain, doma
         {!balanceRead.isLoading && (
           <span className="animate-in fade-in-0">
             {balanceRead.data?.formatted || '0'} {balanceRead.data?.symbol}
+          </span>
+        )}
+        {!balancesWithPrices.isLoading && (
+          <span className="animate-in fade-in-0">
+            {' '}
+            ({balancesWithPrices.data?.totalFormattedInUSD || 'X'} $)
           </span>
         )}
       </div>

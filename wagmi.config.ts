@@ -1,6 +1,6 @@
 import { defineConfig, loadEnv } from '@wagmi/cli'
 import { etherscan, foundry } from '@wagmi/cli/plugins'
-import { sepolia } from 'wagmi'
+import { mainnet, sepolia } from 'wagmi'
 
 export default defineConfig(() => {
   const env = loadEnv({ envDir: process.cwd() })
@@ -62,6 +62,7 @@ export default defineConfig(() => {
         apiKey: env.ETHERSCAN_API_KEY,
         chainId: sepolia.id,
         contracts: [
+          // ERC-4337
           {
             name: 'SimpleAccountFactory',
             address: '0x9406Cc6185a346906296840746125a0E44976454',
@@ -73,6 +74,17 @@ export default defineConfig(() => {
           {
             name: 'EntryPoint',
             address: '0x5FF137D4b0FDCD49DcA30c7CF57E578a026d2789',
+          },
+        ],
+      }),
+      etherscan({
+        apiKey: env.ETHERSCAN_API_KEY,
+        chainId: mainnet.id,
+        contracts: [
+          // Chainlink Price Feed
+          {
+            name: 'EACAggregatorProxy',
+            address: '0x5f4eC3Df9cbd43714FE2740f5E3616155c5b8419',
           },
         ],
       }),

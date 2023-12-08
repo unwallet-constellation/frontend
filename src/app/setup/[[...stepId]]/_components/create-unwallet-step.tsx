@@ -30,8 +30,8 @@ import { CardContent, CardFooter } from '@/components/ui/card'
 import { domainTld } from '@/config/domain-tld'
 import {
   buildUserOperation,
-  factoryAddress,
   generateInitCode,
+  getFactoryAddress,
   getPimlicoBundlerClient,
   getPimlicoPaymasterClient,
 } from '@/utils/pimlico'
@@ -90,8 +90,8 @@ export default function CreateUnwalletStep(_: OnboardingStepComponentProps) {
 
   const determineCounterfactualAddresses = async (passkeyAccount: LocalAccount) => {
     const chains = [avalancheFuji, polygonMumbai, optimismGoerli, baseGoerli]
-    const initCode = generateInitCode(factoryAddress, passkeyAccount.address)
     for (const chain of chains) {
+      const initCode = generateInitCode(getFactoryAddress(chain)!, passkeyAccount.address)
       const bundlerClient = await getPimlicoBundlerClient(chain)
 
       // Get entry point address

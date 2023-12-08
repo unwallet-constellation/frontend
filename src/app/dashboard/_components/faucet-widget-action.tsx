@@ -28,7 +28,7 @@ export const FaucetWidgetAction = () => {
           .map((chain) => (
             <Link key={`faucet-${chain.id}`} href={getFaucetLink(chain) as string} target="_blank">
               <DropdownMenuItem className="cursor-pointer items-center">
-                <ChainIcon width={16} height={16} chain={chain} />
+                <ChainIcon size={18} chain={chain} className="border" />
                 <span className="ml-2">{chain.name}</span>
                 <span className="ml-auto font-mono text-xs text-muted-foreground">
                   {chain.nativeCurrency.symbol}

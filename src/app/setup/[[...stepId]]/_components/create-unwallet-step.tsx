@@ -8,6 +8,8 @@ import {
   fifsRegistrarCcipAddress,
   publicResolverCcipABI,
   publicResolverCcipAddress,
+  reverseRegistrarCcipABI,
+  reverseRegistrarCcipAddress,
   simpleAccountABI,
 } from '@/wagmi.generated'
 import { convertEVMChainIdToCoinType } from '@ensdomains/address-encoder'
@@ -53,7 +55,7 @@ export default function CreateUnwalletStep(_: OnboardingStepComponentProps) {
 
   const [counterfactualAddresses, setCounterfactualAddresses] = useState<Record<string, Hex>>({})
   const [hasDeterminedAddresses, setHasDeterminedAddresses] = useState(false)
-  const [authContext, setAuthContext] = useAtom(turnkeyAuthContextAtom)
+  const [, setAuthContext] = useAtom(turnkeyAuthContextAtom)
   const [passkeyAccount, setPasskeyAccount] = useState<LocalAccount>()
   const [domainContext, setDomainContext] = useAtom(domainContextAtom)
 
@@ -134,6 +136,7 @@ export default function CreateUnwalletStep(_: OnboardingStepComponentProps) {
           [
             fifsRegistrarCcipAddress[hubChain.id],
             publicResolverCcipAddress[hubChain.id],
+            reverseRegistrarCcipAddress[hubChain.id],
             ...Object.keys(counterfactualAddresses).map(
               (_) => publicResolverCcipAddress[hubChain.id],
             ),
@@ -148,6 +151,11 @@ export default function CreateUnwalletStep(_: OnboardingStepComponentProps) {
               abi: publicResolverCcipABI,
               functionName: 'setAddr',
               args: [namehash(domain), hubSenderRef.current],
+            }),
+            encodeFunctionData({
+              abi: reverseRegistrarCcipABI,
+              functionName: 'setName',
+              args: [domain],
             }),
             ...Object.entries(counterfactualAddresses).map(([chainId, address]) =>
               encodeFunctionData({

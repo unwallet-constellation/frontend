@@ -1,55 +1,27 @@
-import Image from 'next/image'
-import { ComponentProps } from 'react'
+import { HTMLAttributes, useMemo } from 'react'
 
 import { Chain } from 'viem'
-import * as chains from 'viem/chains'
 
-interface ChainIconProps extends Omit<ComponentProps<typeof Image>, 'alt' | 'src'> {
+import { cn } from '@/utils/cn'
+import getChainIconUrl from '@/utils/get-chain-icon-url'
+
+import { Avatar, AvatarFallback, AvatarImage } from './ui/avatar'
+
+interface ChainIconProps extends HTMLAttributes<HTMLDivElement> {
   chain: Chain
+  size?: number
 }
-export default function ChainIcon({ chain, ...rest }: ChainIconProps) {
-  let iconSrc: string
-
-  switch (chain.id) {
-    case chains.avalanche.id:
-    case chains.avalancheFuji.id:
-      iconSrc = '/chain-icons/avax.jpg'
-      break
-    case chains.arbitrum.id:
-    case chains.arbitrumGoerli.id:
-    case chains.arbitrumNova.id:
-    case chains.arbitrumSepolia.id:
-      iconSrc = '/chain-icons/arbitrum.jpg'
-      break
-    case chains.polygonMumbai.id:
-    case chains.polygon.id:
-    case chains.polygonZkEvm.id:
-    case chains.polygonZkEvmTestnet.id:
-      iconSrc = '/chain-icons/polygon.png'
-      break
-    case chains.optimism.id:
-    case chains.optimismGoerli.id:
-    case chains.optimismSepolia.id:
-      iconSrc = '/chain-icons/optimism.jpg'
-      break
-    case chains.base.id:
-    case chains.baseGoerli.id:
-    case chains.baseSepolia.id:
-      iconSrc = '/chain-icons/base.jpg'
-      break
-    default:
-      return null
-  }
+export default function ChainIcon({ chain, size = 24, className, ...rest }: ChainIconProps) {
+  const iconUrl = useMemo(() => getChainIconUrl(chain), [chain])
 
   return (
-    <Image
-      src={iconSrc}
-      alt={chain.name}
-      title={chain.name}
-      width={24}
-      height={24}
-      className="rounded-full bg-muted"
+    <Avatar
+      className={cn('select-none rounded-full', className)}
+      style={{ width: size, height: size }}
       {...rest}
-    />
+    >
+      <AvatarImage src={iconUrl || ''} alt={chain.name} />
+      <AvatarFallback className="bg-gradient-to-t from-muted-foreground/[0.20] to-muted-foreground/[0.05] font-mono text-sm" />
+    </Avatar>
   )
 }

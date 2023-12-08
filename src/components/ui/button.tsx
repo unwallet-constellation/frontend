@@ -8,7 +8,7 @@ import { cn } from '@/utils/cn'
 
 const buttonVariants = cva(
   cn(
-    'relative inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50',
+    'relative inline-flex select-none items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50',
     '[&>div:first-of-type]:inline-flex [&>div:first-of-type]:items-center [&>div:first-of-type]:justify-center',
   ),
   {
@@ -23,8 +23,9 @@ const buttonVariants = cva(
         brand: 'bg-brand text-brand-foreground focus-visible:ring-brand',
       },
       size: {
-        default: 'h-10 px-4 py-2',
+        xs: 'h-5 rounded-md px-1.5 text-xs',
         sm: 'h-9 rounded-md px-3',
+        default: 'h-10 px-4 py-2',
         lg: 'h-11 rounded-md px-8',
         icon: 'h-10 w-10',
       },

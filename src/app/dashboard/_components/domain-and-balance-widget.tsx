@@ -1,7 +1,6 @@
 import { Copy } from 'lucide-react'
 
 import { DomainContext } from '@/app/atoms'
-import ChainIcon from '@/components/chain-icon'
 import { Button } from '@/components/ui/button'
 import { Card } from '@/components/ui/card'
 import { Separator } from '@/components/ui/separator'
@@ -9,6 +8,7 @@ import { domainTld } from '@/config/domain-tld'
 import { chains } from '@/config/wagmi'
 import { copyToClipboard } from '@/utils/copy-to-clipboard'
 
+import { ChainDetailsHoverCard } from './chain-details-hover-card'
 import { FaucetWidgetAction } from './faucet-widget-action'
 import { SendWidgetAction } from './send-widget-action'
 
@@ -32,7 +32,9 @@ export default function DomainAndBalanceWidget(props: DomainAndBalanceWidgetProp
   )
 }
 
-const DomainWidgetSection = ({ domain, domainName }: DomainAndBalanceWidgetProps) => {
+const DomainWidgetSection = (domainContext: DomainAndBalanceWidgetProps) => {
+  const { domain, domainName } = domainContext
+
   return (
     <div className="flex items-center justify-between gap-2">
       <div className="flex flex-col gap-2">
@@ -45,10 +47,10 @@ const DomainWidgetSection = ({ domain, domainName }: DomainAndBalanceWidgetProps
           {chains.map((chain, i) => (
             <div
               key={`chain-icon-${chain.id}`}
-              className="transition-transform group-hover:!translate-x-0"
+              className="z-50 transition-transform delay-500 group-hover:!translate-x-0 group-hover:delay-0"
               style={{ transform: `translateX(calc(-${i * 0.75}rem)` }}
             >
-              <ChainIcon width={24} height={24} chain={chain} />
+              <ChainDetailsHoverCard {...{ chain, domainContext }} />
             </div>
           ))}
         </div>

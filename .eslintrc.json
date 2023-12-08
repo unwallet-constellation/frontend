@@ -12,6 +12,12 @@
       "warn",
       { "**/*.{js,jsx,ts,tsx}": "KEBAB_CASE" },
       { "ignoreMiddleExtensions": true }
+    ],
+    "no-restricted-imports": [
+      "warn",
+      {
+        "patterns": ["process"]
+      }
     ]
   }
 }

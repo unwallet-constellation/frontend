@@ -36,6 +36,8 @@ export default function HomePage() {
         </div>
       </div>
 
+      {/* <LatestDomainsMarquee /> */}
+
       <div className="mt-10 grid grid-cols-2 items-center justify-center">
         <div className="-ml-12 h-[300px] overflow-hidden sm:h-[350px] md:h-[400px] hlg:!h-auto hlg:!overflow-auto">
           <Image

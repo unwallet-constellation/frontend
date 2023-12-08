@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import { ComponentProps } from 'react'
 
+import { AlertDialogCancel } from '@radix-ui/react-alert-dialog'
 import { ArrowUpRight, Fingerprint } from 'lucide-react'
 
 import { cn } from '@/utils/cn'
@@ -13,16 +14,18 @@ import {
   AlertDialogHeader,
   AlertDialogTitle,
 } from './ui/alert-dialog'
-import { buttonVariants } from './ui/button'
+import { Button, buttonVariants } from './ui/button'
 
 interface PasskeyDialogOverlayProps
   extends Pick<ComponentProps<typeof AlertDialog>, 'open' | 'onOpenChange'> {
   variant?: 'create' | 'sign'
   domain?: string
+  allowCancel?: boolean
 }
 export function PasskeyDialogOverlay({
   variant = 'sign',
   domain,
+  allowCancel = false,
   ...rest
 }: PasskeyDialogOverlayProps) {
   return (
@@ -63,9 +66,11 @@ export function PasskeyDialogOverlay({
             Learn more <ArrowUpRight size={16} className="ml-2" />
           </Link>
 
-          {/* <AlertDialogCancel asChild>
-            <Button type="button">Cancel</Button>
-          </AlertDialogCancel> */}
+          {allowCancel && (
+            <AlertDialogCancel asChild>
+              <Button type="button">Cancel</Button>
+            </AlertDialogCancel>
+          )}
         </AlertDialogFooter>
       </AlertDialogContent>
     </AlertDialog>

@@ -38,6 +38,7 @@ export const SigninButton: FC<SigninButtonProps> = ({ className, ...rest }) => {
       const { organizationId, organizationName, userId } = await turnkeyClient.getWhoami({
         organizationId: env.NEXT_PUBLIC_TURNKEY_ORGANIZATION_ID,
       })
+
       setIsSigning(false)
       if (!organizationId || !organizationName || !userId)
         throw new Error('Invalid whoami response')

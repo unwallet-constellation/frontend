@@ -73,6 +73,9 @@ const config: Config = {
         'accordion-up': 'accordion-up 0.2s ease-out',
         'magicui-spin': 'magicui-spin calc(var(--magicui-speed) * 2) infinite linear',
         'magicui-slide': 'magicui-slide var(--magicui-speed) ease-in-out infinite alternate',
+        'magicui-marquee': 'magicui-marquee var(--magicui-duration) linear infinite',
+        'magicui-marquee-vertical':
+          'magicui-marquee-vertical var(--magicui-duration) linear infinite',
       },
       keyframes: {
         'accordion-down': {
@@ -101,6 +104,14 @@ const config: Config = {
           to: {
             transform: 'translate(calc(100cqw - 100%), 0)',
           },
+        },
+        'magicui-marquee': {
+          from: { transform: 'translateX(0)' },
+          to: { transform: 'translateX(calc(-50% - var(--gap)/2))' },
+        },
+        'magicui-marquee-vertical': {
+          from: { transform: 'translateY(0)' },
+          to: { transform: 'translateY(calc(-50% - var(--gap)/2))' },
         },
       },
       fontFamily: {

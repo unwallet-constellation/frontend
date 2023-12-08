@@ -9,6 +9,7 @@ import { Sparkles } from 'lucide-react'
 import { useForm } from 'react-hook-form'
 import { namehash } from 'viem'
 import { avalancheFuji } from 'viem/chains'
+import { normalize } from 'viem/ens'
 import { useContractRead } from 'wagmi'
 import * as z from 'zod'
 
@@ -29,9 +30,18 @@ import { domainTld } from '@/config/domain-tld'
 import { OnboardingStepComponentProps } from '../types'
 
 const formSchema = z.object({
-  name: z.string().min(3, {
-    message: 'Name must be at least 3 characters.',
-  }),
+  name: z
+    .string()
+    .min(3, {
+      message: 'Name must be at least 3 characters.',
+    })
+    .refine((name) => {
+      try {
+        return normalize(name) === name
+      } catch (_) {
+        return false
+      }
+    }, 'Name must be a valid ENS name.'),
 })
 type FormSchema = z.infer<typeof formSchema>
 

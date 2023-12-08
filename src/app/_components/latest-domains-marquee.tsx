@@ -1,76 +1,64 @@
 'use client'
 
-import { FC } from 'react'
+import { FC, HTMLAttributes } from 'react'
 
 import { publicResolverCcipABI, publicResolverCcipAddress } from '@/wagmi.generated'
-import { ByteArray, Hex, labelhash, namehash, stringToBytes } from 'viem'
+import Marquee from 'react-fast-marquee'
+import { namehash } from 'viem'
 import { avalancheFuji } from 'viem/chains'
 import { useContractRead } from 'wagmi'
 
-import { IndexedDomain, useLatestDomains } from '../_hooks/use-latest-domains'
+import { cn } from '@/utils/cn'
 
-export default function LatestDomainsMarquee() {
-  const { data } = useLatestDomains()
+import { IndexedNewOwner, useLatestOwners } from '../_hooks/use-latest-owners'
+
+interface LatestDomainsMarqueeProps extends HTMLAttributes<HTMLDivElement> {}
+export default function LatestDomainsMarquee({ className, ...rest }: LatestDomainsMarqueeProps) {
+  const { data } = useLatestOwners()
   if (!data) return null
 
   return (
-    <div className="flex flex-col gap-5">
-      {data.newOwners.map((domain) => (
-        <LatestDomain key={`latest-domain-${domain.label}`} {...domain} />
+    <Marquee
+      pauseOnHover={true}
+      speed={80}
+      className={cn(
+        'absolute top-auto -mt-10 !w-[calc(100%_+_2rem)] bg-brand py-2.5 font-mono text-sm',
+        className,
+      )}
+      {...rest}
+    >
+      <span className="opacity-70">Last registered domains</span>
+      {data.latestOwners.map((owner, i) => (
+        <LatestDomain
+          key={`latest-domain-${owner.hashedDomain}`}
+          isLast={i === data.latestOwners.length - 1}
+          {...owner}
+        />
       ))}
-    </div>
+      <span className="mr-3 opacity-70">Powered by The Graph</span>
+    </Marquee>
   )
 }
 
-// TODO
-interface LatestDomainProps extends IndexedDomain {}
-const LatestDomain: FC<LatestDomainProps> = ({ timestamp, label, node, owner }) => {
+interface LatestDomainProps extends IndexedNewOwner {
+  isLast?: boolean
+}
+const LatestDomain: FC<LatestDomainProps> = ({ timestamp, owner, isLast }) => {
   const contractRead = useContractRead({
     chainId: avalancheFuji.id,
     address: publicResolverCcipAddress[avalancheFuji.id],
     abi: publicResolverCcipABI,
     functionName: 'name',
-    // args: [toHex(packetToBytes(`${owner.toLowerCase().substring(2)}.addr.reverse`))],
-    // args: [namehash(owner + '.addr.reverse')],
-    // args: [namehash(owner.toLowerCase().substring(2))],
-    args: [namehash(owner.substring(2))],
+    args: [namehash(owner.toLowerCase().substring(2) + '.addr.reverse')],
   })
 
+  if (!contractRead.data) return null
+
   return (
-    <div className="flex flex-col gap-2">
-      <span className="text-xs font-medium text-muted-foreground">timestamp: {timestamp}</span>
-      <span className="text-xs font-medium text-muted-foreground">label: {label}</span>
-      <span className="text-xs font-medium text-muted-foreground">node: {node}</span>
-      <span className="text-xs font-medium text-muted-foreground">owner: {owner}</span>
-      <span className="text-xs font-medium text-muted-foreground">domain: {contractRead.data}</span>
+    <div className="whitespace-nowrap font-semibold text-foreground">
+      <span className="mx-3">⊕</span>
+      <span>{contractRead.data}</span>
+      {isLast && <span className="mx-3">⊕</span>}
     </div>
   )
-}
-
-export function packetToBytes(packet: string): ByteArray {
-  // strip leading and trailing `.`
-  const value = packet.replace(/^\.|\.$/gm, '')
-  if (value.length === 0) return new Uint8Array(1)
-
-  const bytes = new Uint8Array(stringToBytes(value).byteLength + 2)
-
-  let offset = 0
-  const list = value.split('.')
-  for (let i = 0; i < list.length; i++) {
-    let encoded = stringToBytes(list[i])
-    // if the length is > 255, make the encoded label value a labelhash
-    // this is compatible with the universal resolver
-    if (encoded.byteLength > 255) encoded = stringToBytes(encodeLabelhash(labelhash(list[i])))
-    bytes[offset] = encoded.length
-    bytes.set(encoded, offset + 1)
-    offset += encoded.length + 1
-  }
-
-  if (bytes.byteLength !== offset + 1) return bytes.slice(0, offset + 1)
-
-  return bytes
-}
-
-export function encodeLabelhash(hash: Hex): `[${string}]` {
-  return `[${hash.slice(2)}]`
 }

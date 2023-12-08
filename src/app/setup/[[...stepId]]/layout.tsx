@@ -1,3 +1,4 @@
+import { Metadata } from 'next'
 import { notFound, redirect } from 'next/navigation'
 import { ReactNode } from 'react'
 
@@ -5,6 +6,7 @@ import isEqual from 'lodash.isequal'
 
 import HomeFooter from '@/app/_components/home-footer'
 import { Card, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
+import { SITE_METADATA } from '@/config/metadata'
 
 import { OnboardingLayoutTopbarNav } from './_components/topbar-nav'
 import { ONBOARDING_STEPS } from './config'
@@ -12,6 +14,10 @@ import { OnboardingStep } from './types'
 
 export async function generateStaticParams() {
   return ONBOARDING_STEPS.map((step) => ({ stepId: [step.id] }))
+}
+
+export const metadata: Metadata = {
+  title: `Setup | ${SITE_METADATA.title}`,
 }
 
 export default function OnboardingLayout({

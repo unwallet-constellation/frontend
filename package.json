@@ -75,6 +75,7 @@
     "react": "^18",
     "react-day-picker": "^8.9.1",
     "react-dom": "^18",
+    "react-fast-marquee": "^1.6.2",
     "react-hook-form": "^7.48.2",
     "sharp": "^0.33.0",
     "sonner": "^1.2.4",

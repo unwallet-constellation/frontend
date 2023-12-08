@@ -28,7 +28,7 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" className={cn(GeistSans.variable, GeistMono.variable)}>
-      <body className="flex min-h-screen flex-col items-center justify-center px-2 pt-10">
+      <body className="relative flex min-h-screen flex-col items-center justify-center px-2 pt-10">
         {/* Logo & Name */}
         <HomeLogo />
 

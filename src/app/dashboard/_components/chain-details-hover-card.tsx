@@ -5,7 +5,7 @@ import { convertEVMChainIdToCoinType } from '@ensdomains/address-encoder'
 import { BookUser, Coins } from 'lucide-react'
 import { Chain, namehash, zeroAddress } from 'viem'
 import { avalancheFuji } from 'viem/chains'
-import { useBalance, useContractRead } from 'wagmi'
+import { useContractRead } from 'wagmi'
 
 import { DomainContext } from '@/app/atoms'
 import ChainIcon from '@/components/chain-icon'
@@ -14,6 +14,8 @@ import { HoverCard, HoverCardContent, HoverCardTrigger } from '@/components/ui/h
 import { Separator } from '@/components/ui/separator'
 import { useChainlinkPriceFeeds } from '@/hooks/use-chainlink-price-feeds'
 import { copyToClipboard } from '@/utils/copy-to-clipboard'
+
+import { useDomainMultichainBalances } from '../_hooks/use-domain-multichain-balances'
 
 interface ChainDetailsHoverCardProps {
   chain: Chain
@@ -86,24 +88,8 @@ const DomainChainResolvedAddress: FC<ChainDetailsHoverCardProps> = ({ chain, dom
 }
 
 const DomainChainFetchedBalance: FC<ChainDetailsHoverCardProps> = ({ chain, domainContext }) => {
-  // 1. Resolve address via ENSIP-11
-  const { domain } = domainContext
-  const contractRead = useContractRead({
-    chainId: avalancheFuji.id,
-    address: publicResolverCcipAddress[avalancheFuji.id],
-    abi: publicResolverCcipABI,
-    functionName: 'addr',
-    args: [namehash(domain), BigInt(convertEVMChainIdToCoinType(chain.id))],
-  })
-  // 2. Fetch native balance
-  const balanceRead = useBalance({
-    address: contractRead.data,
-    enabled: !!contractRead.data,
-    chainId: chain.id,
-    watch: true,
-  })
-  // 3. Fetch Chainlink price feeds & convert
-  const balancesWithPrices = useChainlinkPriceFeeds(balanceRead.data ? [balanceRead.data] : [])
+  const balances = useDomainMultichainBalances(domainContext, [chain])
+  const balancesWithPrices = useChainlinkPriceFeeds(balances || [])
 
   return (
     <div className="flex flex-col gap-1.5">
@@ -112,17 +98,19 @@ const DomainChainFetchedBalance: FC<ChainDetailsHoverCardProps> = ({ chain, doma
         <h5 className="text-sm font-medium">Fetched Balance</h5>
       </div>
       <div className="h-[13.5px] font-mono text-xs text-muted-foreground">
-        {!balanceRead.isLoading && (
+        {!!balances?.length && (
           <span className="animate-in fade-in-0">
-            {balanceRead.data?.formatted || '0'} {balanceRead.data?.symbol}
+            {balances[0].formatted || '0'} {balances[0].symbol}
           </span>
         )}
-        {!balancesWithPrices.isLoading && (
-          <span className="animate-in fade-in-0">
-            {' '}
-            ({balancesWithPrices.data?.totalFormattedInUSD || 'X'} $)
-          </span>
-        )}
+        {!!balances?.length &&
+          !balancesWithPrices.isLoading &&
+          !!balancesWithPrices.data?.totalFormattedInUSD && (
+            <span className="animate-in fade-in-0">
+              {' '}
+              ({balancesWithPrices.data.totalFormattedInUSD} $)
+            </span>
+          )}
       </div>
     </div>
   )

@@ -6,8 +6,10 @@ import { Card } from '@/components/ui/card'
 import { Separator } from '@/components/ui/separator'
 import { domainTld } from '@/config/domain-tld'
 import { chains } from '@/config/wagmi'
+import { useChainlinkPriceFeeds } from '@/hooks/use-chainlink-price-feeds'
 import { copyToClipboard } from '@/utils/copy-to-clipboard'
 
+import { useDomainMultichainBalances } from '../_hooks/use-domain-multichain-balances'
 import { ChainDetailsHoverCard } from './chain-details-hover-card'
 import { FaucetWidgetAction } from './faucet-widget-action'
 import { SendWidgetAction } from './send-widget-action'
@@ -70,13 +72,24 @@ const DomainWidgetSection = (domainContext: DomainAndBalanceWidgetProps) => {
   )
 }
 
-const BalanceWidgetSection = (props: DomainAndBalanceWidgetProps) => {
+const BalanceWidgetSection = (domainContext: DomainAndBalanceWidgetProps) => {
+  const balances = useDomainMultichainBalances(domainContext)
+  const balancesWithPrices = useChainlinkPriceFeeds(balances || [])
+
   return (
     <div className="flex flex-col gap-2">
       <h3 className="text-sm text-muted-foreground">Total Balance</h3>
       <p className="font-mono text-xl font-semibold leading-none tracking-tight">
-        3,000
-        <span className="font-medium text-muted-foreground/75">.00 $</span>
+        {!balances?.length ||
+        !balancesWithPrices?.data?.totalFormattedInUSD ||
+        balancesWithPrices.isLoading ? (
+          <span className="animate-pulse font-medium text-muted-foreground/75">0.00 $</span>
+        ) : (
+          <>
+            {parseFloat(balancesWithPrices.data.totalFormattedInUSD).toFixed(2)}
+            <span className="font-medium text-muted-foreground/75"> $</span>
+          </>
+        )}
       </p>
     </div>
   )

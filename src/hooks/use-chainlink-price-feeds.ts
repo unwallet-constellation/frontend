@@ -11,14 +11,15 @@ type Balance = {
 }
 export const useChainlinkPriceFeeds = (balances: Balance[]) => {
   return useContractReads({
+    watch: true,
     contracts: (balances || []).map((balance) => ({
       chainId: mainnet.id,
       address: getChainlinkPriceFeed(balance.symbol)?.address,
       abi: eacAggregatorProxyABI,
       functionName: 'latestRoundData',
     })),
-    select: (data) => {
-      const prices = data.map(({ error, result }) => {
+    select: (results) => {
+      const prices = results.map(({ error, result }) => {
         if (error || !(result as any)?.length) return 0n
         return ((result as any)[1] as bigint) / 10n ** 8n
       })

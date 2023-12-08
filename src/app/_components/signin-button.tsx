@@ -9,6 +9,7 @@ import { Loader } from 'lucide-react'
 import { toast } from 'sonner'
 import { isHex } from 'viem'
 
+import { PasskeyDialogOverlay } from '@/components/passkey-dialog-overlay'
 import { env } from '@/config/environment'
 import { getTurnkeyHttpClient } from '@/config/turnkey-client'
 import { cn } from '@/utils/cn'
@@ -23,6 +24,7 @@ interface SigninButtonProps extends HTMLAttributes<HTMLButtonElement> {}
 export const SigninButton: FC<SigninButtonProps> = ({ className, ...rest }) => {
   const router = useRouter()
   const [isLoading, setIsLoading] = useState(false)
+  const [isSigning, setIsSigning] = useState(false)
   const setAuthContext = useSetAtom(turnkeyAuthContextAtom)
   const setDomainContext = useSetAtom(domainContextAtom)
 
@@ -32,9 +34,11 @@ export const SigninButton: FC<SigninButtonProps> = ({ className, ...rest }) => {
     try {
       // Turnkey API: `/public/v1/query/whoami`
       const turnkeyClient = getTurnkeyHttpClient(window.location.hostname)
+      setIsSigning(true)
       const { organizationId, organizationName, userId } = await turnkeyClient.getWhoami({
         organizationId: env.NEXT_PUBLIC_TURNKEY_ORGANIZATION_ID,
       })
+      setIsSigning(false)
       if (!organizationId || !organizationName || !userId)
         throw new Error('Invalid whoami response')
 
@@ -59,23 +63,27 @@ export const SigninButton: FC<SigninButtonProps> = ({ className, ...rest }) => {
       console.error('Error while signing-in:', error)
       toast.error(`Couldn't sign-in, try a different Passkey`)
     } finally {
+      setIsSigning(false)
       setIsLoading(false)
     }
   }
 
   return (
-    <button
-      type="button"
-      onClick={handleSignin}
-      disabled={isLoading}
-      className={cn(className)}
-      {...rest}
-    >
-      {isLoading ? (
-        <Loader size={18} className="my-px animate-spin ease-in-out" />
-      ) : (
-        'Use an existing Unwallet →'
-      )}
-    </button>
+    <>
+      <button
+        type="button"
+        onClick={handleSignin}
+        disabled={isLoading}
+        className={cn(className)}
+        {...rest}
+      >
+        {isLoading ? (
+          <Loader size={18} className="my-px animate-spin ease-in-out" />
+        ) : (
+          'Use an existing Unwallet →'
+        )}
+      </button>
+      <PasskeyDialogOverlay open={isSigning} />
+    </>
   )
 }

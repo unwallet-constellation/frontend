@@ -3,6 +3,7 @@ import { Copy } from 'lucide-react'
 import { DomainContext } from '@/app/atoms'
 import ChainIcon from '@/components/chain-icon'
 import { Button } from '@/components/ui/button'
+import { Card } from '@/components/ui/card'
 import { Separator } from '@/components/ui/separator'
 import { domainTld } from '@/config/domain-tld'
 import { chains } from '@/config/wagmi'
@@ -14,13 +15,13 @@ import { SendWidgetAction } from './send-widget-action'
 interface DomainAndBalanceWidgetProps extends DomainContext {}
 export default function DomainAndBalanceWidget(props: DomainAndBalanceWidgetProps) {
   return (
-    <div className="flex flex-col gap-4 rounded-xl bg-gray-900 px-4 py-5">
+    <div className="-mx-4 flex flex-col gap-4 rounded-xl bg-gray-900 px-4 py-5">
       {/* Widget Sections */}
-      <div className="min-h-[5rem] rounded-lg bg-background px-4 py-5">
+      <Card className="px-4 py-5">
         <DomainWidgetSection {...props} />
         <Separator className="-mx-4 my-5 w-auto" />
         <BalanceWidgetSection {...props} />
-      </div>
+      </Card>
 
       {/* Widget Actions */}
       <div className="flex gap-4 [&>*]:grow">

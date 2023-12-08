@@ -25,7 +25,7 @@ const MenuAction: FC<MenuActionProps> = ({ title, icon: Icon }) => {
     <Button
       type="button"
       onClick={() => toast('Coming soon ser! 🚀')}
-      className="group h-auto rounded-xl border bg-card py-4 shadow-sm hover:bg-gray-900"
+      className="group h-auto rounded-lg border bg-card py-4 shadow-sm hover:bg-gray-900"
       variant="secondary"
     >
       <div className="mr-3 shrink-0 rounded bg-gray-900 p-2 transition-colors group-hover:bg-brand">

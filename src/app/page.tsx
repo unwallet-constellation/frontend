@@ -8,7 +8,7 @@ import phoneImg from '/public/phone.png'
 export default function HomePage() {
   return (
     <main className="mt-10 flex grow flex-col items-center justify-center">
-      <div className="flex grow flex-col items-center justify-center gap-10">
+      <div className="flex grow flex-col items-center justify-center gap-10 hxl:gap-14">
         <div className="flex max-w-prose flex-col gap-2 text-center">
           <h2 className="text-4xl font-medium tracking-tight">
             <em>Next-Gen</em> Onboarding
@@ -46,7 +46,7 @@ export default function HomePage() {
             priority
           />
         </div>
-        <ul className="mb-[20%] flex flex-col gap-2 whitespace-nowrap font-medium  hlg:!mb-[50%]">
+        <ul className="mb-[20%] flex flex-col gap-2 whitespace-nowrap font-medium hlg:!mb-[60%]">
           <li>⛓️&nbsp;&nbsp;Multichain domains</li>
           <li>🔑&nbsp;&nbsp;No seedphrases</li>
           <li>📬&nbsp;&nbsp;No wallet address</li>

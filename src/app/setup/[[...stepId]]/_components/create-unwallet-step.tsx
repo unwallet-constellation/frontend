@@ -21,6 +21,7 @@ import { avalancheFuji, baseGoerli, optimismGoerli, polygonMumbai } from 'viem/c
 import { usePublicClient } from 'wagmi'
 
 import { domainContextAtom, turnkeyAuthContextAtom } from '@/app/atoms'
+import { PasskeyDialogOverlay } from '@/components/passkey-dialog-overlay'
 import StepIndicatorList from '@/components/step-indicator-list'
 import { Button } from '@/components/ui/button'
 import { CardContent, CardFooter } from '@/components/ui/card'
@@ -48,6 +49,8 @@ export default function CreateUnwalletStep(_: OnboardingStepComponentProps) {
   const publicClient = usePublicClient()
 
   const [isLoading, setIsLoading] = useState(false)
+  const [isSigning, setIsSigning] = useState(false)
+
   const [counterfactualAddresses, setCounterfactualAddresses] = useState<Record<string, Hex>>({})
   const [hasDeterminedAddresses, setHasDeterminedAddresses] = useState(false)
   const [authContext, setAuthContext] = useAtom(turnkeyAuthContextAtom)
@@ -77,6 +80,8 @@ export default function CreateUnwalletStep(_: OnboardingStepComponentProps) {
       setPasskeyAccount(undefined)
       setAuthContext(null)
       setHasDeterminedAddresses(false)
+    } finally {
+      setIsSigning(false)
     }
     setIsLoading(false)
   }
@@ -174,12 +179,14 @@ export default function CreateUnwalletStep(_: OnboardingStepComponentProps) {
       console.log('Sponsored userOperation:', userOperation)
 
       // Sign the useroperation
+      setIsSigning(true)
       const signature = await signUserOperationWithPasskey({
         passkeyAccount,
         userOperation,
         chain: hubChain,
         entryPoint: hubEntryPointRef.current,
       })
+      setIsSigning(false)
       userOperation = { ...userOperation, signature }
       console.log('Signed userOperation:', userOperation)
 
@@ -201,7 +208,9 @@ export default function CreateUnwalletStep(_: OnboardingStepComponentProps) {
       router.push(`/dashboard`)
     } catch (error) {
       console.error(error)
-      toast.error('Failed to create wallet')
+      toast.error('Failed to create wallet or register domain')
+    } finally {
+      setIsSigning(false)
     }
     setIsLoading(false)
   }
@@ -253,6 +262,8 @@ export default function CreateUnwalletStep(_: OnboardingStepComponentProps) {
           </Button>
         )}
       </CardFooter>
+
+      <PasskeyDialogOverlay open={isSigning} domain={domain} />
     </>
   )
 }

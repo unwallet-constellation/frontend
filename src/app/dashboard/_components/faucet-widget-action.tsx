@@ -22,7 +22,7 @@ export const FaucetWidgetAction = () => {
           Faucet
         </Button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent className="dark min-w-[214px]">
+      <DropdownMenuContent className="dark min-w-[230px]">
         {chains
           .filter((c) => !!getFaucetLink(c))
           .map((chain) => (

@@ -9,12 +9,12 @@ import { Contact } from './types'
 
 export default function FavoriteContactsWidget() {
   return (
-    <Card className="rounded-xl">
+    <Card className="rounded-lg">
       <CardHeader className="px-6 py-4 text-sm font-medium ">
         Favorite Contacts ({FAVORITE_CONTACTS.length})
       </CardHeader>
 
-      <div className="no-scrollbar flex gap-4 overflow-scroll px-6 pb-5 pt-1">
+      <div className="no-scrollbar flex gap-4 overflow-scroll px-6 pb-6 pt-2">
         {FAVORITE_CONTACTS.map((contact) => (
           <FavoriteContact
             key={`contact-${contact.domainName}-${contact.domainTld}`}

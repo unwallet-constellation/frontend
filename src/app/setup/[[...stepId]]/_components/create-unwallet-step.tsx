@@ -133,6 +133,7 @@ export default function CreateUnwalletStep(_: OnboardingStepComponentProps) {
         args: [
           [
             fifsRegistrarCcipAddress[hubChain.id],
+            publicResolverCcipAddress[hubChain.id],
             ...Object.keys(counterfactualAddresses).map(
               (_) => publicResolverCcipAddress[hubChain.id],
             ),
@@ -142,6 +143,11 @@ export default function CreateUnwalletStep(_: OnboardingStepComponentProps) {
               abi: fifsRegistrarCcipABI,
               functionName: 'register',
               args: [labelhash(domainName), hubSenderRef.current],
+            }),
+            encodeFunctionData({
+              abi: publicResolverCcipABI,
+              functionName: 'setAddr',
+              args: [namehash(domain), hubSenderRef.current],
             }),
             ...Object.entries(counterfactualAddresses).map(([chainId, address]) =>
               encodeFunctionData({

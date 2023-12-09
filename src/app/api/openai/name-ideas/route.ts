@@ -10,7 +10,7 @@ export const runtime = 'edge'
 
 const getUserPrompt = (
   amount: number,
-) => `Custom Instruction: Craft usernames that are related to one of the following projects: 
+) => `Custom Instruction: Craft Web3 usernames that can be loosely related to one of the following projects: 
 - Chainlink (the decentralized Web3 oracle network),
 - ENS (the Ethereum Name Service),
 - Avalanche (lighning fast scalable Blockchain with the Fuji testnet).
@@ -106,7 +106,7 @@ export async function POST(req: NextRequest) {
     const response = await openai.createChatCompletion({
       model: 'gpt-4-1106-preview',
       stream: true,
-      temperature: 0.75,
+      temperature: 0.8,
       max_tokens: 250,
       frequency_penalty: 0.3,
       top_p: 1,

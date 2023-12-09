@@ -28,6 +28,7 @@ import {
 import { domainTld } from '@/config/domain-tld'
 
 import { OnboardingStepComponentProps } from '../types'
+import AiNameIdeasList from './ai-name-ideas-list'
 
 const formSchema = z.object({
   name: z
@@ -92,6 +93,8 @@ export default function SelectDomainStep(_: OnboardingStepComponentProps) {
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="flex grow flex-col">
           <CardContent>
+            <AiNameIdeasList onNameSelected={(name) => form.setValue('name', name)} />
+
             <FormField
               control={form.control}
               name="name"

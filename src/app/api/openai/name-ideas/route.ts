@@ -16,6 +16,8 @@ const getUserPrompt = (
 - ENS (the Ethereum Name Service),
 - Avalanche (lighning fast scalable Blockchain with the Fuji testnet).
 
+Disallowed Results: linkoracle,avaxrush,enshandle
+
 Amount: ${amount}`
 
 const SYSTEM_PROMPT = `# Instruction

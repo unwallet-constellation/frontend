@@ -22,6 +22,9 @@ export const useAINameIdeas = (amount: number) => {
   return { nameIdeas, isLoading, error }
 }
 
+/**
+ * Parses the completion string from the OpenAI API into an array of domain names.
+ */
 function parseDomainNamesFromCompletion(completion: string): string[] {
   const parsedPrompt = completion.replaceAll(',,', ',').split(',')
 
@@ -38,6 +41,9 @@ function parseDomainNamesFromCompletion(completion: string): string[] {
   return names
 }
 
+/**
+ * Overrides the values of an array with the values of another array in-place.
+ */
 function overrideArray(
   arrayToOverride: string[],
   overwritingArray: string[],

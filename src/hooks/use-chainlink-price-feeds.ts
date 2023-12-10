@@ -27,7 +27,7 @@ export const useChainlinkPriceFeeds = (balances: Balance[]) => {
         return balance.value * prices[index]
       })
       const totalBalanceInUSD = balancesInUSD.reduce((a, b) => a + b, 0n)
-      const totalFormattedInUSD = formatEther(totalBalanceInUSD)
+      const totalFormattedInUSD = parseFloat(formatEther(totalBalanceInUSD)).toFixed(2)
 
       return {
         prices,

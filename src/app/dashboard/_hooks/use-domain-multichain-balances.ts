@@ -4,7 +4,7 @@ import { publicResolverCcipABI, publicResolverCcipAddress } from '@/wagmi.genera
 import { convertEVMChainIdToCoinType } from '@ensdomains/address-encoder'
 import { Chain, Hex, formatUnits, isHex, namehash } from 'viem'
 import { avalancheFuji } from 'viem/chains'
-import { useContractReads } from 'wagmi'
+import { useBlockNumber, useContractReads } from 'wagmi'
 
 import { DomainContext } from '@/app/atoms'
 import { chains as configChains, publicClient } from '@/config/wagmi'
@@ -19,12 +19,13 @@ type Balance = {
 export const useDomainMultichainBalances = (
   { domain }: DomainContext,
   chains: Chain[] = configChains,
+  watch: boolean = true,
 ) => {
+  const { data: blockNumber } = useBlockNumber({ watch: true, enabled: !!watch })
   const [balances, setBalances] = useState<Balance[]>()
 
   // 1. Resolve all addresses via ENSIP-11
   const addresses = useContractReads({
-    watch: true,
     contracts: chains.map((chain) => ({
       chainId: avalancheFuji.id,
       address: publicResolverCcipAddress[avalancheFuji.id],
@@ -70,7 +71,7 @@ export const useDomainMultichainBalances = (
   }
   useEffect(() => {
     updateAggregatedBalance()
-  }, [addresses.isFetched])
+  }, [addresses.isFetched, blockNumber])
 
   return balances
 }

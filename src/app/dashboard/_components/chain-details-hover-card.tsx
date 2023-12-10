@@ -74,7 +74,6 @@ const DomainChainResolvedAddress: FC<ChainDetailsHoverCardProps> = ({ chain, dom
         <BookUser size={14} />
         <h5 className="text-sm font-medium">Resolved Address</h5>
         <Button size="xs" className="ml-auto" onClick={() => copyToClipboard(contractRead.data)}>
-          {/* <Copy size={14} className="mr-1" /> */}
           Copy
         </Button>
       </div>
@@ -88,7 +87,7 @@ const DomainChainResolvedAddress: FC<ChainDetailsHoverCardProps> = ({ chain, dom
 }
 
 const DomainChainFetchedBalance: FC<ChainDetailsHoverCardProps> = ({ chain, domainContext }) => {
-  const balances = useDomainMultichainBalances(domainContext, [chain])
+  const balances = useDomainMultichainBalances(domainContext, [chain], false)
   const balancesWithPrices = useChainlinkPriceFeeds(balances || [])
 
   return (

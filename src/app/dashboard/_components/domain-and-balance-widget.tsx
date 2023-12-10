@@ -86,7 +86,7 @@ const BalanceWidgetSection = (domainContext: DomainAndBalanceWidgetProps) => {
           <span className="animate-pulse font-medium text-muted-foreground/75">0.00 $</span>
         ) : (
           <>
-            {parseFloat(balancesWithPrices.data.totalFormattedInUSD).toFixed(2)}
+            {balancesWithPrices.data.totalFormattedInUSD}
             <span className="font-medium text-muted-foreground/75"> $</span>
           </>
         )}

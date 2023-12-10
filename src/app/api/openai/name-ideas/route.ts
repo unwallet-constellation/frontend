@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 
+import { kv } from '@vercel/kv'
 import { OpenAIStream, StreamingTextResponse } from 'ai'
 import { z } from 'zod'
 
@@ -83,22 +84,22 @@ export async function POST(req: NextRequest) {
     }
     const { amount } = data
 
-    // TODO Check if ideas are cached
-    // const cacheKey = `name-ideas-${amount}`
-    // const cached = await kv.get(cacheKey)
-    // if (cached) {
-    //   const chunks = (cached as string).split('')
-    //   const stream = new ReadableStream({
-    //     async start(controller) {
-    //       for (const chunk of chunks) {
-    //         const bytes = new TextEncoder().encode(chunk)
-    //         controller.enqueue(bytes)
-    //       }
-    //       controller.close()
-    //     },
-    //   })
-    //   return new StreamingTextResponse(stream)
-    // }
+    // Check if ideas are cached
+    const cacheKey = `name-ideas-${amount}`
+    const cached = await kv.get(cacheKey)
+    if (cached) {
+      const chunks = (cached as string).split('')
+      const stream = new ReadableStream({
+        async start(controller) {
+          for (const chunk of chunks) {
+            const bytes = new TextEncoder().encode(chunk)
+            controller.enqueue(bytes)
+          }
+          controller.close()
+        },
+      })
+      return new StreamingTextResponse(stream)
+    }
 
     // Stream the ideas via OpenAI
     const USER_PROMPT = getUserPrompt(amount)
@@ -126,11 +127,11 @@ export async function POST(req: NextRequest) {
 
     // Convert the response to a text stream
     const stream = OpenAIStream(response, {
-      // TODO Cache the ideas
-      // onCompletion: async (completion: string) => {
-      //   await kv.set(cacheKey, completion)
-      //   await kv.expire(cacheKey, 10) // Expire in 10 seconds
-      // },
+      onCompletion: async (completion: string) => {
+        // Cache the ideas
+        await kv.set(cacheKey, completion)
+        await kv.expire(cacheKey, 10) // Expire in 10 seconds
+      },
     })
 
     return new StreamingTextResponse(stream)

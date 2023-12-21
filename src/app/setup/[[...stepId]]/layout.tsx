@@ -12,7 +12,6 @@ import { OnboardingLayoutTopbarNav } from './_components/topbar-nav'
 import { ONBOARDING_STEPS } from './config'
 import { OnboardingStep } from './types'
 
-export const dynamicParams = false
 export async function generateStaticParams() {
   return ONBOARDING_STEPS.map((step) => ({ stepId: [step.id] }))
 }

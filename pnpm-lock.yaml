@@ -107,6 +107,9 @@ dependencies:
   '@turnkey/webauthn-stamper':
     specifier: ^0.4.2
     version: 0.4.2
+  '@vercel/analytics':
+    specifier: ^1.1.1
+    version: 1.1.1
   '@vercel/kv':
     specifier: ^1.0.1
     version: 1.0.1
@@ -2973,6 +2976,12 @@ packages:
     resolution: {integrity: sha512-ACj0GhJ4qrQyBshwFgPod6XufVEfKX2wcaihsEvSdLYnY+m+pa13kGt1RXm/yTHKf4TQi/Dy2A8z/y6WUEOmlg==}
     dependencies:
       crypto-js: 4.2.0
+
+  /@vercel/analytics@1.1.1:
+    resolution: {integrity: sha512-+NqgNmSabg3IFfxYhrWCfB/H+RCUOCR5ExRudNG2+pcRehq628DJB5e1u1xqwpLtn4pAYii4D98w7kofORAGQA==}
+    dependencies:
+      server-only: 0.0.1
+    dev: false
 
   /@vercel/kv@1.0.1:
     resolution: {integrity: sha512-uTKddsqVYS2GRAM/QMNNXCTuw9N742mLoGRXoNDcyECaxEXvIHG0dEY+ZnYISV4Vz534VwJO+64fd9XeSggSKw==}
@@ -7343,6 +7352,10 @@ packages:
     engines: {node: '>=10'}
     dev: false
 
+  /server-only@0.0.1:
+    resolution: {integrity: sha512-qepMx2JxAa5jjfzxG79yPPq+8BuFToHd1hm7kI+Z4zAq1ftQiP7HcxMhDDItrbtwVeLg/cY2JnKnrcFkmiswNA==}
+    dev: false
+
   /set-blocking@2.0.0:
     resolution: {integrity: sha512-KiKBS8AnWGEyLzofFfmvKwpdPzqiy16LvQfK3yv/fVH7Bj13/wl3JSR1J+rfgRE9q7xUJK4qvgS8raSOeLUehw==}
 
@@ -8000,7 +8013,7 @@ packages:
       '@netlify/blobs': ^6.2.0
       '@planetscale/database': ^1.11.0
       '@upstash/redis': ^1.23.4
-      '@vercel/kv': ^0.2.3
+      '@vercel/kv': ^0.2.3 || ^1.0.1
       idb-keyval: ^6.2.1
     peerDependenciesMeta:
       '@azure/app-configuration':

@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 
+import { Analytics } from '@vercel/analytics/react'
 import { GeistMono } from 'geist/font/mono'
 import { GeistSans } from 'geist/font/sans'
 import { Provider as JotaiProvider } from 'jotai'
@@ -52,6 +53,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             duration: 5000,
           }}
         />
+
+        {/* Vercel Analytics */}
+        {!!env.NEXT_PUBLIC_PRODUCTION_MODE && <Analytics />}
       </body>
     </html>
   )

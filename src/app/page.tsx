@@ -12,6 +12,16 @@ export default function HomePage() {
     <>
       <main className="mt-10 flex grow flex-col items-center justify-center">
         <div className="flex grow flex-col items-center justify-center gap-10 hxl:gap-14">
+          {/* Announcement Link */}
+          <a
+            href="https://twitter.com/unwallet_me/status/1737874854953783299"
+            target="_blank"
+            className="-mb-5 mt-5 block rounded-full bg-primary px-2.5 py-1 text-xs font-medium text-white ring-2 ring-primary ring-offset-2"
+          >
+            Read the announcement →
+          </a>
+
+          {/* Title & Description */}
           <div className="flex max-w-prose flex-col gap-2 text-center">
             <h2 className="text-4xl font-medium tracking-tight">
               <em>Next-Gen</em> Onboarding

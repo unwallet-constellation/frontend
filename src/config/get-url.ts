@@ -1,7 +1,7 @@
 /**
  * Get the URL of the current environment.
  */
-export const getURL = (withTrailingSlash?: boolean) => {
+export const getUrl = (withTrailingSlash?: boolean) => {
   let url =
     process?.env?.NEXT_PUBLIC_URL ?? process?.env?.NEXT_PUBLIC_VERCEL_URL ?? 'http://localhost:3000'
 
@@ -22,7 +22,7 @@ export const getURL = (withTrailingSlash?: boolean) => {
  * Helper that converts a relative path to an absolute URL.
  */
 export const toAbsoluteUrl = (path: string) => {
-  const url = getURL()
+  const url = getUrl()
   const _path = path.charAt(0) === '/' ? path.slice(1) : path
   return `${url}${_path}`
 }

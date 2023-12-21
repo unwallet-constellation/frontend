@@ -1,7 +1,7 @@
 import { createEnv } from '@t3-oss/env-nextjs'
 import { z } from 'zod'
 
-import { getURL } from './get-url'
+import { getUrl } from './get-url'
 
 export const env = createEnv({
   /*
@@ -18,7 +18,7 @@ export const env = createEnv({
    * Clientside environment variables.
    */
   client: {
-    NEXT_PUBLIC_URL: z.preprocess((_) => getURL(), z.string()),
+    NEXT_PUBLIC_URL: z.preprocess((_) => getUrl(), z.string()),
 
     NEXT_PUBLIC_DEVELOPMENT_MODE: z.preprocess((v) => v === 'true' || v === '1', z.boolean()),
     NEXT_PUBLIC_PREVIEW_MODE: z.preprocess((v) => v === 'true' || v === '1', z.boolean()),

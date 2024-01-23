@@ -14,15 +14,16 @@ const getUserPrompt = (
 ) => `Custom Instruction: Craft Web3 usernames that can be loosely related to one of the following projects: 
 - Chainlink (the decentralized Web3 oracle network),
 - ENS (the Ethereum Name Service),
-- Avalanche (lighning fast scalable Blockchain with the Fuji testnet).
+- Account Abstraction (the new wallet standard on EVM networks),
+- Crypto Memes (e.g. pepe, degen, wojak, etc.).
 
-Disallowed Results: linkoracle,avaxrush,enshandle
+Disallowed Results: linkoracle,enshandle,chainfeed,ethnamer,ensvision,linknode,oraclechain
 
 Amount: ${amount}`
 
 const SYSTEM_PROMPT = `# Instruction
 
-You are a helpful assistant that replies with a list of creative social usernames for users of a web3 decentralized domain name service. You are always strictly following the requirements and defined output format below.
+You are a helpful assistant that replies with a list of creative social handles. You are always strictly following the requirements and defined output format below.
 
 # Requirements
 
@@ -59,7 +60,7 @@ Quantity: 5
 
 ### Assistant
 
-crypto-web3,w3bthree,web3wizard,hodl3r,web4
+web3-degen,w3bthree,wizard3,hodl3r,web69
 
 ## Example 2
 
@@ -71,7 +72,7 @@ Quantity: 9
 
 ### Assistant
 
-cryptominerx,blockchainking,cryptoninja,ethhacker,digitrailblazer,tokenwhisperer,defienthusiast,web3guru,decentralizeddreamer`
+min3r,chainrider,cryptoninja,ethlord,digitrailblazer,tokenwhisperer,degen3,web3guru,decentralizoor`
 
 const schema = z.object({
   amount: z.number().int().min(1).max(10),
@@ -109,9 +110,9 @@ export async function POST(req: NextRequest) {
     const response = await openai.createChatCompletion({
       model: 'gpt-4-1106-preview',
       stream: true,
-      temperature: 0.8,
+      temperature: 0.75,
       max_tokens: 250,
-      frequency_penalty: 0.3,
+      frequency_penalty: 0.25,
       top_p: 1,
       presence_penalty: 0,
       n: 1,

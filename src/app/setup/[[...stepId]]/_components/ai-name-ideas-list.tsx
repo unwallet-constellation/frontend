@@ -3,6 +3,7 @@ import { FC, useEffect, useMemo } from 'react'
 import { ensRegistryCcipABI, ensRegistryCcipAddress } from '@/wagmi.generated'
 import { useQueryClient } from '@tanstack/react-query'
 import { cva } from 'class-variance-authority'
+import { Loader } from 'lucide-react'
 import { namehash } from 'viem'
 import { avalancheFuji } from 'viem/chains'
 import { useBlockNumber, useReadContract } from 'wagmi'
@@ -28,11 +29,16 @@ interface AiDomainIdeasListProps {
   onNameSelected: (name: string) => void
 }
 export default function AINameIdeasList({ onNameSelected }: AiDomainIdeasListProps) {
-  const { nameIdeas } = useAINameIdeas(6)
+  const { nameIdeas, isLoading } = useAINameIdeas(6)
 
   return (
     <div className="mb-4 flex flex-col gap-3">
-      <Label>Ideas by AI 💡</Label>
+      <Label className="flex items-center justify-between">
+        <span>Ideas by AI 💡</span>
+        {isLoading && (
+          <Loader className="animate-spin text-muted-foreground/50 ease-in-out" size={14} />
+        )}
+      </Label>
       <div className="flex flex-wrap gap-2 [&>*:nth-child(n+4)]:hidden [&>*:nth-child(n+4)]:sm:flex">
         {nameIdeas.map((name, index) => (
           <AINameIdeaButton key={`idea-${name}-${index}`} {...{ name, onNameSelected }} />

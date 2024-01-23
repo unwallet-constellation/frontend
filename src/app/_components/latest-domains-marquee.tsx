@@ -6,7 +6,7 @@ import { publicResolverCcipABI, publicResolverCcipAddress } from '@/wagmi.genera
 import Marquee from 'react-fast-marquee'
 import { namehash } from 'viem'
 import { avalancheFuji } from 'viem/chains'
-import { useContractRead } from 'wagmi'
+import { useReadContract } from 'wagmi'
 
 import { cn } from '@/utils/cn'
 
@@ -44,7 +44,7 @@ interface LatestDomainProps extends IndexedNewOwner {
   isLast?: boolean
 }
 const LatestDomain: FC<LatestDomainProps> = ({ timestamp, owner, isLast }) => {
-  const contractRead = useContractRead({
+  const query = useReadContract({
     chainId: avalancheFuji.id,
     address: publicResolverCcipAddress[avalancheFuji.id],
     abi: publicResolverCcipABI,
@@ -52,12 +52,12 @@ const LatestDomain: FC<LatestDomainProps> = ({ timestamp, owner, isLast }) => {
     args: [namehash(owner.toLowerCase().substring(2) + '.addr.reverse')],
   })
 
-  if (!contractRead.data) return null
+  if (!query.data) return null
 
   return (
     <div className="whitespace-nowrap font-semibold text-foreground">
       <span className="mx-3">⊕</span>
-      <span>{contractRead.data}</span>
+      <span>{query.data}</span>
       {isLast && <span className="mx-3">⊕</span>}
     </div>
   )

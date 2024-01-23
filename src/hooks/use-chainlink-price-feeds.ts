@@ -1,6 +1,10 @@
+import { useEffect } from 'react'
+
 import { eacAggregatorProxyABI } from '@/wagmi.generated'
+import { useQueryClient } from '@tanstack/react-query'
 import { formatEther } from 'viem'
-import { mainnet, useContractReads } from 'wagmi'
+import { mainnet } from 'viem/chains'
+import { useBlockNumber, useReadContracts } from 'wagmi'
 
 import getChainlinkPriceFeed from '@/utils/get-chainlink-price-feed'
 
@@ -10,31 +14,40 @@ type Balance = {
   value: bigint
 }
 export const useChainlinkPriceFeeds = (balances: Balance[]) => {
-  return useContractReads({
-    watch: true,
+  const { data: blockNumber } = useBlockNumber({ watch: true })
+  const queryClient = useQueryClient()
+  const query = useReadContracts({
     contracts: (balances || []).map((balance) => ({
       chainId: mainnet.id,
       address: getChainlinkPriceFeed(balance.symbol)?.address,
       abi: eacAggregatorProxyABI,
       functionName: 'latestRoundData',
     })),
-    select: (results) => {
-      const prices = results.map(({ error, result }) => {
-        if (error || !(result as any)?.length) return 0n
-        return ((result as any)[1] as bigint) / 10n ** 8n
-      })
-      const balancesInUSD = balances.map((balance, index) => {
-        return balance.value * prices[index]
-      })
-      const totalBalanceInUSD = balancesInUSD.reduce((a, b) => a + b, 0n)
-      const totalFormattedInUSD = parseFloat(formatEther(totalBalanceInUSD)).toFixed(2)
+    query: {
+      select: (results) => {
+        const prices = results.map(({ error, result }) => {
+          if (error || !(result as any)?.length) return 0n
+          return ((result as any)[1] as bigint) / 10n ** 8n
+        })
+        const balancesInUSD = balances.map((balance, index) => {
+          return balance.value * prices[index]
+        })
+        const totalBalanceInUSD = balancesInUSD.reduce((a, b) => a + b, 0n)
+        const totalFormattedInUSD = parseFloat(formatEther(totalBalanceInUSD)).toFixed(2)
 
-      return {
-        prices,
-        balancesInUSD,
-        totalBalanceInUSD,
-        totalFormattedInUSD,
-      }
+        return {
+          prices,
+          balancesInUSD,
+          totalBalanceInUSD,
+          totalFormattedInUSD,
+        }
+      },
     },
   })
+
+  useEffect(() => {
+    queryClient.invalidateQueries({ queryKey: query.queryKey })
+  }, [blockNumber, queryClient])
+
+  return query
 }

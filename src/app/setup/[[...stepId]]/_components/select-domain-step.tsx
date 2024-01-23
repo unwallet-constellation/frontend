@@ -1,16 +1,17 @@
 'use client'
 
 import { useRouter } from 'next/navigation'
-import { useMemo } from 'react'
+import { useEffect, useMemo } from 'react'
 
 import { ensRegistryCcipABI, ensRegistryCcipAddress } from '@/wagmi.generated'
 import { zodResolver } from '@hookform/resolvers/zod'
+import { useQueryClient } from '@tanstack/react-query'
 import { Sparkles } from 'lucide-react'
 import { useForm } from 'react-hook-form'
 import { namehash } from 'viem'
 import { avalancheFuji } from 'viem/chains'
 import { normalize } from 'viem/ens'
-import { useContractRead } from 'wagmi'
+import { useBlockNumber, useReadContract } from 'wagmi'
 import * as z from 'zod'
 
 import { DomainNameInput, DomainNameInputProps } from '@/components/domain-name-input'
@@ -59,29 +60,29 @@ export default function SelectDomainStep(_: OnboardingStepComponentProps) {
   const domainName = form.watch('name')
 
   // Fetch domain name availability
-  const contractRead = useContractRead({
+  const query = useReadContract({
     chainId: avalancheFuji.id,
     address: ensRegistryCcipAddress[avalancheFuji.id],
     abi: ensRegistryCcipABI,
-    enabled: !!domainName && !form.formState.errors.name,
-    watch: true,
+    query: { enabled: !!domainName && !form.formState.errors.name },
     functionName: 'recordExists',
     args: [namehash(`${domainName}.${domainTld}`)],
   })
 
+  // Watch query
+  const queryClient = useQueryClient()
+  const { data: blockNumber } = useBlockNumber({ watch: true })
+  useEffect(() => {
+    queryClient.invalidateQueries({ queryKey: query.queryKey })
+  }, [blockNumber, queryClient])
+
   const domainNameState: DomainNameInputProps['state'] = useMemo(() => {
-    if (contractRead.isLoading) return 'loading'
-    if (contractRead.isError || form.formState.errors.name) return 'invalid'
-    if (domainName && contractRead.data) return 'invalid'
-    if (domainName && !contractRead.data) return 'valid'
+    if (query.isLoading) return 'loading'
+    if (query.isError || form.formState.errors.name) return 'invalid'
+    if (domainName && query.data) return 'invalid'
+    if (domainName && !query.data) return 'valid'
     return undefined
-  }, [
-    domainName,
-    contractRead.data,
-    contractRead.isLoading,
-    contractRead.isError,
-    form.formState.errors.name,
-  ])
+  }, [domainName, query.data, query.isLoading, query.isError, form.formState.errors.name])
 
   async function onSubmit({ name }: FormSchema) {
     const searchParams = new URLSearchParams({ domainName: name })
@@ -112,14 +113,14 @@ export default function SelectDomainStep(_: OnboardingStepComponentProps) {
 
                   {form.formState.errors.name ? (
                     <FormMessage />
-                  ) : contractRead.isLoading ? (
+                  ) : query.isLoading ? (
                     <FormDescription>Availabiltity is fetched…</FormDescription>
-                  ) : contractRead.isError ? (
+                  ) : query.isError ? (
                     <FormDescription className="text-sm font-medium text-destructive">
                       Error while fetching name status.
                     </FormDescription>
                   ) : (
-                    contractRead.data && (
+                    query.data && (
                       <FormDescription className="text-sm font-medium text-destructive">
                         Name is already taken.
                       </FormDescription>

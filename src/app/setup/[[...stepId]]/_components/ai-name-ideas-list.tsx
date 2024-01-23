@@ -1,10 +1,11 @@
-import { FC, useMemo } from 'react'
+import { FC, useEffect, useMemo } from 'react'
 
 import { ensRegistryCcipABI, ensRegistryCcipAddress } from '@/wagmi.generated'
+import { useQueryClient } from '@tanstack/react-query'
 import { cva } from 'class-variance-authority'
 import { namehash } from 'viem'
 import { avalancheFuji } from 'viem/chains'
-import { useContractRead } from 'wagmi'
+import { useBlockNumber, useReadContract } from 'wagmi'
 
 import { Button } from '@/components/ui/button'
 import { Label } from '@/components/ui/label'
@@ -46,21 +47,24 @@ interface AINameIdeaButtonProps extends AiDomainIdeasListProps {
 }
 const AINameIdeaButton: FC<AINameIdeaButtonProps> = ({ name, onNameSelected }) => {
   // Fetch domain name availability
-  const contractRead = useContractRead({
+  const query = useReadContract({
     chainId: avalancheFuji.id,
     address: ensRegistryCcipAddress[avalancheFuji.id],
     abi: ensRegistryCcipABI,
-    enabled: !!name,
-    watch: true,
+    query: { enabled: !!name },
     functionName: 'recordExists',
     args: [namehash(`${name}.${domainTld}`)],
   })
 
+  // Watch query
+  const queryClient = useQueryClient()
+  const { data: blockNumber } = useBlockNumber({ watch: true })
+  useEffect(() => {
+    queryClient.invalidateQueries({ queryKey: query.queryKey })
+  }, [blockNumber, queryClient])
+
   const isLoading = useMemo(() => !name, [name])
-  const isTaken = useMemo(
-    () => !contractRead.isLoading && contractRead.data,
-    [contractRead.data, contractRead.isLoading],
-  )
+  const isTaken = useMemo(() => !query.isLoading && query.data, [query.data, query.isLoading])
 
   return (
     <Button

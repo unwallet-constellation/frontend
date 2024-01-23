@@ -1,6 +1,6 @@
 import { defineConfig, loadEnv } from '@wagmi/cli'
 import { etherscan, foundry } from '@wagmi/cli/plugins'
-import { mainnet, sepolia } from 'wagmi'
+import { mainnet, sepolia } from 'viem/chains'
 
 export default defineConfig(() => {
   const env = loadEnv({ envDir: process.cwd() })

@@ -5,7 +5,7 @@ import { convertEVMChainIdToCoinType } from '@ensdomains/address-encoder'
 import { BookUser, Coins } from 'lucide-react'
 import { Chain, namehash, zeroAddress } from 'viem'
 import { avalancheFuji } from 'viem/chains'
-import { useContractRead } from 'wagmi'
+import { useReadContract } from 'wagmi'
 
 import { DomainContext } from '@/app/atoms'
 import ChainIcon from '@/components/chain-icon'
@@ -60,7 +60,7 @@ export const ChainDetailsHoverCard: FC<ChainDetailsHoverCardProps> = (props) => 
 const DomainChainResolvedAddress: FC<ChainDetailsHoverCardProps> = ({ chain, domainContext }) => {
   // Resolve address via ENSIP-11
   const { domain } = domainContext
-  const contractRead = useContractRead({
+  const query = useReadContract({
     chainId: avalancheFuji.id,
     address: publicResolverCcipAddress[avalancheFuji.id],
     abi: publicResolverCcipABI,
@@ -73,13 +73,13 @@ const DomainChainResolvedAddress: FC<ChainDetailsHoverCardProps> = ({ chain, dom
       <div className="flex items-center gap-1.5">
         <BookUser size={14} />
         <h5 className="text-sm font-medium">Resolved Address</h5>
-        <Button size="xs" className="ml-auto" onClick={() => copyToClipboard(contractRead.data)}>
+        <Button size="xs" className="ml-auto" onClick={() => copyToClipboard(query.data)}>
           Copy
         </Button>
       </div>
       <div className="h-[13.5px] font-mono text-xs text-muted-foreground">
-        {!contractRead.isLoading && (
-          <span className="animate-in fade-in-0">{contractRead.data || zeroAddress}</span>
+        {!query.isLoading && (
+          <span className="animate-in fade-in-0">{query.data || zeroAddress}</span>
         )}
       </div>
     </div>

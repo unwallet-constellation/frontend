@@ -3,7 +3,6 @@ import Image from 'next/image'
 import ShimmerButton from '@/components/magicui/shimmer-button'
 
 import { DashboardButton } from './_components/dashboard-button'
-import LatestDomainsMarquee from './_components/latest-domains-marquee'
 import { SigninButton } from './_components/signin-button'
 import phoneImg from '/public/phone.png'
 
@@ -74,8 +73,9 @@ export default function HomePage() {
           </ul>
         </div>
       </main>
+
       {/* Marquee with latest domains */}
-      <LatestDomainsMarquee />
+      {/* <LatestDomainsMarquee /> */}
     </>
   )
 }

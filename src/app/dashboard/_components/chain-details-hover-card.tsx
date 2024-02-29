@@ -1,6 +1,6 @@
 import { FC } from 'react'
 
-import { publicResolverCcipABI, publicResolverCcipAddress } from '@/wagmi.generated'
+import { publicResolverCcipAbi, publicResolverCcipAddress } from '@/wagmi.generated'
 import { convertEVMChainIdToCoinType } from '@ensdomains/address-encoder'
 import { BookUser, Coins } from 'lucide-react'
 import { Chain, namehash, zeroAddress } from 'viem'
@@ -63,7 +63,7 @@ const DomainChainResolvedAddress: FC<ChainDetailsHoverCardProps> = ({ chain, dom
   const query = useReadContract({
     chainId: avalancheFuji.id,
     address: publicResolverCcipAddress[avalancheFuji.id],
-    abi: publicResolverCcipABI,
+    abi: publicResolverCcipAbi,
     functionName: 'addr',
     args: [namehash(domain), BigInt(convertEVMChainIdToCoinType(chain.id))],
   })

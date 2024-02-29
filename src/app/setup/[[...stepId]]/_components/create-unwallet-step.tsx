@@ -4,13 +4,13 @@ import { redirect, useRouter, useSearchParams } from 'next/navigation'
 import { useRef, useState } from 'react'
 
 import {
-  fifsRegistrarCcipABI,
+  fifsRegistrarCcipAbi,
   fifsRegistrarCcipAddress,
-  publicResolverCcipABI,
+  publicResolverCcipAbi,
   publicResolverCcipAddress,
-  reverseRegistrarCcipABI,
+  reverseRegistrarCcipAbi,
   reverseRegistrarCcipAddress,
-  simpleAccountABI,
+  simpleAccountAbi,
 } from '@/wagmi.generated'
 import { convertEVMChainIdToCoinType } from '@ensdomains/address-encoder'
 import { useAtom } from 'jotai'
@@ -19,7 +19,7 @@ import { BundlerClient, UserOperation, getSenderAddress } from 'permissionless'
 import { PimlicoPaymasterClient } from 'permissionless/clients/pimlico'
 import { toast } from 'sonner'
 import { Hex, LocalAccount, encodeFunctionData, labelhash, namehash } from 'viem'
-import { avalancheFuji, baseGoerli, optimismGoerli, polygonMumbai } from 'viem/chains'
+import { avalancheFuji, baseSepolia, optimismSepolia, polygonMumbai } from 'viem/chains'
 import { usePublicClient } from 'wagmi'
 
 import { domainContextAtom, turnkeyAuthContextAtom } from '@/app/atoms'
@@ -89,7 +89,7 @@ export default function CreateUnwalletStep(_: OnboardingStepComponentProps) {
   }
 
   const determineCounterfactualAddresses = async (passkeyAccount: LocalAccount) => {
-    const chains = [avalancheFuji, polygonMumbai, optimismGoerli, baseGoerli]
+    const chains = [avalancheFuji, polygonMumbai, optimismSepolia, baseSepolia]
     for (const chain of chains) {
       const initCode = generateInitCode(getFactoryAddress(chain)!, passkeyAccount.address)
       const bundlerClient = await getPimlicoBundlerClient(chain)
@@ -130,7 +130,7 @@ export default function CreateUnwalletStep(_: OnboardingStepComponentProps) {
     try {
       // Build callData for domain registration & set-addresses
       const callData = encodeFunctionData({
-        abi: simpleAccountABI,
+        abi: simpleAccountAbi,
         functionName: 'executeBatch',
         args: [
           [
@@ -143,23 +143,23 @@ export default function CreateUnwalletStep(_: OnboardingStepComponentProps) {
           ],
           [
             encodeFunctionData({
-              abi: fifsRegistrarCcipABI,
+              abi: fifsRegistrarCcipAbi,
               functionName: 'register',
               args: [labelhash(domainName), hubSenderRef.current],
             }),
             encodeFunctionData({
-              abi: publicResolverCcipABI,
+              abi: publicResolverCcipAbi,
               functionName: 'setAddr',
               args: [namehash(domain), hubSenderRef.current],
             }),
             encodeFunctionData({
-              abi: reverseRegistrarCcipABI,
+              abi: reverseRegistrarCcipAbi,
               functionName: 'setName',
               args: [domain],
             }),
             ...Object.entries(counterfactualAddresses).map(([chainId, address]) =>
               encodeFunctionData({
-                abi: publicResolverCcipABI,
+                abi: publicResolverCcipAbi,
                 functionName: 'setAddr',
                 args: [
                   namehash(domain),

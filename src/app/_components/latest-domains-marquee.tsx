@@ -2,7 +2,7 @@
 
 import { FC, HTMLAttributes } from 'react'
 
-import { publicResolverCcipABI, publicResolverCcipAddress } from '@/wagmi.generated'
+import { publicResolverCcipAbi, publicResolverCcipAddress } from '@/wagmi.generated'
 import Marquee from 'react-fast-marquee'
 import { namehash } from 'viem'
 import { avalancheFuji } from 'viem/chains'
@@ -47,7 +47,7 @@ const LatestDomain: FC<LatestDomainProps> = ({ timestamp, owner, isLast }) => {
   const query = useReadContract({
     chainId: avalancheFuji.id,
     address: publicResolverCcipAddress[avalancheFuji.id],
-    abi: publicResolverCcipABI,
+    abi: publicResolverCcipAbi,
     functionName: 'name',
     args: [namehash(owner.toLowerCase().substring(2) + '.addr.reverse')],
   })

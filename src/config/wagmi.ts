@@ -1,5 +1,5 @@
 import { Transport, fallback, http } from 'viem'
-import { avalancheFuji, baseGoerli, mainnet, optimismGoerli, polygonMumbai } from 'viem/chains'
+import { avalancheFuji, baseSepolia, mainnet, optimismSepolia, polygonMumbai } from 'viem/chains'
 import { createConfig } from 'wagmi'
 
 import { env } from './environment'
@@ -17,15 +17,15 @@ export const transports: Record<number, Transport> = {
     http(`https://rpc.ankr.com/polygon_mumbai/${env.NEXT_PUBLIC_ANKR_API_KEY}`),
     http(`https://polygon-mumbai.infura.io/v3/${env.NEXT_PUBLIC_INFURA_API_KEY}`),
   ]),
-  [optimismGoerli.id]: fallback([
-    http(`https://rpc.ankr.com/optimism_testnet/${env.NEXT_PUBLIC_ANKR_API_KEY}`),
-    http(`https://optimism-goerli.infura.io/v3/${env.NEXT_PUBLIC_INFURA_API_KEY}`),
+  [optimismSepolia.id]: fallback([
+    http(`https://rpc.ankr.com/optimism_sepolia/${env.NEXT_PUBLIC_ANKR_API_KEY}`),
+    http(`https://optimism-sepolia.infura.io/v3/${env.NEXT_PUBLIC_INFURA_API_KEY}`),
   ]),
-  [baseGoerli.id]: http(`https://rpc.ankr.com/base_goerli/${env.NEXT_PUBLIC_ANKR_API_KEY}`),
+  [baseSepolia.id]: http(`https://rpc.ankr.com/base_sepolia/${env.NEXT_PUBLIC_ANKR_API_KEY}`),
 }
 
 export const wagmiConfig = createConfig({
-  chains: [mainnet, avalancheFuji, polygonMumbai, optimismGoerli, baseGoerli],
+  chains: [mainnet, avalancheFuji, polygonMumbai, optimismSepolia, baseSepolia],
   transports,
 })
 

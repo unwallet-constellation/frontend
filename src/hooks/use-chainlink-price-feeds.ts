@@ -1,6 +1,6 @@
 import { useEffect } from 'react'
 
-import { eacAggregatorProxyABI } from '@/wagmi.generated'
+import { eacAggregatorProxyAbi } from '@/wagmi.generated'
 import { useQueryClient } from '@tanstack/react-query'
 import { formatEther } from 'viem'
 import { mainnet } from 'viem/chains'
@@ -20,7 +20,7 @@ export const useChainlinkPriceFeeds = (balances: Balance[]) => {
     contracts: (balances || []).map((balance) => ({
       chainId: mainnet.id,
       address: getChainlinkPriceFeed(balance.symbol)?.address,
-      abi: eacAggregatorProxyABI,
+      abi: eacAggregatorProxyAbi,
       functionName: 'latestRoundData',
     })),
     query: {

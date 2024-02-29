@@ -1,6 +1,6 @@
 import { FC, useEffect, useMemo } from 'react'
 
-import { ensRegistryCcipABI, ensRegistryCcipAddress } from '@/wagmi.generated'
+import { ensRegistryCcipAbi, ensRegistryCcipAddress } from '@/wagmi.generated'
 import { useQueryClient } from '@tanstack/react-query'
 import { cva } from 'class-variance-authority'
 import { Loader } from 'lucide-react'
@@ -56,7 +56,7 @@ const AINameIdeaButton: FC<AINameIdeaButtonProps> = ({ name, onNameSelected }) =
   const query = useReadContract({
     chainId: avalancheFuji.id,
     address: ensRegistryCcipAddress[avalancheFuji.id],
-    abi: ensRegistryCcipABI,
+    abi: ensRegistryCcipAbi,
     query: { enabled: !!name },
     functionName: 'recordExists',
     args: [namehash(`${name}.${domainTld}`)],

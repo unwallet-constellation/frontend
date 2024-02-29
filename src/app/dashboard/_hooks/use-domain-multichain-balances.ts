@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 
-import { publicResolverCcipABI, publicResolverCcipAddress } from '@/wagmi.generated'
+import { publicResolverCcipAbi, publicResolverCcipAddress } from '@/wagmi.generated'
 import { convertEVMChainIdToCoinType } from '@ensdomains/address-encoder'
 import { Chain, Hex, createPublicClient, formatUnits, isHex, namehash } from 'viem'
 import { avalancheFuji } from 'viem/chains'
@@ -29,7 +29,7 @@ export const useDomainMultichainBalances = (
     contracts: chains.map((chain) => ({
       chainId: avalancheFuji.id,
       address: publicResolverCcipAddress[avalancheFuji.id],
-      abi: publicResolverCcipABI,
+      abi: publicResolverCcipAbi,
       functionName: 'addr',
       args: [namehash(domain), BigInt(convertEVMChainIdToCoinType(chain.id))],
     })),

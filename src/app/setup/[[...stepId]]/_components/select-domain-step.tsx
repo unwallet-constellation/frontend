@@ -3,7 +3,7 @@
 import { useRouter } from 'next/navigation'
 import { useEffect, useMemo } from 'react'
 
-import { ensRegistryCcipABI, ensRegistryCcipAddress } from '@/wagmi.generated'
+import { ensRegistryCcipAbi, ensRegistryCcipAddress } from '@/wagmi.generated'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useQueryClient } from '@tanstack/react-query'
 import { Sparkles } from 'lucide-react'
@@ -63,7 +63,7 @@ export default function SelectDomainStep(_: OnboardingStepComponentProps) {
   const query = useReadContract({
     chainId: avalancheFuji.id,
     address: ensRegistryCcipAddress[avalancheFuji.id],
-    abi: ensRegistryCcipABI,
+    abi: ensRegistryCcipAbi,
     query: { enabled: !!domainName && !form.formState.errors.name },
     functionName: 'recordExists',
     args: [namehash(`${domainName}.${domainTld}`)],

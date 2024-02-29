@@ -25,36 +25,36 @@ export default defineConfig(() => {
         ],
         deployments: {
           ENSRegistryCCIP: {
-            43113: '0x26c3B74EF154805F678376cC7e082622D313f4CF',
+            43113: '0xECeA700E2AD150B7857385Fe4Fde413bE595FE64',
           },
           FIFSRegistrarCCIP: {
-            43113: '0x745f416b9c8883fdD8869e652b3Ea29dbD3ec7bc',
+            43113: '0xfF4Bb1b2EDc3a4D5Db1E04e744a84c7071E86F8F',
           },
           PublicResolverCCIP: {
-            43113: '0xf425867c6E64cf5bD2f9CaA9918A21E8073E7995',
+            43113: '0x8690Ed8d16697F38B64aEFeEC120BC4547010ca2',
           },
           ReverseRegistrarCCIP: {
-            43113: '0xdf0586C41617Db9886b54E36c649B0D2980F330c',
+            43113: '0xd529Ca7D9506090546A5E67F8CdfACd7dF5d1df3',
           },
           xcENSRegistry: {
-            80001: '0x8bb2985caaEf7a336086eeFe3FbD699dfF81d18A',
-            84531: '0x65057a6821CC4B4bF848e40789629ebF8879bbce',
-            420: '0xa3712828a74A413E9538d5eBd6B1eB50446f8287',
+            80001: '0xa116EFd55BaF84803471Db9E267F26f707FF8eF8',
+            11155420: '0x745f416b9c8883fdD8869e652b3Ea29dbD3ec7bc',
+            84532: '0x2B332c1aF30a50E6901460Cd74149e2358105e5e',
           },
           xcReverseRegistrar: {
-            80001: '0xA556A8Fa8d8311F9B39ad9C68EDB63aD906406C4',
-            84531: '0x7a36B02ec9Ba1A5399b9e35921D463eE15c67BC8',
-            420: '0xAd0d86B82C9A4f0616f77C45638838b5615E6dB3',
+            80001: '0xB2B23667d15449043155344FFCDDB247e49D5F0c',
+            84532: '0x4f1807F6a0321790E5d4a262f9127ce17797405A',
+            11155420: '0x75Fc08b42bCBB59eE9b81d282C1Ab59a5471264f',
           },
           xcFIFSRegistrar: {
-            84531: '0x261c205DD3E6039919b99FF1CD7CC30956Da41f9',
-            80001: '0x72a99edfFa6c3502A4EfCf4Bac109A38421295F5',
-            420: '0x33C1ce1718227A19a630bca81bf3C04570eCaDd3',
+            84532: '0xe2F91CE5c578BC92a1c56633a27D260a8688F512',
+            11155420: '0xdf0586C41617Db9886b54E36c649B0D2980F330c',
+            80001: '0x2cDE4d09AFAd2299ae93Fee5777C8222eC90ba0b',
           },
           xcPublicResolver: {
-            420: '0x9821c860F75b8f166cE68A70cbfc6C01d133CB8C',
-            84531: '0xc07Ac5CD919D84be107790A99C104D46dD43193D',
-            80001: '0xbeD73164a7dA3b2E58d0A38a485984E648Ae2da9',
+            11155420: '0x0FD959Da5d59a3a651485647adaF2Bf893904716',
+            84532: '0xABb8dc1c09dE4d47Ef50fe53d4c9D74A809f8212',
+            80001: '0x942Dfc5F5f34875C9f8607152F7a3Ac3A08289b4',
           },
         },
       }),

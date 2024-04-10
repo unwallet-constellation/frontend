@@ -1,7 +1,6 @@
 import { FC } from 'react'
 
 import { publicResolverCcipAbi, publicResolverCcipAddress } from '@/wagmi.generated'
-import { convertEVMChainIdToCoinType } from '@ensdomains/address-encoder'
 import { BookUser, Coins } from 'lucide-react'
 import { Chain, namehash, zeroAddress } from 'viem'
 import { avalancheFuji } from 'viem/chains'
@@ -13,6 +12,7 @@ import { Button } from '@/components/ui/button'
 import { HoverCard, HoverCardContent, HoverCardTrigger } from '@/components/ui/hover-card'
 import { Separator } from '@/components/ui/separator'
 import { useChainlinkPriceFeeds } from '@/hooks/use-chainlink-price-feeds'
+import { convertEVMChainIdToCoinType } from '@/utils/coin-type'
 import { copyToClipboard } from '@/utils/copy-to-clipboard'
 
 import { useDomainMultichainBalances } from '../_hooks/use-domain-multichain-balances'

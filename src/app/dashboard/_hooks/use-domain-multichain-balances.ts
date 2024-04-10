@@ -1,13 +1,13 @@
 import { useEffect, useState } from 'react'
 
 import { publicResolverCcipAbi, publicResolverCcipAddress } from '@/wagmi.generated'
-import { convertEVMChainIdToCoinType } from '@ensdomains/address-encoder'
 import { Chain, Hex, createPublicClient, formatUnits, isHex, namehash } from 'viem'
 import { avalancheFuji } from 'viem/chains'
 import { useBlockNumber, useReadContracts } from 'wagmi'
 
 import { DomainContext } from '@/app/atoms'
 import { chains as configChains, transports } from '@/config/wagmi'
+import { convertEVMChainIdToCoinType } from '@/utils/coin-type'
 
 type Balance = {
   chainId: number

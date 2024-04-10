@@ -12,7 +12,6 @@ import {
   reverseRegistrarCcipAddress,
   simpleAccountAbi,
 } from '@/wagmi.generated'
-import { convertEVMChainIdToCoinType } from '@ensdomains/address-encoder'
 import { useAtom } from 'jotai'
 import { Lock } from 'lucide-react'
 import { BundlerClient, UserOperation, getSenderAddress } from 'permissionless'
@@ -28,6 +27,7 @@ import StepIndicatorList from '@/components/step-indicator-list'
 import { Button } from '@/components/ui/button'
 import { CardContent, CardFooter } from '@/components/ui/card'
 import { domainTld } from '@/config/domain-tld'
+import { convertEVMChainIdToCoinType } from '@/utils/coin-type'
 import {
   buildUserOperation,
   generateInitCode,
@@ -89,13 +89,16 @@ export default function CreateUnwalletStep(_: OnboardingStepComponentProps) {
   }
 
   const determineCounterfactualAddresses = async (passkeyAccount: LocalAccount) => {
+    if (!publicClient) return
+
     const chains = [avalancheFuji, polygonMumbai, optimismSepolia, baseSepolia]
     for (const chain of chains) {
       const initCode = generateInitCode(getFactoryAddress(chain)!, passkeyAccount.address)
       const bundlerClient = await getPimlicoBundlerClient(chain)
 
       // Get entry point address
-      const entryPoint = (await bundlerClient.supportedEntryPoints())?.[0]
+      // const entryPoint = (await bundlerClient.supportedEntryPoints())?.[0]
+      const entryPoint = '0x5FF137D4b0FDCD49DcA30c7CF57E578a026d2789'
       console.log(`Entry point for '${chain.name}' (${chain.id}):`, entryPoint)
       if (!entryPoint) throw new Error(`No entry point found for '${chain.name}' (${chain.id})`)
 
@@ -117,6 +120,7 @@ export default function CreateUnwalletStep(_: OnboardingStepComponentProps) {
 
   const createSmartWallets = async () => {
     if (
+      !publicClient ||
       !passkeyAccount ||
       !initCodeRef.current ||
       !hubBundlerClientRef.current ||

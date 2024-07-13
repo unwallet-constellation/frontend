@@ -14,11 +14,12 @@ import {
 } from '@/wagmi.generated'
 import { useAtom } from 'jotai'
 import { Lock } from 'lucide-react'
-import { BundlerClient, UserOperation, getSenderAddress } from 'permissionless'
-import { PimlicoPaymasterClient } from 'permissionless/clients/pimlico'
+import { ENTRYPOINT_ADDRESS_V06, UserOperation, getSenderAddress } from 'permissionless'
+import { PimlicoBundlerClient, PimlicoPaymasterClient } from 'permissionless/clients/pimlico'
+import { ENTRYPOINT_ADDRESS_V06_TYPE } from 'permissionless/types'
 import { toast } from 'sonner'
 import { Hex, LocalAccount, encodeFunctionData, labelhash, namehash } from 'viem'
-import { avalancheFuji, baseSepolia, optimismSepolia, polygonMumbai } from 'viem/chains'
+import { avalancheFuji, baseSepolia, optimismSepolia } from 'viem/chains'
 import { usePublicClient } from 'wagmi'
 
 import { domainContextAtom, turnkeyAuthContextAtom } from '@/app/atoms'
@@ -57,12 +58,12 @@ export default function CreateUnwalletStep(_: OnboardingStepComponentProps) {
   const [hasDeterminedAddresses, setHasDeterminedAddresses] = useState(false)
   const [, setAuthContext] = useAtom(turnkeyAuthContextAtom)
   const [passkeyAccount, setPasskeyAccount] = useState<LocalAccount>()
+
   const [domainContext, setDomainContext] = useAtom(domainContextAtom)
 
   const initCodeRef = useRef<Hex>()
-  const hubBundlerClientRef = useRef<BundlerClient>()
-  const hubPaymasterClientRef = useRef<PimlicoPaymasterClient>()
-  const hubEntryPointRef = useRef<Hex>()
+  const hubBundlerClientRef = useRef<PimlicoBundlerClient<ENTRYPOINT_ADDRESS_V06_TYPE>>()
+  const hubPaymasterClientRef = useRef<PimlicoPaymasterClient<ENTRYPOINT_ADDRESS_V06_TYPE>>()
   const hubSenderRef = useRef<Hex>()
 
   const handleCreatePasskeyAccount = async () => {
@@ -91,14 +92,14 @@ export default function CreateUnwalletStep(_: OnboardingStepComponentProps) {
   const determineCounterfactualAddresses = async (passkeyAccount: LocalAccount) => {
     if (!publicClient) return
 
-    const chains = [avalancheFuji, polygonMumbai, optimismSepolia, baseSepolia]
+    // const chains = [avalancheFuji, polygonMumbai, optimismSepolia, baseSepolia]
+    const chains = [avalancheFuji, optimismSepolia, baseSepolia]
     for (const chain of chains) {
       const initCode = generateInitCode(getFactoryAddress(chain)!, passkeyAccount.address)
       const bundlerClient = await getPimlicoBundlerClient(chain)
 
       // Get entry point address
-      // const entryPoint = (await bundlerClient.supportedEntryPoints())?.[0]
-      const entryPoint = '0x5FF137D4b0FDCD49DcA30c7CF57E578a026d2789'
+      const entryPoint = ENTRYPOINT_ADDRESS_V06
       console.log(`Entry point for '${chain.name}' (${chain.id}):`, entryPoint)
       if (!entryPoint) throw new Error(`No entry point found for '${chain.name}' (${chain.id})`)
 
@@ -112,7 +113,6 @@ export default function CreateUnwalletStep(_: OnboardingStepComponentProps) {
         initCodeRef.current = initCode
         hubBundlerClientRef.current = bundlerClient
         hubPaymasterClientRef.current = await getPimlicoPaymasterClient(hubChain)
-        hubEntryPointRef.current = entryPoint
         hubSenderRef.current = sender
       }
     }
@@ -125,7 +125,6 @@ export default function CreateUnwalletStep(_: OnboardingStepComponentProps) {
       !initCodeRef.current ||
       !hubBundlerClientRef.current ||
       !hubPaymasterClientRef.current ||
-      !hubEntryPointRef.current ||
       !hubSenderRef.current
     )
       return
@@ -180,18 +179,17 @@ export default function CreateUnwalletStep(_: OnboardingStepComponentProps) {
       // Build useroperation
       let userOperation = (await buildUserOperation({
         sender: hubSenderRef.current,
-        entryPoint: hubEntryPointRef.current,
+        entryPoint: ENTRYPOINT_ADDRESS_V06,
         callData,
         bundlerClient: hubBundlerClientRef.current,
         publicClient,
         initCode: initCodeRef.current,
-      })) as UserOperation
+      })) as UserOperation<'v0.6'>
       console.log('Built userOperation:', userOperation)
 
       // Sponsor the useroperation
       const sponsorParams = await hubPaymasterClientRef.current.sponsorUserOperation({
         userOperation,
-        entryPoint: hubEntryPointRef.current,
       })
       userOperation = { ...userOperation, ...sponsorParams }
       console.log('Sponsored userOperation:', userOperation)
@@ -202,7 +200,7 @@ export default function CreateUnwalletStep(_: OnboardingStepComponentProps) {
         passkeyAccount,
         userOperation,
         chain: hubChain,
-        entryPoint: hubEntryPointRef.current,
+        entryPoint: ENTRYPOINT_ADDRESS_V06,
       })
       setIsSigning(false)
       userOperation = { ...userOperation, signature }
@@ -211,7 +209,6 @@ export default function CreateUnwalletStep(_: OnboardingStepComponentProps) {
       // Send the useroperation
       const hash = await hubBundlerClientRef.current.sendUserOperation({
         userOperation,
-        entryPoint: hubEntryPointRef.current,
       })
       console.log('Sent userOperation:', hash)
 

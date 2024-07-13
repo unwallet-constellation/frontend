@@ -1,18 +1,20 @@
-import { BundlerClient, UserOperation, getAccountNonce } from 'permissionless'
+import { UserOperation, getAccountNonce } from 'permissionless'
 import { getUserOperationGasPrice } from 'permissionless/actions/pimlico'
+import { PimlicoBundlerClient } from 'permissionless/clients/pimlico'
+import { ENTRYPOINT_ADDRESS_V06_TYPE, EntryPoint } from 'permissionless/types'
 import { Hex, PublicClient } from 'viem'
 
 type PartialUserOperation = Omit<
-  UserOperation,
+  UserOperation<'v0.6'>,
   'callGasLimit' | 'preVerificationGas' | 'verificationGasLimit'
 >
 
 type BuildUserOperationParams = {
   sender: Hex
-  entryPoint: Hex
+  entryPoint: EntryPoint
   initCode: Hex
   callData: Hex
-  bundlerClient: BundlerClient
+  bundlerClient: PimlicoBundlerClient<ENTRYPOINT_ADDRESS_V06_TYPE>
   publicClient: PublicClient
 } & Partial<PartialUserOperation>
 

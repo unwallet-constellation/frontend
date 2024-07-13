@@ -1,5 +1,6 @@
 import { UserOperation, getUserOperationHash } from 'permissionless'
-import { Chain, Hex, LocalAccount } from 'viem'
+import { EntryPoint } from 'permissionless/types'
+import { Chain, LocalAccount } from 'viem'
 
 export const signUserOperationWithPasskey = async ({
   passkeyAccount,
@@ -8,8 +9,8 @@ export const signUserOperationWithPasskey = async ({
   chain,
 }: {
   passkeyAccount: LocalAccount
-  userOperation: UserOperation
-  entryPoint: Hex
+  userOperation: UserOperation<'v0.6'>
+  entryPoint: EntryPoint
   chain: Chain
 }) => {
   const userOperationHash = getUserOperationHash({

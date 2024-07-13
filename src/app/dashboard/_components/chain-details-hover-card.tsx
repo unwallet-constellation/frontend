@@ -28,9 +28,8 @@ export const ChainDetailsHoverCard: FC<ChainDetailsHoverCardProps> = (props) => 
         <button
           type="button"
           className="flex rounded-full outline-none ring-offset-background transition-transform hover:scale-110 focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
-        >
-          <ChainIcon chain={props.chain} />
-        </button>
+        ></button>
+        <ChainIcon chain={props.chain} />
       </HoverCardTrigger>
       <HoverCardContent className="w-[22.2rem] max-w-full overflow-hidden" sideOffset={12}>
         <div className="flex flex-col gap-4">

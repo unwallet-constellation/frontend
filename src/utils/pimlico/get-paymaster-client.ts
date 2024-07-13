@@ -1,3 +1,4 @@
+import { ENTRYPOINT_ADDRESS_V06 } from 'permissionless'
 import { pimlicoPaymasterActions } from 'permissionless/actions/pimlico'
 import { Chain, createClient, http } from 'viem'
 
@@ -12,6 +13,6 @@ export const getPimlicoPaymasterClient = async (chain: Chain) => {
   const bundlerClient = createClient({
     chain: chain,
     transport: http(`${baseUrl}${pimlicoNetwork}/rpc?apikey=${env.NEXT_PUBLIC_PIMLICO_API_KEY}`),
-  }).extend(pimlicoPaymasterActions)
+  }).extend(pimlicoPaymasterActions(ENTRYPOINT_ADDRESS_V06))
   return bundlerClient
 }

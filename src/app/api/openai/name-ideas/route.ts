@@ -11,11 +11,12 @@ export const runtime = 'edge'
 
 const getUserPrompt = (
   amount: number,
-) => `Custom Instruction: Craft Web3 usernames that can be loosely related to one of the following projects: 
-- Chainlink (the decentralized Web3 oracle network),
+) => `Custom Instruction: Craft creative usernames that can be loosely related to one of the following projects: 
+- Crypto Celebs (e.g. Vitalik, Satoshi, etc.),
+- Chainlink (the Web3 oracle network),
 - ENS (the Ethereum Name Service),
-- Account Abstraction (the new wallet standard on EVM networks),
-- Crypto Memes (e.g. pepe, degen, wojak, etc.).
+- Smart Wallets (the new account abstraction standard),
+- Crypto Memes (e.g. pepe, degen, wojak, etc.),
 
 Disallowed Results: linkoracle,enshandle,chainfeed,ethnamer,ensvision,linknode,oraclechain
 
@@ -108,7 +109,7 @@ export async function POST(req: NextRequest) {
     const USER_PROMPT = getUserPrompt(amount)
 
     const response = await openai.createChatCompletion({
-      model: 'gpt-4-1106-preview',
+      model: 'gpt-4o',
       stream: true,
       temperature: 0.75,
       max_tokens: 250,

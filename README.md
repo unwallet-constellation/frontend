@@ -7,7 +7,9 @@
 
 > Next-Gen Onboarding. Seedless Smart Wallets meet Multichain Domains.
 
-This is the frontend for the _[Unwallet.me](https://unwallet.me/)_ hackathon project at [Chainlink Constellation 2023](https://chain.link/hackathon). The repository was scaffolded with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+This is the frontend for the _[Unwallet.me](https://unwallet.me/)_ hackathon project at [Chainlink Constellation 2023](https://chain.link/hackathon).
+
+Created by [Nimish](https://github.com/realnimish), [Mike](https://twitter.com/mike1third), [Dennis](https://zoma.dev), and [Peter](https://dribbble.com/goroh).
 
 ## Getting Started
 

@@ -26,7 +26,7 @@ export async function POST(req: Request) {
       requestFn: client.createSubOrganization,
     })
     const completedActivity = await activityPoller({
-      type: 'ACTIVITY_TYPE_CREATE_SUB_ORGANIZATION_V4',
+      type: 'ACTIVITY_TYPE_CREATE_SUB_ORGANIZATION_V4' as any,
       timestampMs: String(Date.now()),
       organizationId: env.NEXT_PUBLIC_TURNKEY_ORGANIZATION_ID,
       parameters: {
@@ -43,6 +43,7 @@ export async function POST(req: Request) {
                 attestation: data.attestation,
               },
             ],
+            oauthProviders: [],
           },
         ],
         wallet: {

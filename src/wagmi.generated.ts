@@ -591,20 +591,16 @@ export const ensRegistryCcipConfig = {
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 /**
- * [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x5FF137D4b0FDCD49DcA30c7CF57E578a026d2789)
+ * [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x0000000071727De22E5E9d8BAf0edAc6f37da032)
  */
 export const entryPointAbi = [
   {
     type: 'error',
     inputs: [
-      { name: 'preOpGas', internalType: 'uint256', type: 'uint256' },
-      { name: 'paid', internalType: 'uint256', type: 'uint256' },
-      { name: 'validAfter', internalType: 'uint48', type: 'uint48' },
-      { name: 'validUntil', internalType: 'uint48', type: 'uint48' },
-      { name: 'targetSuccess', internalType: 'bool', type: 'bool' },
-      { name: 'targetResult', internalType: 'bytes', type: 'bytes' },
+      { name: 'success', internalType: 'bool', type: 'bool' },
+      { name: 'ret', internalType: 'bytes', type: 'bytes' },
     ],
-    name: 'ExecutionResult',
+    name: 'DelegateAndRevert',
   },
   {
     type: 'error',
@@ -616,6 +612,21 @@ export const entryPointAbi = [
   },
   {
     type: 'error',
+    inputs: [
+      { name: 'opIndex', internalType: 'uint256', type: 'uint256' },
+      { name: 'reason', internalType: 'string', type: 'string' },
+      { name: 'inner', internalType: 'bytes', type: 'bytes' },
+    ],
+    name: 'FailedOpWithRevert',
+  },
+  {
+    type: 'error',
+    inputs: [{ name: 'returnData', internalType: 'bytes', type: 'bytes' }],
+    name: 'PostOpReverted',
+  },
+  { type: 'error', inputs: [], name: 'ReentrancyGuardReentrantCall' },
+  {
+    type: 'error',
     inputs: [{ name: 'sender', internalType: 'address', type: 'address' }],
     name: 'SenderAddressResult',
   },
@@ -623,119 +634,6 @@ export const entryPointAbi = [
     type: 'error',
     inputs: [{ name: 'aggregator', internalType: 'address', type: 'address' }],
     name: 'SignatureValidationFailed',
-  },
-  {
-    type: 'error',
-    inputs: [
-      {
-        name: 'returnInfo',
-        internalType: 'struct IEntryPoint.ReturnInfo',
-        type: 'tuple',
-        components: [
-          { name: 'preOpGas', internalType: 'uint256', type: 'uint256' },
-          { name: 'prefund', internalType: 'uint256', type: 'uint256' },
-          { name: 'sigFailed', internalType: 'bool', type: 'bool' },
-          { name: 'validAfter', internalType: 'uint48', type: 'uint48' },
-          { name: 'validUntil', internalType: 'uint48', type: 'uint48' },
-          { name: 'paymasterContext', internalType: 'bytes', type: 'bytes' },
-        ],
-      },
-      {
-        name: 'senderInfo',
-        internalType: 'struct IStakeManager.StakeInfo',
-        type: 'tuple',
-        components: [
-          { name: 'stake', internalType: 'uint256', type: 'uint256' },
-          { name: 'unstakeDelaySec', internalType: 'uint256', type: 'uint256' },
-        ],
-      },
-      {
-        name: 'factoryInfo',
-        internalType: 'struct IStakeManager.StakeInfo',
-        type: 'tuple',
-        components: [
-          { name: 'stake', internalType: 'uint256', type: 'uint256' },
-          { name: 'unstakeDelaySec', internalType: 'uint256', type: 'uint256' },
-        ],
-      },
-      {
-        name: 'paymasterInfo',
-        internalType: 'struct IStakeManager.StakeInfo',
-        type: 'tuple',
-        components: [
-          { name: 'stake', internalType: 'uint256', type: 'uint256' },
-          { name: 'unstakeDelaySec', internalType: 'uint256', type: 'uint256' },
-        ],
-      },
-    ],
-    name: 'ValidationResult',
-  },
-  {
-    type: 'error',
-    inputs: [
-      {
-        name: 'returnInfo',
-        internalType: 'struct IEntryPoint.ReturnInfo',
-        type: 'tuple',
-        components: [
-          { name: 'preOpGas', internalType: 'uint256', type: 'uint256' },
-          { name: 'prefund', internalType: 'uint256', type: 'uint256' },
-          { name: 'sigFailed', internalType: 'bool', type: 'bool' },
-          { name: 'validAfter', internalType: 'uint48', type: 'uint48' },
-          { name: 'validUntil', internalType: 'uint48', type: 'uint48' },
-          { name: 'paymasterContext', internalType: 'bytes', type: 'bytes' },
-        ],
-      },
-      {
-        name: 'senderInfo',
-        internalType: 'struct IStakeManager.StakeInfo',
-        type: 'tuple',
-        components: [
-          { name: 'stake', internalType: 'uint256', type: 'uint256' },
-          { name: 'unstakeDelaySec', internalType: 'uint256', type: 'uint256' },
-        ],
-      },
-      {
-        name: 'factoryInfo',
-        internalType: 'struct IStakeManager.StakeInfo',
-        type: 'tuple',
-        components: [
-          { name: 'stake', internalType: 'uint256', type: 'uint256' },
-          { name: 'unstakeDelaySec', internalType: 'uint256', type: 'uint256' },
-        ],
-      },
-      {
-        name: 'paymasterInfo',
-        internalType: 'struct IStakeManager.StakeInfo',
-        type: 'tuple',
-        components: [
-          { name: 'stake', internalType: 'uint256', type: 'uint256' },
-          { name: 'unstakeDelaySec', internalType: 'uint256', type: 'uint256' },
-        ],
-      },
-      {
-        name: 'aggregatorInfo',
-        internalType: 'struct IEntryPoint.AggregatorStakeInfo',
-        type: 'tuple',
-        components: [
-          { name: 'aggregator', internalType: 'address', type: 'address' },
-          {
-            name: 'stakeInfo',
-            internalType: 'struct IStakeManager.StakeInfo',
-            type: 'tuple',
-            components: [
-              { name: 'stake', internalType: 'uint256', type: 'uint256' },
-              {
-                name: 'unstakeDelaySec',
-                internalType: 'uint256',
-                type: 'uint256',
-              },
-            ],
-          },
-        ],
-      },
-    ],
-    name: 'ValidationResultWithAggregation',
   },
   {
     type: 'event',
@@ -787,6 +685,37 @@ export const entryPointAbi = [
       },
     ],
     name: 'Deposited',
+  },
+  {
+    type: 'event',
+    anonymous: false,
+    inputs: [
+      {
+        name: 'userOpHash',
+        internalType: 'bytes32',
+        type: 'bytes32',
+        indexed: true,
+      },
+      {
+        name: 'sender',
+        internalType: 'address',
+        type: 'address',
+        indexed: true,
+      },
+      {
+        name: 'nonce',
+        internalType: 'uint256',
+        type: 'uint256',
+        indexed: false,
+      },
+      {
+        name: 'revertReason',
+        internalType: 'bytes',
+        type: 'bytes',
+        indexed: false,
+      },
+    ],
+    name: 'PostOpRevertReason',
   },
   {
     type: 'event',
@@ -936,6 +865,31 @@ export const entryPointAbi = [
         type: 'uint256',
         indexed: false,
       },
+    ],
+    name: 'UserOperationPrefundTooLow',
+  },
+  {
+    type: 'event',
+    anonymous: false,
+    inputs: [
+      {
+        name: 'userOpHash',
+        internalType: 'bytes32',
+        type: 'bytes32',
+        indexed: true,
+      },
+      {
+        name: 'sender',
+        internalType: 'address',
+        type: 'address',
+        indexed: true,
+      },
+      {
+        name: 'nonce',
+        internalType: 'uint256',
+        type: 'uint256',
+        indexed: false,
+      },
       {
         name: 'revertReason',
         internalType: 'bytes',
@@ -972,24 +926,6 @@ export const entryPointAbi = [
   },
   {
     type: 'function',
-    inputs: [],
-    name: 'SIG_VALIDATION_FAILED',
-    outputs: [{ name: '', internalType: 'uint256', type: 'uint256' }],
-    stateMutability: 'view',
-  },
-  {
-    type: 'function',
-    inputs: [
-      { name: 'initCode', internalType: 'bytes', type: 'bytes' },
-      { name: 'sender', internalType: 'address', type: 'address' },
-      { name: 'paymasterAndData', internalType: 'bytes', type: 'bytes' },
-    ],
-    name: '_validateSenderAndPaymaster',
-    outputs: [],
-    stateMutability: 'view',
-  },
-  {
-    type: 'function',
     inputs: [
       { name: 'unstakeDelaySec', internalType: 'uint32', type: 'uint32' },
     ],
@@ -1006,6 +942,16 @@ export const entryPointAbi = [
   },
   {
     type: 'function',
+    inputs: [
+      { name: 'target', internalType: 'address', type: 'address' },
+      { name: 'data', internalType: 'bytes', type: 'bytes' },
+    ],
+    name: 'delegateAndRevert',
+    outputs: [],
+    stateMutability: 'nonpayable',
+  },
+  {
+    type: 'function',
     inputs: [{ name: 'account', internalType: 'address', type: 'address' }],
     name: 'depositTo',
     outputs: [],
@@ -1016,7 +962,7 @@ export const entryPointAbi = [
     inputs: [{ name: '', internalType: 'address', type: 'address' }],
     name: 'deposits',
     outputs: [
-      { name: 'deposit', internalType: 'uint112', type: 'uint112' },
+      { name: 'deposit', internalType: 'uint256', type: 'uint256' },
       { name: 'staked', internalType: 'bool', type: 'bool' },
       { name: 'stake', internalType: 'uint112', type: 'uint112' },
       { name: 'unstakeDelaySec', internalType: 'uint32', type: 'uint32' },
@@ -1034,7 +980,7 @@ export const entryPointAbi = [
         internalType: 'struct IStakeManager.DepositInfo',
         type: 'tuple',
         components: [
-          { name: 'deposit', internalType: 'uint112', type: 'uint112' },
+          { name: 'deposit', internalType: 'uint256', type: 'uint256' },
           { name: 'staked', internalType: 'bool', type: 'bool' },
           { name: 'stake', internalType: 'uint112', type: 'uint112' },
           { name: 'unstakeDelaySec', internalType: 'uint32', type: 'uint32' },
@@ -1066,30 +1012,24 @@ export const entryPointAbi = [
     inputs: [
       {
         name: 'userOp',
-        internalType: 'struct UserOperation',
+        internalType: 'struct PackedUserOperation',
         type: 'tuple',
         components: [
           { name: 'sender', internalType: 'address', type: 'address' },
           { name: 'nonce', internalType: 'uint256', type: 'uint256' },
           { name: 'initCode', internalType: 'bytes', type: 'bytes' },
           { name: 'callData', internalType: 'bytes', type: 'bytes' },
-          { name: 'callGasLimit', internalType: 'uint256', type: 'uint256' },
           {
-            name: 'verificationGasLimit',
-            internalType: 'uint256',
-            type: 'uint256',
+            name: 'accountGasLimits',
+            internalType: 'bytes32',
+            type: 'bytes32',
           },
           {
             name: 'preVerificationGas',
             internalType: 'uint256',
             type: 'uint256',
           },
-          { name: 'maxFeePerGas', internalType: 'uint256', type: 'uint256' },
-          {
-            name: 'maxPriorityFeePerGas',
-            internalType: 'uint256',
-            type: 'uint256',
-          },
+          { name: 'gasFees', internalType: 'bytes32', type: 'bytes32' },
           { name: 'paymasterAndData', internalType: 'bytes', type: 'bytes' },
           { name: 'signature', internalType: 'bytes', type: 'bytes' },
         ],
@@ -1109,7 +1049,7 @@ export const entryPointAbi = [
         components: [
           {
             name: 'userOps',
-            internalType: 'struct UserOperation[]',
+            internalType: 'struct PackedUserOperation[]',
             type: 'tuple[]',
             components: [
               { name: 'sender', internalType: 'address', type: 'address' },
@@ -1117,30 +1057,16 @@ export const entryPointAbi = [
               { name: 'initCode', internalType: 'bytes', type: 'bytes' },
               { name: 'callData', internalType: 'bytes', type: 'bytes' },
               {
-                name: 'callGasLimit',
-                internalType: 'uint256',
-                type: 'uint256',
-              },
-              {
-                name: 'verificationGasLimit',
-                internalType: 'uint256',
-                type: 'uint256',
+                name: 'accountGasLimits',
+                internalType: 'bytes32',
+                type: 'bytes32',
               },
               {
                 name: 'preVerificationGas',
                 internalType: 'uint256',
                 type: 'uint256',
               },
-              {
-                name: 'maxFeePerGas',
-                internalType: 'uint256',
-                type: 'uint256',
-              },
-              {
-                name: 'maxPriorityFeePerGas',
-                internalType: 'uint256',
-                type: 'uint256',
-              },
+              { name: 'gasFees', internalType: 'bytes32', type: 'bytes32' },
               {
                 name: 'paymasterAndData',
                 internalType: 'bytes',
@@ -1168,30 +1094,24 @@ export const entryPointAbi = [
     inputs: [
       {
         name: 'ops',
-        internalType: 'struct UserOperation[]',
+        internalType: 'struct PackedUserOperation[]',
         type: 'tuple[]',
         components: [
           { name: 'sender', internalType: 'address', type: 'address' },
           { name: 'nonce', internalType: 'uint256', type: 'uint256' },
           { name: 'initCode', internalType: 'bytes', type: 'bytes' },
           { name: 'callData', internalType: 'bytes', type: 'bytes' },
-          { name: 'callGasLimit', internalType: 'uint256', type: 'uint256' },
           {
-            name: 'verificationGasLimit',
-            internalType: 'uint256',
-            type: 'uint256',
+            name: 'accountGasLimits',
+            internalType: 'bytes32',
+            type: 'bytes32',
           },
           {
             name: 'preVerificationGas',
             internalType: 'uint256',
             type: 'uint256',
           },
-          { name: 'maxFeePerGas', internalType: 'uint256', type: 'uint256' },
-          {
-            name: 'maxPriorityFeePerGas',
-            internalType: 'uint256',
-            type: 'uint256',
-          },
+          { name: 'gasFees', internalType: 'bytes32', type: 'bytes32' },
           { name: 'paymasterAndData', internalType: 'bytes', type: 'bytes' },
           { name: 'signature', internalType: 'bytes', type: 'bytes' },
         ],
@@ -1226,12 +1146,22 @@ export const entryPointAbi = [
               { name: 'sender', internalType: 'address', type: 'address' },
               { name: 'nonce', internalType: 'uint256', type: 'uint256' },
               {
+                name: 'verificationGasLimit',
+                internalType: 'uint256',
+                type: 'uint256',
+              },
+              {
                 name: 'callGasLimit',
                 internalType: 'uint256',
                 type: 'uint256',
               },
               {
-                name: 'verificationGasLimit',
+                name: 'paymasterVerificationGasLimit',
+                internalType: 'uint256',
+                type: 'uint256',
+              },
+              {
+                name: 'paymasterPostOpGasLimit',
                 internalType: 'uint256',
                 type: 'uint256',
               },
@@ -1279,81 +1209,10 @@ export const entryPointAbi = [
   },
   {
     type: 'function',
-    inputs: [
-      {
-        name: 'op',
-        internalType: 'struct UserOperation',
-        type: 'tuple',
-        components: [
-          { name: 'sender', internalType: 'address', type: 'address' },
-          { name: 'nonce', internalType: 'uint256', type: 'uint256' },
-          { name: 'initCode', internalType: 'bytes', type: 'bytes' },
-          { name: 'callData', internalType: 'bytes', type: 'bytes' },
-          { name: 'callGasLimit', internalType: 'uint256', type: 'uint256' },
-          {
-            name: 'verificationGasLimit',
-            internalType: 'uint256',
-            type: 'uint256',
-          },
-          {
-            name: 'preVerificationGas',
-            internalType: 'uint256',
-            type: 'uint256',
-          },
-          { name: 'maxFeePerGas', internalType: 'uint256', type: 'uint256' },
-          {
-            name: 'maxPriorityFeePerGas',
-            internalType: 'uint256',
-            type: 'uint256',
-          },
-          { name: 'paymasterAndData', internalType: 'bytes', type: 'bytes' },
-          { name: 'signature', internalType: 'bytes', type: 'bytes' },
-        ],
-      },
-      { name: 'target', internalType: 'address', type: 'address' },
-      { name: 'targetCallData', internalType: 'bytes', type: 'bytes' },
-    ],
-    name: 'simulateHandleOp',
-    outputs: [],
-    stateMutability: 'nonpayable',
-  },
-  {
-    type: 'function',
-    inputs: [
-      {
-        name: 'userOp',
-        internalType: 'struct UserOperation',
-        type: 'tuple',
-        components: [
-          { name: 'sender', internalType: 'address', type: 'address' },
-          { name: 'nonce', internalType: 'uint256', type: 'uint256' },
-          { name: 'initCode', internalType: 'bytes', type: 'bytes' },
-          { name: 'callData', internalType: 'bytes', type: 'bytes' },
-          { name: 'callGasLimit', internalType: 'uint256', type: 'uint256' },
-          {
-            name: 'verificationGasLimit',
-            internalType: 'uint256',
-            type: 'uint256',
-          },
-          {
-            name: 'preVerificationGas',
-            internalType: 'uint256',
-            type: 'uint256',
-          },
-          { name: 'maxFeePerGas', internalType: 'uint256', type: 'uint256' },
-          {
-            name: 'maxPriorityFeePerGas',
-            internalType: 'uint256',
-            type: 'uint256',
-          },
-          { name: 'paymasterAndData', internalType: 'bytes', type: 'bytes' },
-          { name: 'signature', internalType: 'bytes', type: 'bytes' },
-        ],
-      },
-    ],
-    name: 'simulateValidation',
-    outputs: [],
-    stateMutability: 'nonpayable',
+    inputs: [{ name: 'interfaceId', internalType: 'bytes4', type: 'bytes4' }],
+    name: 'supportsInterface',
+    outputs: [{ name: '', internalType: 'bool', type: 'bool' }],
+    stateMutability: 'view',
   },
   {
     type: 'function',
@@ -1393,14 +1252,14 @@ export const entryPointAbi = [
 ] as const
 
 /**
- * [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x5FF137D4b0FDCD49DcA30c7CF57E578a026d2789)
+ * [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x0000000071727De22E5E9d8BAf0edAc6f37da032)
  */
 export const entryPointAddress = {
-  11155111: '0x5FF137D4b0FDCD49DcA30c7CF57E578a026d2789',
+  11155111: '0x0000000071727De22E5E9d8BAf0edAc6f37da032',
 } as const
 
 /**
- * [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x5FF137D4b0FDCD49DcA30c7CF57E578a026d2789)
+ * [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x0000000071727De22E5E9d8BAf0edAc6f37da032)
  */
 export const entryPointConfig = {
   address: entryPointAddress,
@@ -2537,8 +2396,8 @@ export const simpleAccountFactoryConfig = {
 
 /**
  * - [__View Contract on Polygon Mumbai Polygon Scan__](https://mumbai.polygonscan.com/address/0xa116EFd55BaF84803471Db9E267F26f707FF8eF8)
- * - [__View Contract on Base Sepolia Blockscout__](https://base-sepolia.blockscout.com/address/0x2B332c1aF30a50E6901460Cd74149e2358105e5e)
- * - [__View Contract on Optimism Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0x745f416b9c8883fdD8869e652b3Ea29dbD3ec7bc)
+ * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x2B332c1aF30a50E6901460Cd74149e2358105e5e)
+ * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0x745f416b9c8883fdD8869e652b3Ea29dbD3ec7bc)
  */
 export const xcEnsRegistryAbi = [
   {
@@ -2823,8 +2682,8 @@ export const xcEnsRegistryAbi = [
 
 /**
  * - [__View Contract on Polygon Mumbai Polygon Scan__](https://mumbai.polygonscan.com/address/0xa116EFd55BaF84803471Db9E267F26f707FF8eF8)
- * - [__View Contract on Base Sepolia Blockscout__](https://base-sepolia.blockscout.com/address/0x2B332c1aF30a50E6901460Cd74149e2358105e5e)
- * - [__View Contract on Optimism Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0x745f416b9c8883fdD8869e652b3Ea29dbD3ec7bc)
+ * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x2B332c1aF30a50E6901460Cd74149e2358105e5e)
+ * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0x745f416b9c8883fdD8869e652b3Ea29dbD3ec7bc)
  */
 export const xcEnsRegistryAddress = {
   80001: '0xa116EFd55BaF84803471Db9E267F26f707FF8eF8',
@@ -2834,8 +2693,8 @@ export const xcEnsRegistryAddress = {
 
 /**
  * - [__View Contract on Polygon Mumbai Polygon Scan__](https://mumbai.polygonscan.com/address/0xa116EFd55BaF84803471Db9E267F26f707FF8eF8)
- * - [__View Contract on Base Sepolia Blockscout__](https://base-sepolia.blockscout.com/address/0x2B332c1aF30a50E6901460Cd74149e2358105e5e)
- * - [__View Contract on Optimism Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0x745f416b9c8883fdD8869e652b3Ea29dbD3ec7bc)
+ * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x2B332c1aF30a50E6901460Cd74149e2358105e5e)
+ * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0x745f416b9c8883fdD8869e652b3Ea29dbD3ec7bc)
  */
 export const xcEnsRegistryConfig = {
   address: xcEnsRegistryAddress,
@@ -2848,8 +2707,8 @@ export const xcEnsRegistryConfig = {
 
 /**
  * - [__View Contract on Polygon Mumbai Polygon Scan__](https://mumbai.polygonscan.com/address/0x2cDE4d09AFAd2299ae93Fee5777C8222eC90ba0b)
- * - [__View Contract on Base Sepolia Blockscout__](https://base-sepolia.blockscout.com/address/0xe2F91CE5c578BC92a1c56633a27D260a8688F512)
- * - [__View Contract on Optimism Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0xdf0586C41617Db9886b54E36c649B0D2980F330c)
+ * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0xe2F91CE5c578BC92a1c56633a27D260a8688F512)
+ * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0xdf0586C41617Db9886b54E36c649B0D2980F330c)
  */
 export const xcFifsRegistrarAbi = [
   {
@@ -2953,8 +2812,8 @@ export const xcFifsRegistrarAbi = [
 
 /**
  * - [__View Contract on Polygon Mumbai Polygon Scan__](https://mumbai.polygonscan.com/address/0x2cDE4d09AFAd2299ae93Fee5777C8222eC90ba0b)
- * - [__View Contract on Base Sepolia Blockscout__](https://base-sepolia.blockscout.com/address/0xe2F91CE5c578BC92a1c56633a27D260a8688F512)
- * - [__View Contract on Optimism Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0xdf0586C41617Db9886b54E36c649B0D2980F330c)
+ * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0xe2F91CE5c578BC92a1c56633a27D260a8688F512)
+ * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0xdf0586C41617Db9886b54E36c649B0D2980F330c)
  */
 export const xcFifsRegistrarAddress = {
   80001: '0x2cDE4d09AFAd2299ae93Fee5777C8222eC90ba0b',
@@ -2964,8 +2823,8 @@ export const xcFifsRegistrarAddress = {
 
 /**
  * - [__View Contract on Polygon Mumbai Polygon Scan__](https://mumbai.polygonscan.com/address/0x2cDE4d09AFAd2299ae93Fee5777C8222eC90ba0b)
- * - [__View Contract on Base Sepolia Blockscout__](https://base-sepolia.blockscout.com/address/0xe2F91CE5c578BC92a1c56633a27D260a8688F512)
- * - [__View Contract on Optimism Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0xdf0586C41617Db9886b54E36c649B0D2980F330c)
+ * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0xe2F91CE5c578BC92a1c56633a27D260a8688F512)
+ * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0xdf0586C41617Db9886b54E36c649B0D2980F330c)
  */
 export const xcFifsRegistrarConfig = {
   address: xcFifsRegistrarAddress,
@@ -2978,8 +2837,8 @@ export const xcFifsRegistrarConfig = {
 
 /**
  * - [__View Contract on Polygon Mumbai Polygon Scan__](https://mumbai.polygonscan.com/address/0x942Dfc5F5f34875C9f8607152F7a3Ac3A08289b4)
- * - [__View Contract on Base Sepolia Blockscout__](https://base-sepolia.blockscout.com/address/0xABb8dc1c09dE4d47Ef50fe53d4c9D74A809f8212)
- * - [__View Contract on Optimism Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0x0FD959Da5d59a3a651485647adaF2Bf893904716)
+ * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0xABb8dc1c09dE4d47Ef50fe53d4c9D74A809f8212)
+ * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0x0FD959Da5d59a3a651485647adaF2Bf893904716)
  */
 export const xcPublicResolverAbi = [
   {
@@ -3144,8 +3003,8 @@ export const xcPublicResolverAbi = [
 
 /**
  * - [__View Contract on Polygon Mumbai Polygon Scan__](https://mumbai.polygonscan.com/address/0x942Dfc5F5f34875C9f8607152F7a3Ac3A08289b4)
- * - [__View Contract on Base Sepolia Blockscout__](https://base-sepolia.blockscout.com/address/0xABb8dc1c09dE4d47Ef50fe53d4c9D74A809f8212)
- * - [__View Contract on Optimism Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0x0FD959Da5d59a3a651485647adaF2Bf893904716)
+ * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0xABb8dc1c09dE4d47Ef50fe53d4c9D74A809f8212)
+ * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0x0FD959Da5d59a3a651485647adaF2Bf893904716)
  */
 export const xcPublicResolverAddress = {
   80001: '0x942Dfc5F5f34875C9f8607152F7a3Ac3A08289b4',
@@ -3155,8 +3014,8 @@ export const xcPublicResolverAddress = {
 
 /**
  * - [__View Contract on Polygon Mumbai Polygon Scan__](https://mumbai.polygonscan.com/address/0x942Dfc5F5f34875C9f8607152F7a3Ac3A08289b4)
- * - [__View Contract on Base Sepolia Blockscout__](https://base-sepolia.blockscout.com/address/0xABb8dc1c09dE4d47Ef50fe53d4c9D74A809f8212)
- * - [__View Contract on Optimism Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0x0FD959Da5d59a3a651485647adaF2Bf893904716)
+ * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0xABb8dc1c09dE4d47Ef50fe53d4c9D74A809f8212)
+ * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0x0FD959Da5d59a3a651485647adaF2Bf893904716)
  */
 export const xcPublicResolverConfig = {
   address: xcPublicResolverAddress,
@@ -3169,8 +3028,8 @@ export const xcPublicResolverConfig = {
 
 /**
  * - [__View Contract on Polygon Mumbai Polygon Scan__](https://mumbai.polygonscan.com/address/0xB2B23667d15449043155344FFCDDB247e49D5F0c)
- * - [__View Contract on Base Sepolia Blockscout__](https://base-sepolia.blockscout.com/address/0x4f1807F6a0321790E5d4a262f9127ce17797405A)
- * - [__View Contract on Optimism Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0x75Fc08b42bCBB59eE9b81d282C1Ab59a5471264f)
+ * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x4f1807F6a0321790E5d4a262f9127ce17797405A)
+ * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0x75Fc08b42bCBB59eE9b81d282C1Ab59a5471264f)
  */
 export const xcReverseRegistrarAbi = [
   {
@@ -3325,8 +3184,8 @@ export const xcReverseRegistrarAbi = [
 
 /**
  * - [__View Contract on Polygon Mumbai Polygon Scan__](https://mumbai.polygonscan.com/address/0xB2B23667d15449043155344FFCDDB247e49D5F0c)
- * - [__View Contract on Base Sepolia Blockscout__](https://base-sepolia.blockscout.com/address/0x4f1807F6a0321790E5d4a262f9127ce17797405A)
- * - [__View Contract on Optimism Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0x75Fc08b42bCBB59eE9b81d282C1Ab59a5471264f)
+ * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x4f1807F6a0321790E5d4a262f9127ce17797405A)
+ * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0x75Fc08b42bCBB59eE9b81d282C1Ab59a5471264f)
  */
 export const xcReverseRegistrarAddress = {
   80001: '0xB2B23667d15449043155344FFCDDB247e49D5F0c',
@@ -3336,8 +3195,8 @@ export const xcReverseRegistrarAddress = {
 
 /**
  * - [__View Contract on Polygon Mumbai Polygon Scan__](https://mumbai.polygonscan.com/address/0xB2B23667d15449043155344FFCDDB247e49D5F0c)
- * - [__View Contract on Base Sepolia Blockscout__](https://base-sepolia.blockscout.com/address/0x4f1807F6a0321790E5d4a262f9127ce17797405A)
- * - [__View Contract on Optimism Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0x75Fc08b42bCBB59eE9b81d282C1Ab59a5471264f)
+ * - [__View Contract on Base Sepolia Basescan__](https://sepolia.basescan.org/address/0x4f1807F6a0321790E5d4a262f9127ce17797405A)
+ * - [__View Contract on Op Sepolia Blockscout__](https://optimism-sepolia.blockscout.com/address/0x75Fc08b42bCBB59eE9b81d282C1Ab59a5471264f)
  */
 export const xcReverseRegistrarConfig = {
   address: xcReverseRegistrarAddress,

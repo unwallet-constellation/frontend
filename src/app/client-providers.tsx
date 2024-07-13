@@ -3,15 +3,18 @@
 import * as React from 'react'
 
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
-import { WagmiProvider } from 'wagmi'
+import { State, WagmiProvider } from 'wagmi'
 
 import { wagmiConfig } from '../config/wagmi'
 
-export function ClientProviders({ children }: { children: React.ReactNode }) {
+interface ClientProvidersProps extends React.PropsWithChildren {
+  initialState?: State | undefined
+}
+export function ClientProviders({ initialState, children }: ClientProvidersProps) {
   const [queryClient] = React.useState(() => new QueryClient())
 
   return (
-    <WagmiProvider config={wagmiConfig} reconnectOnMount={true}>
+    <WagmiProvider config={wagmiConfig} initialState={initialState} reconnectOnMount={true}>
       <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
     </WagmiProvider>
   )

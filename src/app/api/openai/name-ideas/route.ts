@@ -109,7 +109,7 @@ export async function POST(req: NextRequest) {
     const USER_PROMPT = getUserPrompt(amount)
 
     const response = await openai.createChatCompletion({
-      model: 'gpt-4o',
+      model: 'gpt-4o-mini',
       stream: true,
       temperature: 0.75,
       max_tokens: 250,
